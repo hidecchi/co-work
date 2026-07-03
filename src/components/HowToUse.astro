@@ -1,0 +1,224 @@
+---
+const services = [
+  {
+    title: "入場料の決済",
+    description:
+      "入店後左側のタブレット画面から入場料を決済してください。\nキャッシュレス決済のみ対応しています。",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop",
+  },
+  {
+    title: "席を選定",
+    description:
+      "席を選定してください。\nカウントー席とテーブル席とソファー席がございます。",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+  },
+  {
+    title: "利用終了後はサッと一拭き",
+    description:
+      "無人店舗のため利用終了後のテーブルのサッと一拭きのご協力をお願いしております。\n大変お手数ではございますが、ご協力いただけますと幸いです。",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop",
+  },
+];
+---
+
+<div class="howToUse__container">
+  <div class="howToUse__bg__top"></div>
+  <section class="howToUse" id="howToUse">
+    <div class="howToUse__inner">
+      <p class="howToUse__label">HOW TO USE</p>
+      <h2 class="howToUse__heading">ご利用方法</h2>
+
+      <div class="howToUse__list">
+        {
+          services.map((service, index) => (
+            <article class="howToUse__item">
+              <div class="howToUse__item__body">
+                <span class="howToUse__item__num">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 class="howToUse__item__title">{service.title}</h3>
+                <p class="howToUse__item__desc">{service.description}</p>
+              </div>
+              <div class="howToUse__item__image">
+                <div class="howToUse__item__image-reveal" data-image-reveal>
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    width="800"
+                    height="500"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <div class="howToUse__bg__bottom"></div>
+</div>
+<style>
+  .howToUse__bg__top,
+  .howToUse__bg__bottom {
+    background: #f7f7f7;
+    height: 20rem;
+    width: 100%;
+    border-radius: 50%;
+    position: relative;
+    z-index: -1;
+  }
+
+  .howToUse__bg__top {
+    margin-bottom: -10rem;
+  }
+
+  .howToUse__bg__bottom {
+    margin-top: -10rem;
+  }
+
+  .howToUse {
+    padding: 6rem 2rem;
+    background: #f7f7f7;
+  }
+
+  .howToUse__inner {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .howToUse__label {
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .howToUse__heading {
+    font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  .howToUse__list {
+    margin-top: 3.5rem;
+  }
+
+  .howToUse__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 2.4rem 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .howToUse__item:first-child {
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .howToUse__item__body {
+    flex-basis: 48%;
+    min-width: 0;
+    padding-left: 2%;
+  }
+
+  .howToUse__item__num {
+    display: block;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .howToUse__item__title {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.02em;
+  }
+
+  .howToUse__item__desc {
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+
+  .howToUse__item__image {
+    flex: 0 0 42%;
+    max-width: 620px;
+    height: 20rem;
+    border-radius: 4px;
+    container-type: inline-size;
+    overflow: hidden;
+  }
+
+  .howToUse__item__image-reveal {
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: width 1.1s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .howToUse__item__image-reveal.is-revealed {
+    width: 100%;
+  }
+
+  .howToUse__item__image-reveal img {
+    display: block;
+    width: 100cqw;
+    height: 20rem;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .howToUse {
+      padding: 4rem 1.5rem;
+    }
+
+    .howToUse__list {
+      margin-top: 2.5rem;
+    }
+
+    .howToUse__item {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2rem;
+      padding: 2.5rem 0;
+    }
+
+    .howToUse__item__image {
+      flex: none;
+      max-width: none;
+      order: -1;
+    }
+  }
+</style>
+
+<script>
+  function initImageReveal() {
+    const reveals = document.querySelectorAll("[data-image-reveal]");
+    if (!reveals.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    reveals.forEach((reveal) => observer.observe(reveal));
+  }
+
+  initImageReveal();
+  document.addEventListener("astro:page-load", initImageReveal);
+</script>
