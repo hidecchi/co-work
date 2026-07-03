@@ -1,0 +1,217 @@
+---
+const categories = [
+	"すべて",
+	"Webサイト",
+	"広告運用",
+	"ブランディング",
+	"業務改善",
+	"コンテンツ",
+	"その他",
+];
+
+const works = [
+	{
+		category: "広告運用",
+		title: "広告運用の最適化による集客効率向上支援",
+		image:
+			"https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=500&fit=crop",
+	},
+	{
+		category: "Webサイト",
+		title: "コーポレートサイトリニューアル",
+		image:
+			"https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
+	},
+	{
+		category: "ブランディング",
+		title: "ブランドアイデンティティ設計・構築",
+		image:
+			"https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop",
+	},
+	{
+		category: "コンテンツ",
+		title: "オウンドメディア立ち上げ支援",
+		image:
+			"https://images.unsplash.com/photo-1432888622747-4eb9a8f2d523?w=800&h=500&fit=crop",
+	},
+	{
+		category: "業務改善",
+		title: "マーケティングプロセスのDX化",
+		image:
+			"https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop",
+	},
+	{
+		category: "その他",
+		title: "新規事業のGo-to-Market支援",
+		image:
+			"https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+	},
+];
+---
+
+<section class="works" id="works">
+	<div class="works__inner">
+		<h2 class="works__heading">カテゴリで整理できる実績紹介</h2>
+
+		<div class="works__panel">
+			<div class="works__filters" role="tablist" aria-label="実績カテゴリ">
+				{categories.map((cat, i) => (
+						<button
+							type="button"
+							class:list={['filter-btn', { 'filter-btn--active': i === 0 }]}
+							role="tab"
+							aria-selected={i === 0}
+							data-category={cat}
+						>
+							{cat}
+						</button>
+					))}
+			</div>
+
+			<div class="works__grid">
+				{works.map((work) => (
+						<article class="work-card" data-category={work.category}>
+							<div class="work-card__image">
+								<img src={work.image} alt={work.title} width="800" height="500" loading="lazy" />
+							</div>
+							<span class="work-card__tag">{work.category}</span>
+							<h3 class="work-card__title">{work.title}</h3>
+						</article>
+					))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+const filterBtns = document.querySelectorAll(".filter-btn");
+const workCards = document.querySelectorAll(".work-card");
+
+filterBtns.forEach((btn) => {
+	btn.addEventListener("click", () => {
+		const category = btn.getAttribute("data-category");
+
+		filterBtns.forEach((b) => {
+			b.classList.remove("filter-btn--active");
+			b.setAttribute("aria-selected", "false");
+		});
+		btn.classList.add("filter-btn--active");
+		btn.setAttribute("aria-selected", "true");
+
+		workCards.forEach((card) => {
+			const cardCategory = card.getAttribute("data-category");
+			const show = category === "すべて" || cardCategory === category;
+			(card as HTMLElement).style.display = show ? "" : "none";
+		});
+	});
+});
+</script>
+
+<style>
+.works {
+	padding: 6rem 2rem;
+}
+
+.works__inner {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.works__heading {
+	font-size: clamp(1.5rem, 3.5vw, 2rem);
+	font-weight: 700;
+	margin: 0 0 2.5rem;
+	line-height: 1.5;
+}
+
+.works__panel {
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	padding: 2rem;
+	box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+}
+
+.works__filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-bottom: 2rem;
+}
+
+.filter-btn {
+	padding: 0.5rem 1rem;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	border: 1px solid #ddd;
+	border-radius: 999px;
+	background: #fff;
+	color: #333;
+	transition: all 0.2s;
+}
+
+.filter-btn:hover {
+	border-color: #999;
+}
+
+.filter-btn--active {
+	background: #1a1a1a;
+	border-color: #1a1a1a;
+	color: #fff;
+}
+
+.works__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+}
+
+.work-card {
+	cursor: pointer;
+}
+
+.work-card__image {
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border-radius: 2px;
+	margin-bottom: 1rem;
+}
+
+.work-card__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.4s ease;
+}
+
+.work-card:hover .work-card__image img {
+	transform: scale(1.03);
+}
+
+.work-card__tag {
+	display: inline-block;
+	font-size: 0.75rem;
+	font-weight: 500;
+	padding: 0.25rem 0.625rem;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	margin-bottom: 0.75rem;
+}
+
+.work-card__title {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.6;
+	margin: 0;
+}
+
+@media (max-width: 900px) {
+	.works__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.works__panel {
+		padding: 1.5rem;
+	}
+}
+</style>

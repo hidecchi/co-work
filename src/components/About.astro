@@ -1,0 +1,98 @@
+<section class="about" id="about">
+	<div class="about__inner">
+		<p class="section-label">ABOUT</p>
+		<h2 class="about__heading">本質的な課題に向き合い<br>成果につなげる</h2>
+
+		<div class="about__grid">
+			<div class="about__image-wrap">
+				<img
+					src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
+					alt="プロフェッショナルなビジネスウーマン"
+					width="600"
+					height="800"
+					loading="lazy"
+				>
+			</div>
+			<div class="about__body">
+				<p>
+					私たちは、データと戦略を軸に、クライアントの事業成長を支援するマーケティングパートナーです。表面的な施策ではなく、本質的な課題の特定から始め、実行可能なソリューションを提供します。
+				</p>
+				<p>
+					デジタルマーケティング、広告運用、Web制作、ブランディングなど、多角的なアプローチで、お客様のビジネスゴール達成をサポート。数字に基づいた意思決定と、クリエイティブな発想を融合させた支援を行います。
+				</p>
+				<p>
+					「何を、なぜ、どうやって」——
+					その答えを一緒に見つけ、持続的な成果創出を目指します。
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.about {
+	padding: 6rem 2rem;
+}
+
+.about__inner {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.about__heading {
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	font-weight: 700;
+	line-height: 1.5;
+	margin: 0 0 3.5rem;
+	letter-spacing: 0.02em;
+}
+
+.about__grid {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 4rem;
+	align-items: start;
+}
+
+.about__image-wrap {
+	overflow: hidden;
+	border-radius: 2px;
+}
+
+.about__image-wrap img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 4;
+	object-fit: cover;
+}
+
+.about__body p {
+	margin: 0 0 1.5rem;
+	font-size: 0.9375rem;
+	color: #333;
+	line-height: 2;
+}
+
+.about__body p:last-child {
+	margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+	.about {
+		padding: 4rem 1.5rem;
+	}
+
+	.about__grid {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	.about__image-wrap {
+		max-width: 280px;
+	}
+
+	.about__heading {
+		margin-bottom: 2.5rem;
+	}
+}
+</style>
