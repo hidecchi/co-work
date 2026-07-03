@@ -1,98 +1,143 @@
-<section class="about" id="about">
-	<div class="about__inner">
-		<p class="section-label">ABOUT</p>
-		<h2 class="about__heading">本質的な課題に向き合い<br>成果につなげる</h2>
+---
+const features = [
+  "会員登録不要",
+  "高速Wi-Fi",
+  "電源完備",
+  "席時間無制限",
+  "仕事・勉強",
+  "無人",
+  "ドリンク持込OK",
+  "会話OK",
+];
+---
 
-		<div class="about__grid">
-			<div class="about__image-wrap">
-				<img
-					src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
-					alt="プロフェッショナルなビジネスウーマン"
-					width="600"
-					height="800"
-					loading="lazy"
-				>
-			</div>
-			<div class="about__body">
-				<p>
-					私たちは、データと戦略を軸に、クライアントの事業成長を支援するマーケティングパートナーです。表面的な施策ではなく、本質的な課題の特定から始め、実行可能なソリューションを提供します。
-				</p>
-				<p>
-					デジタルマーケティング、広告運用、Web制作、ブランディングなど、多角的なアプローチで、お客様のビジネスゴール達成をサポート。数字に基づいた意思決定と、クリエイティブな発想を融合させた支援を行います。
-				</p>
-				<p>
-					「何を、なぜ、どうやって」——
-					その答えを一緒に見つけ、持続的な成果創出を目指します。
-				</p>
-			</div>
-		</div>
-	</div>
+<section class="about" id="about" aria-label="店舗の特徴">
+  <div class="about__inner">
+    <h2 class="about__title">
+      三宮磯上公園北側のエリアに新しいコワーキングスペースが登場！<br
+      />外で作業をすることが好きな方におすすめのコワーキングスペースです。<br
+      />もちろん休憩利用も歓迎です。
+    </h2>
+    <ul class="about__list">
+      {
+        features.map((label) => (
+          <li class="about__item">
+            <span class="about__check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M6 10.2 8.6 12.8 14.2 7.2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="about__label">{label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </section>
 
 <style>
-.about {
-	padding: 6rem 2rem;
-}
+  .about {
+    padding: 3.5rem 1.5rem 4.5rem;
+    background: #fff;
+  }
 
-.about__inner {
-	max-width: 1100px;
-	margin: 0 auto;
-}
+  .about__title {
+    margin-bottom: 2em;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+  }
 
-.about__heading {
-	font-size: clamp(1.75rem, 4vw, 2.5rem);
-	font-weight: 700;
-	line-height: 1.5;
-	margin: 0 0 3.5rem;
-	letter-spacing: 0.02em;
-}
+  .about__inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
 
-.about__grid {
-	display: grid;
-	grid-template-columns: 280px 1fr;
-	gap: 4rem;
-	align-items: start;
-}
+  .about__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-.about__image-wrap {
-	overflow: hidden;
-	border-radius: 2px;
-}
+  .about__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1.25rem 1.375rem;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  }
 
-.about__image-wrap img {
-	width: 100%;
-	height: auto;
-	aspect-ratio: 3 / 4;
-	object-fit: cover;
-}
+  .about__check {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.625rem;
+    height: 1.625rem;
+    color: #1a1a1a;
+  }
 
-.about__body p {
-	margin: 0 0 1.5rem;
-	font-size: 0.9375rem;
-	color: #333;
-	line-height: 2;
-}
+  .about__check svg {
+    width: 100%;
+    height: 100%;
+  }
 
-.about__body p:last-child {
-	margin-bottom: 0;
-}
+  .about__label {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+  }
 
-@media (max-width: 768px) {
-	.about {
-		padding: 4rem 1.5rem;
-	}
+  @media (max-width: 768px) {
+    .about {
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
 
-	.about__grid {
-		grid-template-columns: 1fr;
-		gap: 2rem;
-	}
+    .about__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.125rem;
+    }
 
-	.about__image-wrap {
-		max-width: 280px;
-	}
+    .about__item {
+      padding: 0.8rem;
+    }
 
-	.about__heading {
-		margin-bottom: 2.5rem;
-	}
-}
+    .about__check {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .about__label {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .about__list {
+      gap: 1rem;
+    }
+  }
 </style>

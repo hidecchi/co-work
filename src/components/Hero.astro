@@ -3,7 +3,9 @@
 
   <div class="hero__content">
     <div class="hero__text">
-      <p class="hero__vertical hero__vertical--right">入場料500円</p>
+      <p class="hero__vertical hero__vertical--right">
+        入場料<span class="hero__number">500</span>円
+      </p>
       <p class="hero__vertical hero__vertical--left">何時間でも利用可能</p>
     </div>
 
@@ -76,6 +78,15 @@
     border-radius: 0.2rem;
   }
 
+  .hero__number {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    display: inline-block;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin: 0.3em 0;
+  }
+
   .hero__image-wrap {
     width: min(85vw, 1358px);
     aspect-ratio: 1158 / 869;
@@ -90,9 +101,10 @@
 
   .hero__image {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 99%;
     object-fit: cover;
   }
 
