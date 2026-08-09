@@ -3,10 +3,14 @@
 
   <div class="hero__content">
     <div class="hero__text">
-      <p class="hero__vertical hero__vertical--right">
-        入場料<span class="hero__number">500</span>円
-      </p>
-      <p class="hero__vertical hero__vertical--left">何時間でも利用可能</p>
+      <div class="hero__vertical-reveal hero__vertical-reveal--right">
+        <p class="hero__vertical">
+          入場料<span class="hero__number">500</span>円
+        </p>
+      </div>
+      <div class="hero__vertical-reveal hero__vertical-reveal--left">
+        <p class="hero__vertical">何時間でも利用可能</p>
+      </div>
     </div>
 
     <div class="hero__image-wrap">
@@ -16,6 +20,10 @@
         data-src="/sample.jpg"
         role="img"
         aria-label="チームで協力するビジネスパーソン"></canvas>
+      <p class="hero__open-badge" aria-label="10月上旬OPEN予定">
+        <span class="hero__open-badge-label">10月上旬</span>
+        <span class="hero__open-badge-text">OPEN予定</span>
+      </p>
     </div>
   </div>
 </section>
@@ -30,11 +38,10 @@
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem 4rem;
+    padding: 6rem 2rem 4rem;
     overflow: hidden;
   }
 
@@ -43,7 +50,7 @@
     bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: clamp(3rem, 12vw, 9rem);
+    font-size: clamp(3rem, 9vw, 9rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     color: rgba(0, 0, 0, 0.2);
@@ -70,6 +77,39 @@
     z-index: 5;
   }
 
+  .hero__vertical-reveal {
+    display: grid;
+    height: 0;
+    overflow: hidden;
+    animation: hero-reveal 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    position: relative;
+    font-weight: 500;
+  }
+
+  .hero__vertical-reveal--right {
+    animation-delay: 0.15s;
+  }
+
+  .hero__vertical-reveal--left {
+    animation-delay: 0.5s;
+  }
+
+  .hero__vertical-reveal > .hero__vertical {
+    min-height: 0;
+  }
+
+  @keyframes hero-reveal {
+    0% {
+      height: 0;
+    }
+    99% {
+      height: 350px;
+    }
+    100% {
+      height: fit-content;
+    }
+  }
+
   .hero__vertical {
     writing-mode: vertical-rl;
     font-size: 1.5rem;
@@ -77,9 +117,11 @@
     line-height: 1.3;
     margin: 0;
     padding: 1.25rem 0.875rem;
-    background: #444444;
-    color: white;
+    background: #fff;
+    border: 1px solid #444444;
     border-radius: 0.2rem;
+    white-space: nowrap;
+    height: fit-content;
   }
 
   .hero__number {
@@ -101,27 +143,69 @@
     width: 100%;
     position: relative;
     z-index: 2;
+    pointer-events: none;
   }
 
   .hero__image,
   .hero__canvas {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 99%;
+    top: 1px;
+    left: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
     display: block;
+    z-index: 1;
   }
 
   .hero__canvas--error {
     opacity: 0;
   }
 
+  .hero__open-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 1.75rem 3.5rem;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1.5px solid #444444;
+    border-radius: 0.35rem;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.14);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+    text-align: center;
+    backdrop-filter: blur(6px);
+  }
+
+  .hero__open-badge-label {
+    font-size: clamp(2rem, 5.5vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    color: #1a1a1a;
+  }
+
+  .hero__open-badge-text {
+    font-size: clamp(1.125rem, 2.8vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    line-height: 1;
+    padding: 0.35em 0.9em;
+    color: #1a1a1a;
+    background: rgba(255, 232, 90, 0.85);
+    border-radius: 0.15rem;
+  }
+
   @media (max-width: 768px) {
     .hero {
-      padding-top: 6rem;
+      padding: 4rem 0 6rem;
       min-height: auto;
-      padding-bottom: 6rem;
     }
 
     .hero__text {
@@ -130,19 +214,46 @@
       transform: none;
     }
 
+    .hero__content {
+      max-width: 100%;
+      display: grid;
+      justify-content: center;
+    }
+
     .hero__vertical {
-      font-size: 0.8125rem;
+      font-size: 0.95rem;
       padding: 0.875rem 0.625rem;
     }
 
     .hero__image-wrap {
-      width: min(92vw, 420px);
-      margin-top: 4rem;
+      width: max(90vw, 520px);
+      margin-top: 2rem;
+    }
+
+    .hero__open-badge {
+      gap: 0.45rem;
+      padding: 1.1rem 1.85rem;
+    }
+
+    .hero__open-badge-label {
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+    }
+
+    .hero__open-badge-text {
+      font-size: clamp(0.875rem, 2.2vw, 1.0625rem);
+      padding: 0.3em 0.75em;
     }
 
     .hero__bg-text {
       bottom: 4%;
-      font-size: clamp(2rem, 10vw, 4rem);
+      font-size: clamp(2rem, 9vw, 4rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__vertical-reveal {
+      animation: none;
+      grid-template-rows: 1fr;
     }
   }
 </style>

@@ -3,23 +3,20 @@ const services = [
   {
     title: "入場料の決済",
     description:
-      "入店後左側のタブレット画面から入場料を決済してください。\nキャッシュレス決済のみ対応しています。",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop",
+      "入店後左側のタブレット画面から入場料を決済してください。\nキャッシュレス決済のみ対応しています。\n（会員登録等は不要です）",
+    image: "/step1.jpg",
   },
   {
     title: "席を選定",
     description:
-      "席を選定してください。\nカウントー席とテーブル席とソファー席がございます。",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      "席を選定してください。\nカウンター席とテーブル席がございます。",
+    image: "/step2.jpg",
   },
   {
-    title: "利用終了後はサッと一拭き",
+    title: "利用終了後、汚れがある場合はサッと一拭き",
     description:
       "無人店舗のため利用終了後のテーブルのサッと一拭きのご協力をお願いしております。\n大変お手数ではございますが、ご協力いただけますと幸いです。",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop",
+    image: "/step3.jpg",
   },
 ];
 ---
@@ -65,7 +62,7 @@ const services = [
   .howToUse__bg__top,
   .howToUse__bg__bottom {
     background: #f7f7f7;
-    height: 20rem;
+    height: min(20rem, 30vw);
     width: 100%;
     border-radius: 50%;
     position: relative;
@@ -73,11 +70,11 @@ const services = [
   }
 
   .howToUse__bg__top {
-    margin-bottom: -10rem;
+    margin-bottom: max(-10rem, -15vw);
   }
 
   .howToUse__bg__bottom {
-    margin-top: -10rem;
+    margin-top: max(-10rem, -15vw);
   }
 
   .howToUse {
@@ -179,7 +176,7 @@ const services = [
 
   @media (max-width: 768px) {
     .howToUse {
-      padding: 4rem 1.5rem;
+      padding: 2rem 1.5rem;
     }
 
     .howToUse__list {
@@ -190,12 +187,19 @@ const services = [
       flex-direction: column;
       align-items: stretch;
       gap: 2rem;
-      padding: 2.5rem 0;
+      padding: 1.6rem 0;
+    }
+
+    .howToUse__item__num {
+      font-size: 1.5rem;
     }
 
     .howToUse__item__image {
       flex: none;
       max-width: none;
+      height: auto;
+      max-height: 20rem;
+      aspect-ratio: 16/11;
       order: -1;
     }
   }

@@ -1,4 +1,30 @@
 import * as THREE from "three";
+import fragmentShader from "../sample/fragment.glsl?raw";
+import vertexShader from "../sample/vertex.glsl?raw";
+import { Ripple } from "./heroRipple";
+
+const RIPPLE_COUNT = 50;
+const SPAWN_INTERVAL = 2;
+const POINTER_STOP_DELAY = 80;
+
+function getViewport(canvasWidth: number, canvasHeight: number) {
+  return {
+    width: Math.max(64, Math.round(canvasWidth / 5)),
+    height: Math.max(64, Math.round(canvasHeight / 5)),
+  };
+}
+
+function getMapPos(
+  event: PointerEvent,
+  rect: DOMRect,
+  vpWidth: number,
+  vpHeight: number,
+) {
+  return {
+    x: ((event.clientX - rect.left) / rect.width - 0.5) * vpWidth,
+    y: (0.5 - (event.clientY - rect.top) / rect.height) * vpHeight,
+  };
+}
 
 function getVisibleSize(camera: THREE.PerspectiveCamera, distance: number) {
   const vFov = THREE.MathUtils.degToRad(camera.fov);
@@ -29,6 +55,14 @@ export function initHeroCanvas(
 
   const imageUrl = canvas.dataset.src ?? "/sample.jpg";
   const distance = 5;
+  let animationId = 0;
+  let mouseTick = 0;
+  let pointerMoving = false;
+  let stopTimer: ReturnType<typeof setTimeout> | null = null;
+  let lastPointerX = 0;
+  let lastPointerY = 0;
+
+  let vp = getViewport(1, 1);
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
@@ -40,13 +74,73 @@ export function initHeroCanvas(
     alpha: true,
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  let mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> | null =
-    null;
-  let texture: THREE.Texture | null = null;
+  const rippleScene = new THREE.Scene();
+  const rippleCamera = new THREE.OrthographicCamera(
+    -vp.width / 2,
+    vp.width / 2,
+    vp.height / 2,
+    -vp.height / 2,
+    0,
+    2,
+  );
+  rippleCamera.position.z = 1;
+
+  const rippleTarget = new THREE.WebGLRenderTarget(vp.width, vp.height, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+  });
+
+  const ripples: Ripple[] = [];
+  let displayMesh: THREE.Mesh<
+    THREE.PlaneGeometry,
+    THREE.ShaderMaterial
+  > | null = null;
+  let imageTexture: THREE.Texture | null = null;
+  let lastPointerEvent: PointerEvent | null = null;
+
+  const updateRippleCamera = () => {
+    rippleCamera.left = -vp.width / 2;
+    rippleCamera.right = vp.width / 2;
+    rippleCamera.top = vp.height / 2;
+    rippleCamera.bottom = -vp.height / 2;
+    rippleCamera.updateProjectionMatrix();
+    rippleTarget.setSize(vp.width, vp.height);
+    ripples.forEach((ripple) => ripple.resize(vp));
+  };
+
+  const renderRippleTarget = () => {
+    renderer.setRenderTarget(rippleTarget);
+    renderer.setClearColor(0x000000, 0);
+    renderer.clear();
+    renderer.render(rippleScene, rippleCamera);
+    renderer.setRenderTarget(null);
+  };
 
   const render = () => {
+    if (!displayMesh) return;
+
+    mouseTick += 1;
+
+    if (pointerMoving && mouseTick % SPAWN_INTERVAL === 0) {
+      const ripple = ripples.find((item) => !item.isUsed);
+      if (ripple && lastPointerEvent) {
+        const rect = canvas.getBoundingClientRect();
+        ripple.start(getMapPos(lastPointerEvent, rect, vp.width, vp.height));
+      }
+    }
+
+    ripples.forEach((ripple) => ripple.tick());
+    renderRippleTarget();
+
+    displayMesh.material.uniforms.texRipple.value = rippleTarget.texture;
     renderer.render(scene, camera);
+  };
+
+  const animate = () => {
+    animationId = requestAnimationFrame(animate);
+    render();
   };
 
   const resize = () => {
@@ -58,9 +152,12 @@ export function initHeroCanvas(
     camera.aspect = width / renderHeight;
     camera.updateProjectionMatrix();
 
-    if (!mesh || !texture?.image) return;
+    vp = getViewport(width, renderHeight);
+    updateRippleCamera();
 
-    const image = texture.image as HTMLImageElement;
+    if (!displayMesh || !imageTexture?.image) return;
+
+    const image = imageTexture.image as HTMLImageElement;
     const view = getVisibleSize(camera, distance);
     const [planeWidth, planeHeight] = getCoverSize(
       image.width / image.height,
@@ -69,40 +166,93 @@ export function initHeroCanvas(
       view.height,
     );
 
-    mesh.scale.set(planeWidth, planeHeight, 1);
-    render();
+    displayMesh.scale.set(planeWidth, planeHeight, 1);
+  };
+
+  const onPointerMove = (event: PointerEvent) => {
+    const moved =
+      Math.hypot(event.clientX - lastPointerX, event.clientY - lastPointerY) >
+      1;
+
+    lastPointerX = event.clientX;
+    lastPointerY = event.clientY;
+    lastPointerEvent = event;
+
+    if (!moved) return;
+
+    pointerMoving = true;
+
+    if (stopTimer) clearTimeout(stopTimer);
+    stopTimer = setTimeout(() => {
+      pointerMoving = false;
+      stopTimer = null;
+    }, POINTER_STOP_DELAY);
+  };
+
+  const onPointerLeave = () => {
+    if (stopTimer) clearTimeout(stopTimer);
+    stopTimer = null;
+    pointerMoving = false;
+    lastPointerEvent = null;
   };
 
   const loader = new THREE.TextureLoader();
+
   loader.load(
     imageUrl,
-    (loadedTexture) => {
-      texture = loadedTexture;
-      texture.colorSpace = THREE.SRGBColorSpace;
+    (texture) => {
+      imageTexture = texture;
+      imageTexture.colorSpace = THREE.SRGBColorSpace;
 
-      const material = new THREE.MeshBasicMaterial({
-        map: texture,
+      const displayMaterial = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms: {
+          tDiffuse: { value: imageTexture },
+          texRipple: { value: rippleTarget.texture },
+        },
         toneMapped: false,
       });
-      mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
-      scene.add(mesh);
-      resize();
+
+      displayMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(1, 1),
+        displayMaterial,
+      );
+      scene.add(displayMesh);
+
+      loader.load("/ripple.png", (rippleTexture) => {
+        for (let i = 0; i < RIPPLE_COUNT; i++) {
+          const ripple = new Ripple(rippleTexture, vp);
+          rippleScene.add(ripple.mesh);
+          ripples.push(ripple);
+        }
+
+        resize();
+        animate();
+      });
     },
     undefined,
-    () => {
-      canvas.classList.add("hero__canvas--error");
-    },
+    () => canvas.classList.add("hero__canvas--error"),
   );
+
+  canvas.addEventListener("pointermove", onPointerMove);
+  canvas.addEventListener("pointerleave", onPointerLeave);
 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(wrap);
   resize();
 
   return () => {
+    if (stopTimer) clearTimeout(stopTimer);
+    cancelAnimationFrame(animationId);
+    canvas.removeEventListener("pointermove", onPointerMove);
+    canvas.removeEventListener("pointerleave", onPointerLeave);
     resizeObserver.disconnect();
-    texture?.dispose();
-    mesh?.geometry.dispose();
-    mesh?.material.dispose();
+    imageTexture?.dispose();
+    ripples.forEach((ripple) => ripple.dispose());
+    displayMesh?.geometry.dispose();
+    displayMesh?.material.dispose();
+    rippleTarget.dispose();
     renderer.dispose();
   };
 }

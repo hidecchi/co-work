@@ -1,8 +1,8 @@
 ---
-const navItems = [
+const navItems: { label: string; href: string; external?: boolean }[] = [
   { label: "ご利用方法", href: "#howToUse" },
   { label: "店舗情報", href: "#information" },
-  { label: "お問い合わせ", href: "#contact", external: true },
+  // { label: "お問い合わせ", href: "#contact", external: true },
 ];
 ---
 
@@ -26,7 +26,7 @@ const navItems = [
           stroke-width="2"
           fill="none"></path>
       </svg>
-      <span class="logo__text">CO-WORK</span>
+      <span class="logo__text">ONE COIN コワーキング</span>
     </a>
 
     <nav class="nav" aria-label="メインナビゲーション">
@@ -218,6 +218,10 @@ const navItems = [
   }
 
   @media (max-width: 900px) {
+    .header__inner {
+      padding: 1rem 1.5rem;
+    }
+
     .nav {
       display: none;
     }

@@ -6,8 +6,9 @@
         <h2 class="information__subtitle">店舗情報</h2>
       </div>
     </div>
+
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d410.0536385497446!2d135.2002574!3d34.6943553!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008ef190d61015%3A0xdc10e3807776ca80!2z44Kv44Op44Km44Oz44OT44Or44O744Os44K444Kq44Oz5LiJ5a6u!5e0!3m2!1sja!2sjp!4v1783058274730!5m2!1sja!2sjp"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5290695923113!2d135.1852299383103!3d34.69183326568901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008f1e0e1402d7%3A0xc143e7a338cfada1!2z44CSNjUwLTAwMDQg5YW15bqr55yM56We5oi45biC5Lit5aSu5Yy65Lit5bGx5omL6YCa77yU5LiB55uu77yR77yQ4oiS77yT77yR!5e0!3m2!1sja!2sjp!4v1786252205454!5m2!1sja!2sjp"
       width="1800"
       height="450"
       style="border:0;"
@@ -17,9 +18,17 @@
       class="information__map"></iframe>
     <dl class="information__list">
       <div class="information__list-item">
+        <dt class="information__list-item-title">店名</dt>
+        <dd class="information__list-item-text">ONE COIN コワーキング</dd>
+      </div>
+      <div class="information__list-item">
         <dt class="information__list-item-title">住所</dt>
         <dd class="information__list-item-text">
-          〒105-0011　兵庫県神戸市中央区御幸通3丁目2-14（三ノ宮駅徒歩7分　磯上公園北側エリア）
+          〒105-0011　<br
+            class="information__list-item-text__br"
+          />兵庫県神戸市中央区中山手通４丁目１０−３１<br
+            class="information__list-item-text__br"
+          />（元町駅徒歩6分）
         </dd>
       </div>
       <div class="information__list-item">
@@ -28,9 +37,7 @@
       </div>
       <div class="information__list-item">
         <dt class="information__list-item-title">席数</dt>
-        <dd class="information__list-item-text">
-          カウンター席　8席　テーブル席　20席
-        </dd>
+        <dd class="information__list-item-text">20～30席（予定）</dd>
       </div>
     </dl>
 
@@ -83,6 +90,10 @@
         gap: 0.4rem;
       }
 
+      .information__list-item-title {
+        flex-shrink: 0;
+      }
+
       .information__list-item-title::before {
         content: "【";
       }
@@ -95,131 +106,39 @@
         margin: 0;
       }
 
-      .contact__grid {
-        display: grid;
-        grid-template-columns: 1fr 1.4fr;
-        gap: 4rem;
-        margin-top: 3.5rem;
-        align-items: start;
-      }
-
-      .contact__intro p {
-        font-size: 0.9375rem;
-        line-height: 2;
-        color: #444;
-        margin: 0;
-      }
-
-      .contact__form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.75rem;
-      }
-
-      .form-group {
-        border: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .form-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-      }
-
-      .required {
-        font-size: 0.6875rem;
-        font-weight: 500;
-        padding: 0.125rem 0.375rem;
-        border: 1px solid #ccc;
-        border-radius: 2px;
-        color: #666;
-      }
-
-      .form-input,
-      .form-textarea {
-        width: 100%;
-        padding: 0.875rem 1rem;
-        font: inherit;
-        font-size: 0.9375rem;
-        border: 1px solid #ddd;
-        border-radius: 2px;
-        background: #fff;
-        transition: border-color 0.2s;
-      }
-
-      .form-input:focus,
-      .form-textarea:focus {
-        outline: none;
-        border-color: #1a1a1a;
-      }
-
-      .form-textarea {
-        resize: vertical;
-        min-height: 140px;
-      }
-
-      .checkbox-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-
-      .checkbox {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        cursor: pointer;
-      }
-
-      .checkbox input {
-        width: 1rem;
-        height: 1rem;
-        accent-color: #1a1a1a;
-      }
-
-      .privacy-link {
-        text-decoration: underline;
-        text-underline-offset: 2px;
-      }
-
-      .privacy-link:hover {
-        opacity: 0.7;
-      }
-
-      .submit-btn {
-        width: 100%;
-        padding: 1.125rem;
-        font-size: 0.9375rem;
-        font-weight: 600;
-        color: #fff;
-        background: #1a1a1a;
-        border-radius: 2px;
-        transition: background 0.2s;
-        margin-top: 0.5rem;
-      }
-
-      .submit-btn:hover {
-        background: #333;
+      .information__list-item-text__br {
+        display: none;
       }
 
       @media (max-width: 768px) {
-        .contact {
-          padding: 4rem 1.5rem;
+        .information {
+          padding: 3.2rem 1.5rem 1.6rem;
         }
 
-        .contact__grid {
-          grid-template-columns: 1fr;
-          gap: 2.5rem;
+        .information__subtitle {
+          font-size: 1.5rem;
         }
 
-        .checkbox-grid {
-          grid-template-columns: 1fr;
+        .information__header {
+          margin-bottom: 2rem;
+        }
+
+        .information__list {
+          padding: 1rem 0.5rem;
+          font-size: 1rem;
+        }
+
+        .information__list-item {
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .information__list-item-text {
+          padding-left: 0.5rem;
+        }
+
+        .information__list-item-text__br {
+          display: block;
         }
       }
     </style>

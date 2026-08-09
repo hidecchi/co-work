@@ -5,7 +5,7 @@ const features = [
   "電源完備",
   "席時間無制限",
   "仕事・勉強",
-  "無人",
+  "無人店舗",
   "ドリンク持込OK",
   "会話OK",
 ];
@@ -14,8 +14,12 @@ const features = [
 <section class="about" id="about" aria-label="店舗の特徴">
   <div class="about__inner">
     <h2 class="about__title">
-      三宮磯上公園北側のエリアに新しいコワーキングスペースが登場！<br
-      />作業目的でも休憩目的でも快適に過ごせます。
+      <a href="/#information" class="about__link"
+        >元町駅から鯉川筋沿いを北に徒歩6分。コープ山手様隣</a
+      >に<br class="about__title__br1" />
+      <span class="about__marker">入場料500円で時間無制限で利用可能</span
+      >なコワーキングスペースがOPENいたします！<br />
+      作業目的でも休憩目的でも快適にご利用いただけます。
     </h2>
     <ul class="about__list">
       {
@@ -57,9 +61,30 @@ const features = [
     margin-bottom: 2em;
     font-size: 1.5rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.8;
     letter-spacing: 0.04em;
     color: #1a1a1a;
+  }
+
+  .about__link {
+    color: #0077ff;
+    text-decoration: underline;
+  }
+  rgb(26, 26, 26) .about__link:hover {
+    opacity: 0.8;
+  }
+
+  .about__marker {
+    background: linear-gradient(
+      to bottom,
+      transparent 15%,
+      rgba(255, 232, 90, 0.85) 15%,
+      rgba(255, 232, 90, 0.85) 88%,
+      transparent 88%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 0 0.12em;
   }
 
   .about__inner {
@@ -112,7 +137,16 @@ const features = [
 
   @media (max-width: 768px) {
     .about {
-      padding: 2.5rem 1.25rem 3.5rem;
+      padding: 1.5rem 1.25rem 3.5rem;
+    }
+
+    .about__title {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .about__title__br1 {
+      display: none;
     }
 
     .about__list {
@@ -121,16 +155,17 @@ const features = [
     }
 
     .about__item {
-      padding: 0.8rem;
+      padding: 0.8rem 0.6rem;
+      gap: 0.5rem;
     }
 
     .about__check {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.3rem;
+      height: 1.3rem;
     }
 
     .about__label {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 
