@@ -1,23 +1,22 @@
 ---
+import Seo from "../components/Seo.astro";
+
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  canonical?: string;
 }
 
-const {
-  title = "CO-WORK | データと戦略で、事業成長を支援する",
-  description = "本質的な課題に向き合い、成果につなげるマーケティング支援",
-} = Astro.props;
+const props = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <Seo {...props} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +24,6 @@ const {
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
   </head>
   <body>
     <slot />

@@ -1,0 +1,100 @@
+---
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = siteConfig.ogImage,
+  imageAlt = siteConfig.ogImageAlt,
+  noindex = false,
+  canonical,
+} = Astro.props;
+
+const siteOrigin = Astro.site?.href ?? Astro.url.origin;
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteOrigin).href;
+const ogImageURL = new URL(image, siteOrigin).href;
+const pageTitle =
+  title === siteConfig.title || title.endsWith(` | ${siteConfig.name}`)
+    ? title
+    : `${title} | ${siteConfig.name}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CoworkingSpace",
+  name: siteConfig.name,
+  description: siteConfig.description,
+  url: siteOrigin,
+  image: ogImageURL,
+  priceRange: siteConfig.business.priceRange,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.business.streetAddress,
+    addressLocality: siteConfig.business.addressLocality,
+    addressRegion: siteConfig.business.addressRegion,
+    postalCode: siteConfig.business.postalCode,
+    addressCountry: siteConfig.business.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: siteConfig.business.latitude,
+    longitude: siteConfig.business.longitude,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "00:00",
+    closes: "23:59",
+  },
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+<meta name="theme-color" content={siteConfig.themeColor} />
+<meta name="format-detection" content="telephone=no" />
+
+<link rel="canonical" href={canonicalURL} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content={siteConfig.ogLocale} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:alt" content={imageAlt} />
+
+<meta name="twitter:card" content={siteConfig.twitterCard} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
+<meta name="twitter:image:alt" content={imageAlt} />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<title>{pageTitle}</title>
