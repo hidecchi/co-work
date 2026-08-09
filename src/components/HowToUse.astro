@@ -23,20 +23,28 @@ const services = [
 
 <div class="howToUse__container">
   <div class="howToUse__bg__top"></div>
-  <section class="howToUse" id="howToUse">
+  <section class="howToUse" id="howToUse" aria-labelledby="how-to-use-heading">
     <div class="howToUse__inner">
-      <p class="howToUse__label">HOW TO USE</p>
-      <h2 class="howToUse__heading">ご利用方法</h2>
+      <p class="howToUse__label" aria-hidden="true">HOW TO USE</p>
+      <h2 id="how-to-use-heading" class="howToUse__heading">ご利用方法</h2>
 
       <div class="howToUse__list">
         {
           services.map((service, index) => (
-            <article class="howToUse__item">
+            <article
+              class="howToUse__item"
+              aria-labelledby={`how-to-use-step-${index + 1}`}
+            >
               <div class="howToUse__item__body">
-                <span class="howToUse__item__num">
+                <span class="howToUse__item__num" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 class="howToUse__item__title">{service.title}</h3>
+                <h3
+                  id={`how-to-use-step-${index + 1}`}
+                  class="howToUse__item__title"
+                >
+                  {service.title}
+                </h3>
                 <p class="howToUse__item__desc">{service.description}</p>
               </div>
               <div class="howToUse__item__image">

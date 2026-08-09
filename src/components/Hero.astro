@@ -1,4 +1,7 @@
-<section class="hero" id="top">
+<section class="hero" id="top" aria-labelledby="hero-heading">
+  <h1 id="hero-heading" class="visually-hidden">
+    ONE COIN コワーキング｜神戸・元町の500円コワーキング
+  </h1>
   <div class="hero__bg-text" aria-hidden="true">ONE COIN CO-WORKING</div>
 
   <div class="hero__content">
@@ -14,20 +17,19 @@
     </div>
 
     <div class="hero__image-wrap">
-      <img src="/clip.svg" alt="" class="hero_clip" />
+      <img src="/clip.svg" alt="" class="hero_clip" aria-hidden="true" />
       <canvas
         class="hero__image hero__canvas"
         data-src="/sample.jpg"
         role="img"
-        aria-label="チームで協力するビジネスパーソン"></canvas>
-      <p class="hero__open-badge" aria-label="10月上旬OPEN予定">
+        aria-label="ONE COIN コワーキングスペースの店内イメージ"></canvas>
+      <p class="hero__open-badge">
         <span class="hero__open-badge-label">10月上旬</span>
         <span class="hero__open-badge-text">OPEN予定</span>
       </p>
     </div>
   </div>
 </section>
-
 <script>
   import { initHeroCanvas } from "../scripts/heroCanvas";
 

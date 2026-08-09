@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="footer__inner">
-    <a href="/" class="logo" aria-label="CO-WORK ホーム">
+    <a href="/" class="logo">
       <svg
         class="logo__mark"
         viewBox="0 0 32 32"
@@ -22,8 +22,10 @@
     </a>
 
     <nav class="footer__nav" aria-label="フッターナビゲーション">
-      <a href="#howToUse">ご利用方法</a>
-      <a href="#information">店舗情報</a>
+      <ul class="footer__nav-list">
+        <li><a href="#howToUse">ご利用方法</a></li>
+        <li><a href="#information">店舗情報</a></li>
+      </ul>
       <!-- <a href="#contact" target="_blank" rel="noopener noreferrer"
         >お問い合わせ</a
       > -->
@@ -68,11 +70,14 @@
     height: 1.5rem;
   }
 
-  .footer__nav {
+  .footer__nav-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .footer__nav a {

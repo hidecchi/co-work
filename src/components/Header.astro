@@ -7,8 +7,9 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
 ---
 
 <header class="header">
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
   <div class="header__inner">
-    <a href="/" class="logo" aria-label="CO-WORK ホーム">
+    <a href="/" class="logo">
       <svg
         class="logo__mark"
         viewBox="0 0 32 32"
@@ -64,12 +65,13 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
 
     <button
       class="menu-toggle"
+      type="button"
       aria-label="メニューを開く"
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
-      <span></span>
-      <span></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
   </div>
 
@@ -122,6 +124,25 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
 </script>
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 200;
+    padding: 0.625rem 1rem;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    transform: translateY(-200%);
+    transition: transform 0.2s;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
   .header {
     position: fixed;
     top: 0;

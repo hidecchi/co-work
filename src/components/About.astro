@@ -11,17 +11,18 @@ const features = [
 ];
 ---
 
-<section class="about" id="about" aria-label="店舗の特徴">
+<section class="about" id="about" aria-labelledby="about-heading">
   <div class="about__inner">
-    <h2 class="about__title">
+    <h2 id="about-heading" class="about__title">
       <a href="/#information" class="about__link"
         >元町駅から鯉川筋沿いを北に徒歩6分。コープ山手様隣</a
       >に<br class="about__title__br1" />
       <span class="about__marker">入場料500円で時間無制限で利用可能</span
-      >なコワーキングスペースがOPENいたします！<br />
+      >なコワーキングスペースがOPENします！<br />
       作業目的でも休憩目的でも快適にご利用いただけます。
     </h2>
-    <ul class="about__list">
+    <h3 class="visually-hidden" id="about-features-heading">設備・サービス</h3>
+    <ul class="about__list" aria-labelledby="about-features-heading">
       {
         features.map((label) => (
           <li class="about__item">
@@ -70,7 +71,7 @@ const features = [
     color: #0077ff;
     text-decoration: underline;
   }
-  rgb(26, 26, 26) .about__link:hover {
+  .about__link:hover {
     opacity: 0.8;
   }
 

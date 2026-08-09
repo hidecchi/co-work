@@ -81,6 +81,19 @@ const props = Astro.props;
     color: #888;
     margin: 0 0 1.5rem;
   }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   @media (any-hover: hover) {
     a:hover {
       opacity: 0.8;
