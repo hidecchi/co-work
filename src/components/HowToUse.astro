@@ -226,14 +226,6 @@ const t = useTranslations(lang);
       order: -1;
     }
 
-    .howToUse__item__image-reveal::after {
-      display: none;
-    }
-
-    .howToUse__item__image-reveal img {
-      transform: none;
-      transition: none;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -249,13 +241,11 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  const MOBILE_BREAKPOINT = 768;
-
   function initImageReveal() {
     const reveals = document.querySelectorAll("[data-image-reveal]");
     if (!reveals.length) return;
 
-    if (window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       reveals.forEach((reveal) => reveal.classList.add("is-revealed"));
       return;
     }
