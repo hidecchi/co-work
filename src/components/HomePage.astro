@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import About from "./About.astro";
+import HowToUse from "./HowToUse.astro";
+import Information from "./Information.astro";
+import Footer from "./Footer.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import { useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t.seo.title} description={t.seo.description} imageAlt={t.seo.ogImageAlt}>
+  <Header lang={lang} />
+  <main id="main-content">
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <HowToUse lang={lang} />
+    <Information lang={lang} />
+  </main>
+  <Footer lang={lang} />
+  <LanguageSwitch lang={lang} />
+</Layout>

@@ -1,0 +1,86 @@
+---
+import { getAlternatePath, useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const alternatePath = getAlternatePath(lang);
+const alternateLang = lang === "ja" ? "en" : "ja";
+---
+
+<a
+  href={alternatePath}
+  class="lang-banner"
+  lang={alternateLang}
+  aria-label={t.header.langSwitchAria}
+>
+  <span class="lang-banner__icon" aria-hidden="true">
+    <svg viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"></circle>
+      <path
+        d="M2 10h16M10 2c2.5 2.2 2.5 13.8 0 16M10 2c-2.5 2.2-2.5 13.8 0 16"
+        stroke="currentColor"
+        stroke-width="1.5"></path>
+    </svg>
+  </span>
+  <span class="lang-banner__text">{t.header.langSwitch}</span>
+</a>
+
+<style>
+  .lang-banner {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.125rem;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #444444;
+    border-radius: 999px;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      0 6px 24px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    backdrop-filter: blur(8px);
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .lang-banner:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      0 8px 28px rgba(0, 0, 0, 0.12);
+    opacity: 1;
+  }
+
+  .lang-banner__icon {
+    display: flex;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: #444444;
+  }
+
+  .lang-banner__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .lang-banner {
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.625rem 1rem;
+      font-size: 0.8125rem;
+    }
+  }
+</style>

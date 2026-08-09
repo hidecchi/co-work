@@ -1,15 +1,24 @@
 ---
-const navItems: { label: string; href: string; external?: boolean }[] = [
-  { label: "ご利用方法", href: "#howToUse" },
-  { label: "店舗情報", href: "#information" },
-  // { label: "お問い合わせ", href: "#contact", external: true },
+import { getHomePath, useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homePath = getHomePath(lang);
+
+const navItems = [
+  { label: t.header.navHowToUse, href: "#howToUse" },
+  { label: t.header.navInformation, href: "#information" },
 ];
 ---
 
 <header class="header">
-  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+  <a href="#main-content" class="skip-link">{t.header.skipLink}</a>
   <div class="header__inner">
-    <a href="/" class="logo">
+    <a href={homePath} class="logo">
       <svg
         class="logo__mark"
         viewBox="0 0 32 32"
@@ -27,35 +36,16 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
           stroke-width="2"
           fill="none"></path>
       </svg>
-      <span class="logo__text">ONE COIN コワーキング</span>
+      <span class="logo__text">{t.information.name}</span>
     </a>
 
-    <nav class="nav" aria-label="メインナビゲーション">
+    <nav class="nav" aria-label={t.header.mainNav}>
       <ul class="nav__list">
         {
           navItems.map((item) => (
             <li>
-              <a
-                href={item.href}
-                class="nav__link"
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-              >
+              <a href={item.href} class="nav__link">
                 {item.label}
-                {item.external && (
-                  <svg
-                    class="nav__external"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M3 9L9 3M9 3H4M9 3V8"
-                      stroke="currentColor"
-                      stroke-width="1.2"
-                    />
-                  </svg>
-                )}
               </a>
             </li>
           ))
@@ -66,7 +56,7 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
     <button
       class="menu-toggle"
       type="button"
-      aria-label="メニューを開く"
+      aria-label={t.header.menuOpen}
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -78,19 +68,14 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
   <nav
     id="mobile-nav"
     class="mobile-nav"
-    aria-label="モバイルナビゲーション"
+    aria-label={t.header.mobileNav}
     hidden
   >
     <ul>
       {
         navItems.map((item) => (
           <li>
-            <a
-              href={item.href}
-              class="mobile-nav__link"
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
-            >
+            <a href={item.href} class="mobile-nav__link">
               {item.label}
             </a>
           </li>
@@ -100,17 +85,14 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
   </nav>
 </header>
 
-<script>
+<script define:vars={{ menuOpenLabel: t.header.menuOpen, menuCloseLabel: t.header.menuClose }}>
   const toggle = document.querySelector(".menu-toggle");
   const mobileNav = document.querySelector("#mobile-nav");
 
   toggle?.addEventListener("click", () => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
     toggle.setAttribute("aria-expanded", String(!isOpen));
-    toggle.setAttribute(
-      "aria-label",
-      isOpen ? "メニューを開く" : "メニューを閉じる",
-    );
+    toggle.setAttribute("aria-label", isOpen ? menuOpenLabel : menuCloseLabel);
     if (mobileNav) mobileNav.hidden = isOpen;
   });
 
@@ -118,7 +100,7 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
     link.addEventListener("click", () => {
       if (mobileNav) mobileNav.hidden = true;
       toggle?.setAttribute("aria-expanded", "false");
-      toggle?.setAttribute("aria-label", "メニューを開く");
+      toggle?.setAttribute("aria-label", menuOpenLabel);
     });
   });
 </script>
@@ -195,11 +177,6 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
 
   .nav__link:hover {
     opacity: 0.6;
-  }
-
-  .nav__external {
-    width: 0.625rem;
-    height: 0.625rem;
   }
 
   .menu-toggle {

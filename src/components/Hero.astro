@@ -1,18 +1,42 @@
+---
+import { useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section class="hero" id="top" aria-labelledby="hero-heading">
-  <h1 id="hero-heading" class="visually-hidden">
-    ONE COIN コワーキング｜神戸・元町の500円コワーキング
-  </h1>
-  <div class="hero__bg-text" aria-hidden="true">ONE COIN CO-WORKING</div>
+  <h1 id="hero-heading" class="visually-hidden">{t.hero.h1}</h1>
+  <div class="hero__bg-text" aria-hidden="true">{t.hero.bgText}</div>
 
   <div class="hero__content">
     <div class="hero__text">
       <div class="hero__vertical-reveal hero__vertical-reveal--right">
-        <p class="hero__vertical">
-          入場料<span class="hero__number">500</span>円
+        <p class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}>
+          {
+            lang === "ja" ? (
+              <>
+                {t.hero.entryFeePrefix}
+                <span class="hero__number">500</span>
+                {t.hero.entryFeeSuffix}
+              </>
+            ) : (
+              <>
+                <span class="hero__number">¥500</span>
+                {t.hero.entryFeeSuffix}
+              </>
+            )
+          }
         </p>
       </div>
       <div class="hero__vertical-reveal hero__vertical-reveal--left">
-        <p class="hero__vertical">何時間でも利用可能</p>
+        <p class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}>
+          {t.hero.unlimited}
+        </p>
       </div>
     </div>
 
@@ -23,14 +47,15 @@
         data-src="/sample.jpg"
         data-src-sp="/sample-sp.jpg"
         role="img"
-        aria-label="ONE COIN コワーキングスペースの店内イメージ"></canvas>
+        aria-label={t.hero.imageAlt}></canvas>
       <p class="hero__open-badge">
-        <span class="hero__open-badge-label">10月上旬</span>
-        <span class="hero__open-badge-text">OPEN予定</span>
+        <span class="hero__open-badge-label">{t.hero.openBadgeDate}</span>
+        <span class="hero__open-badge-text">{t.hero.openBadgeText}</span>
       </p>
     </div>
   </div>
 </section>
+
 <script>
   import { initHeroCanvas } from "../scripts/heroCanvas";
 
@@ -127,6 +152,15 @@
     height: fit-content;
   }
 
+  .hero__vertical--en {
+    writing-mode: horizontal-tb;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    max-width: 8rem;
+    white-space: normal;
+    text-align: center;
+  }
+
   .hero__number {
     writing-mode: horizontal-tb;
     text-orientation: mixed;
@@ -134,6 +168,12 @@
     letter-spacing: 0.02em;
     line-height: 1;
     margin: 0.3em 0;
+  }
+
+  .hero__vertical--en .hero__number {
+    display: block;
+    font-size: 1.35em;
+    margin: 0 0 0.35em;
   }
 
   .hero__image-wrap {
@@ -228,6 +268,11 @@
       padding: 0.875rem 0.625rem;
     }
 
+    .hero__vertical--en {
+      max-width: 6.5rem;
+      font-size: 0.85rem;
+    }
+
     .hero__image-wrap {
       width: max(90vw, 520px);
       margin-top: 2rem;
@@ -245,6 +290,7 @@
     .hero__open-badge-text {
       font-size: clamp(0.875rem, 2.2vw, 1.0625rem);
       padding: 0.3em 0.75em;
+      letter-spacing: 0.12em;
     }
 
     .hero__bg-text {

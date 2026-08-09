@@ -1,6 +1,14 @@
 {
   "hosting": {
+    "site": "cowork-net",
     "public": "dist",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [
+      {
+        "source": "/en.html",
+        "destination": "/en/",
+        "type": 301
+      }
+    ]
   }
 }

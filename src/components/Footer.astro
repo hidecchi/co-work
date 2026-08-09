@@ -1,6 +1,18 @@
+---
+import { getHomePath, useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homePath = getHomePath(lang);
+---
+
 <footer class="footer">
   <div class="footer__inner">
-    <a href="/" class="logo">
+    <a href={homePath} class="logo">
       <svg
         class="logo__mark"
         viewBox="0 0 32 32"
@@ -18,21 +30,18 @@
           stroke-width="2"
           fill="none"></path>
       </svg>
-      <span class="logo__text">ONE COIN コワーキング</span>
+      <span class="logo__text">{t.information.name}</span>
     </a>
 
-    <nav class="footer__nav" aria-label="フッターナビゲーション">
+    <nav class="footer__nav" aria-label={t.footer.navLabel}>
       <ul class="footer__nav-list">
-        <li><a href="#howToUse">ご利用方法</a></li>
-        <li><a href="#information">店舗情報</a></li>
+        <li><a href="#howToUse">{t.header.navHowToUse}</a></li>
+        <li><a href="#information">{t.header.navInformation}</a></li>
       </ul>
-      <!-- <a href="#contact" target="_blank" rel="noopener noreferrer"
-        >お問い合わせ</a
-      > -->
     </nav>
 
     <p class="footer__copy">
-      &copy; {new Date().getFullYear()} ONE COIN コワーキング. All Rights Reserved.
+      &copy; {new Date().getFullYear()} {t.footer.copyright}
     </p>
   </div>
 </footer>
@@ -98,7 +107,7 @@
 
   @media (max-width: 768px) {
     .footer {
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.5rem 4.5rem;
     }
   }
 </style>

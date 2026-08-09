@@ -1,7 +1,9 @@
 ---
 import Seo from "../components/Seo.astro";
+import type { Lang } from "../i18n";
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
   image?: string;
@@ -10,13 +12,13 @@ interface Props {
   canonical?: string;
 }
 
-const props = Astro.props;
+const { lang = "ja", ...seoProps } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang={lang}>
   <head>
-    <Seo {...props} />
+    <Seo lang={lang} {...seoProps} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

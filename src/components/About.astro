@@ -1,30 +1,29 @@
 ---
-const features = [
-  "会員登録不要",
-  "高速Wi-Fi",
-  "電源完備",
-  "席時間無制限",
-  "仕事・勉強",
-  "無人店舗",
-  "ドリンク持込OK",
-  "会話OK",
-];
+import { getHomePath, useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const infoPath = `${getHomePath(lang)}#information`;
 ---
 
 <section class="about" id="about" aria-labelledby="about-heading">
   <div class="about__inner">
     <h2 id="about-heading" class="about__title">
-      <a href="/#information" class="about__link"
-        >元町駅から鯉川筋沿いを北に徒歩6分。コープ山手様隣</a
-      >に<br class="about__title__br1" />
-      <span class="about__marker">入場料500円で時間無制限で利用可能</span
-      >なコワーキングスペースがOPENします！<br />
-      作業目的でも休憩目的でも快適にご利用いただけます。
+      <a href={infoPath} class="about__link">{t.about.locationLink}</a
+      >{t.about.locationSuffix}<br class="about__title__br1" />
+      <span class="about__marker">{t.about.marker}</span>{t.about.opening}<br />
+      {t.about.closing}
     </h2>
-    <h3 class="visually-hidden" id="about-features-heading">設備・サービス</h3>
+    <h3 class="visually-hidden" id="about-features-heading">
+      {t.about.featuresHeading}
+    </h3>
     <ul class="about__list" aria-labelledby="about-features-heading">
       {
-        features.map((label) => (
+        t.about.features.map((label) => (
           <li class="about__item">
             <span class="about__check" aria-hidden="true">
               <svg viewBox="0 0 20 20" fill="none">

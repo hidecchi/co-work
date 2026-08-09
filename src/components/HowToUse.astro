@@ -1,36 +1,24 @@
 ---
-const services = [
-  {
-    title: "入場料の決済",
-    description:
-      "入店後左側のタブレット画面から入場料を決済してください。\nキャッシュレス決済のみ対応しています。\n（会員登録等は不要です）",
-    image: "/step1.jpg",
-  },
-  {
-    title: "席を選定",
-    description:
-      "席を選定してください。\nカウンター席とテーブル席がございます。",
-    image: "/step2.jpg",
-  },
-  {
-    title: "利用終了後、汚れがある場合はサッと一拭き",
-    description:
-      "無人店舗のため利用終了後のテーブルのサッと一拭きのご協力をお願いしております。\n大変お手数ではございますが、ご協力いただけますと幸いです。",
-    image: "/step3.jpg",
-  },
-];
+import { useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div class="howToUse__container">
   <div class="howToUse__bg__top"></div>
   <section class="howToUse" id="howToUse" aria-labelledby="how-to-use-heading">
     <div class="howToUse__inner">
-      <p class="howToUse__label" aria-hidden="true">HOW TO USE</p>
-      <h2 id="how-to-use-heading" class="howToUse__heading">ご利用方法</h2>
+      <p class="howToUse__label" aria-hidden="true">{t.howToUse.label}</p>
+      <h2 id="how-to-use-heading" class="howToUse__heading">{t.howToUse.heading}</h2>
 
       <div class="howToUse__list">
         {
-          services.map((service, index) => (
+          t.howToUse.steps.map((service, index) => (
             <article
               class="howToUse__item"
               aria-labelledby={`how-to-use-step-${index + 1}`}
@@ -66,6 +54,7 @@ const services = [
   </section>
   <div class="howToUse__bg__bottom"></div>
 </div>
+
 <style>
   .howToUse__bg__top,
   .howToUse__bg__bottom {

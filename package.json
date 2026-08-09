@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:favicons": "node scripts/generate-favicons.mjs"
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "deploy": "npm run build && firebase deploy --only hosting --project cowork-net"
   },
   "dependencies": {
     "astro": "^7.0.6",

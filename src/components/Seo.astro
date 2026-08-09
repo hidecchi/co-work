@@ -1,7 +1,16 @@
 ---
 import { siteConfig } from "../config/site";
+import {
+  getAlternateLang,
+  getAlternatePath,
+  getHomePath,
+  useTranslations,
+  type Lang,
+} from "../i18n";
+import { getSiteOrigin, toAbsoluteUrl } from "../utils/site-url";
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
   image?: string;
@@ -10,35 +19,50 @@ interface Props {
   canonical?: string;
 }
 
+const lang = Astro.props.lang ?? "ja";
+const t = useTranslations(lang);
+
 const {
-  title = siteConfig.title,
-  description = siteConfig.description,
+  title = t.seo.title,
+  description = t.seo.description,
   image = siteConfig.ogImage,
-  imageAlt = siteConfig.ogImageAlt,
+  imageAlt = t.seo.ogImageAlt,
   noindex = false,
   canonical,
 } = Astro.props;
 
-const siteOrigin = Astro.site?.href ?? Astro.url.origin;
-const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteOrigin).href;
-const ogImageURL = new URL(image, siteOrigin).href;
+const siteOrigin = getSiteOrigin(Astro.site?.href, import.meta.env.SITE);
+const canonicalURL =
+  canonical ?? toAbsoluteUrl(Astro.url.pathname, siteOrigin);
+const ogImageURL = toAbsoluteUrl(image, siteOrigin);
+const siteName = t.information.name;
 const pageTitle =
-  title === siteConfig.title || title.endsWith(` | ${siteConfig.name}`)
+  title === t.seo.title || title.endsWith(` | ${siteName}`)
     ? title
-    : `${title} | ${siteConfig.name}`;
+    : `${title} | ${siteName}`;
+
+const alternateLang = getAlternateLang(lang);
+const alternateURL = toAbsoluteUrl(getAlternatePath(lang), siteOrigin);
+const defaultURL = toAbsoluteUrl(getHomePath("ja"), siteOrigin);
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CoworkingSpace",
-  name: siteConfig.name,
-  description: siteConfig.description,
-  url: siteOrigin,
+  name: t.information.name,
+  description: t.seo.description,
+  url: toAbsoluteUrl(getHomePath(lang), siteOrigin),
   image: ogImageURL,
   priceRange: siteConfig.business.priceRange,
   address: {
     "@type": "PostalAddress",
-    streetAddress: siteConfig.business.streetAddress,
-    addressLocality: siteConfig.business.addressLocality,
+    streetAddress:
+      lang === "en"
+        ? siteConfig.business.streetAddressEn
+        : siteConfig.business.streetAddress,
+    addressLocality:
+      lang === "en"
+        ? siteConfig.business.addressLocalityEn
+        : siteConfig.business.addressLocality,
     addressRegion: siteConfig.business.addressRegion,
     postalCode: siteConfig.business.postalCode,
     addressCountry: siteConfig.business.addressCountry,
@@ -73,6 +97,9 @@ const jsonLd = {
 <meta name="format-detection" content="telephone=no" />
 
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" hreflang={t.seo.locale} href={canonicalURL} />
+<link rel="alternate" hreflang={alternateLang} href={alternateURL} />
+<link rel="alternate" hreflang="x-default" href={defaultURL} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -81,12 +108,13 @@ const jsonLd = {
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content={siteConfig.name} />
-<meta property="og:locale" content={siteConfig.ogLocale} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={t.seo.ogLocale} />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={ogImageURL} />
+<meta property="og:image:secure_url" content={ogImageURL} />
 <meta property="og:image:alt" content={imageAlt} />
 
 <meta name="twitter:card" content={siteConfig.twitterCard} />

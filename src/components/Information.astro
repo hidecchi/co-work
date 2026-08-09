@@ -1,9 +1,22 @@
+---
+import { useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section class="information" id="information" aria-labelledby="information-heading">
   <div class="information__inner">
     <div class="information__texts">
       <div class="information__header">
-        <p class="information__title" aria-hidden="true">INFORMATION</p>
-        <h2 id="information-heading" class="information__subtitle">店舗情報</h2>
+        <p class="information__title" aria-hidden="true">{t.information.label}</p>
+        <h2 id="information-heading" class="information__subtitle">
+          {t.information.heading}
+        </h2>
       </div>
     </div>
 
@@ -15,133 +28,131 @@
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="strict-origin-when-cross-origin"
-      title="ONE COIN コワーキングの地図（Google Maps）"
+      title={t.information.mapTitle}
       class="information__map"></iframe>
     <dl class="information__list">
       <div class="information__list-item">
-        <dt class="information__list-item-title">店名</dt>
-        <dd class="information__list-item-text">ONE COIN コワーキング</dd>
+        <dt class="information__list-item-title">{t.information.nameLabel}</dt>
+        <dd class="information__list-item-text">{t.information.name}</dd>
       </div>
       <div class="information__list-item">
-        <dt class="information__list-item-title">住所</dt>
+        <dt class="information__list-item-title">{t.information.addressLabel}</dt>
         <dd class="information__list-item-text">
-          〒650-0004　<br
-            class="information__list-item-text__br"
-          />兵庫県神戸市中央区中山手通４丁目１０−３１<br
-            class="information__list-item-text__br"
-          />（元町駅徒歩6分）
+          {t.information.addressLine1}<br class="information__list-item-text__br" />{
+            t.information.addressLine2
+          }<br class="information__list-item-text__br" />{t.information.addressNote}
         </dd>
       </div>
       <div class="information__list-item">
-        <dt class="information__list-item-title">営業時間</dt>
-        <dd class="information__list-item-text">24時間</dd>
+        <dt class="information__list-item-title">{t.information.hoursLabel}</dt>
+        <dd class="information__list-item-text">{t.information.hours}</dd>
       </div>
       <div class="information__list-item">
-        <dt class="information__list-item-title">席数</dt>
-        <dd class="information__list-item-text">20～30席（予定）</dd>
+        <dt class="information__list-item-title">{t.information.seatsLabel}</dt>
+        <dd class="information__list-item-text">{t.information.seats}</dd>
       </div>
     </dl>
-
-    <style>
-      .information {
-        padding: 6rem 2rem;
-      }
-
-      .information__inner {
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .information__header {
-        margin-bottom: 3rem;
-      }
-
-      .information__title {
-        letter-spacing: 0.1em;
-        line-height: 1.5;
-        font-weight: 400;
-        font-size: 0.875rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .information__subtitle {
-        font-weight: 500;
-        font-size: 2rem;
-        letter-spacing: 0.2em;
-        line-height: 1.5;
-        margin: 0;
-      }
-
-      .information__map {
-        width: 100%;
-        border: 0;
-      }
-
-      .information__list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        background-color: #f5f5f5;
-        padding: 1rem;
-        font-size: 1.1rem;
-      }
-
-      .information__list-item {
-        display: flex;
-        gap: 0.4rem;
-      }
-
-      .information__list-item-title {
-        flex-shrink: 0;
-      }
-
-      .information__list-item-title::before {
-        content: "【";
-      }
-
-      .information__list-item-title::after {
-        content: "】";
-      }
-
-      .information__list-item-text {
-        margin: 0;
-      }
-
-      .information__list-item-text__br {
-        display: none;
-      }
-
-      @media (max-width: 768px) {
-        .information {
-          padding: 3.2rem 1.5rem 1.6rem;
-        }
-
-        .information__subtitle {
-          font-size: 1.5rem;
-        }
-
-        .information__header {
-          margin-bottom: 2rem;
-        }
-
-        .information__list {
-          padding: 1rem 0.5rem;
-          font-size: 1rem;
-        }
-
-        .information__list-item {
-          flex-direction: column;
-          gap: 0;
-        }
-
-        .information__list-item-text {
-          padding-left: 0.5rem;
-        }
-
-        .information__list-item-text__br {
-          display: block;
-        }
-      }
-    </style>
   </div>
 </section>
+
+<style>
+  .information {
+    padding: 6rem 2rem;
+  }
+
+  .information__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .information__header {
+    margin-bottom: 3rem;
+  }
+
+  .information__title {
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .information__subtitle {
+    font-weight: 500;
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .information__map {
+    width: 100%;
+    border: 0;
+  }
+
+  .information__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .information__list-item {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .information__list-item-title {
+    flex-shrink: 0;
+  }
+
+  .information__list-item-title::before {
+    content: "【";
+  }
+
+  .information__list-item-title::after {
+    content: "】";
+  }
+
+  .information__list-item-text {
+    margin: 0;
+  }
+
+  .information__list-item-text__br {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .information {
+      padding: 3.2rem 1.5rem 1.6rem;
+    }
+
+    .information__subtitle {
+      font-size: 1.5rem;
+    }
+
+    .information__header {
+      margin-bottom: 2rem;
+    }
+
+    .information__list {
+      padding: 1rem 0.5rem;
+      font-size: 1rem;
+    }
+
+    .information__list-item {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .information__list-item-text {
+      padding-left: 0.5rem;
+    }
+
+    .information__list-item-text__br {
+      display: block;
+    }
+  }
+</style>
