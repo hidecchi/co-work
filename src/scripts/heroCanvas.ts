@@ -6,6 +6,13 @@ import { Ripple } from "./heroRipple";
 const RIPPLE_COUNT = 50;
 const SPAWN_INTERVAL = 2;
 const POINTER_STOP_DELAY = 80;
+const MOBILE_IMAGE_BREAKPOINT = 500;
+
+function getHeroImageUrl(canvas: HTMLCanvasElement) {
+  const desktop = canvas.dataset.src ?? "/sample.jpg";
+  const mobile = canvas.dataset.srcSp ?? "/sample-sp.jpg";
+  return window.innerWidth < MOBILE_IMAGE_BREAKPOINT ? mobile : desktop;
+}
 
 function getViewport(canvasWidth: number, canvasHeight: number) {
   return {
@@ -53,7 +60,8 @@ export function initHeroCanvas(
   const wrap = document.querySelector<HTMLElement>(wrapSelector);
   if (!canvas || !wrap) return () => {};
 
-  const imageUrl = canvas.dataset.src ?? "/sample.jpg";
+  const imageUrl = getHeroImageUrl(canvas);
+  let currentImageUrl = imageUrl;
   const distance = 5;
   let animationId = 0;
   let mouseTick = 0;
@@ -198,42 +206,64 @@ export function initHeroCanvas(
 
   const loader = new THREE.TextureLoader();
 
-  loader.load(
-    imageUrl,
-    (texture) => {
-      imageTexture = texture;
-      imageTexture.colorSpace = THREE.SRGBColorSpace;
+  const applyImageTexture = (texture: THREE.Texture) => {
+    imageTexture?.dispose();
+    imageTexture = texture;
+    imageTexture.colorSpace = THREE.SRGBColorSpace;
 
-      const displayMaterial = new THREE.ShaderMaterial({
-        vertexShader,
-        fragmentShader,
-        uniforms: {
-          tDiffuse: { value: imageTexture },
-          texRipple: { value: rippleTarget.texture },
-        },
-        toneMapped: false,
-      });
+    if (displayMesh) {
+      displayMesh.material.uniforms.tDiffuse.value = imageTexture;
+      resize();
+      return;
+    }
 
-      displayMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(1, 1),
-        displayMaterial,
-      );
-      scene.add(displayMesh);
+    const displayMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        tDiffuse: { value: imageTexture },
+        texRipple: { value: rippleTarget.texture },
+      },
+      toneMapped: false,
+    });
 
-      loader.load("/ripple.png", (rippleTexture) => {
-        for (let i = 0; i < RIPPLE_COUNT; i++) {
-          const ripple = new Ripple(rippleTexture, vp);
-          rippleScene.add(ripple.mesh);
-          ripples.push(ripple);
-        }
+    displayMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), displayMaterial);
+    scene.add(displayMesh);
 
-        resize();
-        animate();
-      });
-    },
-    undefined,
-    () => canvas.classList.add("hero__canvas--error"),
+    loader.load("/ripple.png", (rippleTexture) => {
+      for (let i = 0; i < RIPPLE_COUNT; i++) {
+        const ripple = new Ripple(rippleTexture, vp);
+        rippleScene.add(ripple.mesh);
+        ripples.push(ripple);
+      }
+
+      resize();
+      animate();
+    });
+  };
+
+  const loadHeroImage = (url: string) => {
+    loader.load(
+      url,
+      applyImageTexture,
+      undefined,
+      () => canvas.classList.add("hero__canvas--error"),
+    );
+  };
+
+  const onViewportChange = () => {
+    const nextUrl = getHeroImageUrl(canvas);
+    if (nextUrl === currentImageUrl) return;
+    currentImageUrl = nextUrl;
+    loadHeroImage(nextUrl);
+  };
+
+  loadHeroImage(imageUrl);
+
+  const mobileMediaQuery = window.matchMedia(
+    `(max-width: ${MOBILE_IMAGE_BREAKPOINT - 1}px)`,
   );
+  mobileMediaQuery.addEventListener("change", onViewportChange);
 
   canvas.addEventListener("pointermove", onPointerMove);
   canvas.addEventListener("pointerleave", onPointerLeave);
@@ -244,6 +274,7 @@ export function initHeroCanvas(
 
   return () => {
     if (stopTimer) clearTimeout(stopTimer);
+    mobileMediaQuery.removeEventListener("change", onViewportChange);
     cancelAnimationFrame(animationId);
     canvas.removeEventListener("pointermove", onPointerMove);
     canvas.removeEventListener("pointerleave", onPointerLeave);
