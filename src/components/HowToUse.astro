@@ -54,7 +54,7 @@ const services = [
                     alt={service.title}
                     width="800"
                     height="500"
-                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -210,13 +210,25 @@ const services = [
       aspect-ratio: 16/11;
       order: -1;
     }
+
+    .howToUse__item__image-reveal {
+      width: 100%;
+      transition: none;
+    }
   }
 </style>
 
 <script>
+  const MOBILE_BREAKPOINT = 768;
+
   function initImageReveal() {
     const reveals = document.querySelectorAll("[data-image-reveal]");
     if (!reveals.length) return;
+
+    if (window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
+      reveals.forEach((reveal) => reveal.classList.add("is-revealed"));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
