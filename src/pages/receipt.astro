@@ -1,0 +1,103 @@
+---
+import ReceiptLayout from "../layouts/ReceiptLayout.astro";
+import "../styles/receipt.css";
+---
+
+<ReceiptLayout>
+  <main class="receipt-page">
+    <p id="receipt-denied" class="receipt-page__denied">
+      領収書を表示できません。
+    </p>
+
+    <div id="receipt-app" class="receipt-page__content" hidden>
+      <div id="receipt-preview"></div>
+      <div class="receipt-page__actions">
+        <button type="button" id="receipt-print" class="receipt-page__button">
+          PDFで保存
+        </button>
+        <p class="receipt-page__hint">印刷画面でPDFに保存を選択してください</p>
+      </div>
+    </div>
+  </main>
+</ReceiptLayout>
+
+<script>
+  import { initReceiptPage } from "../scripts/receiptPage";
+
+  initReceiptPage();
+</script>
+
+<style>
+  .receipt-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: #f5f5f5;
+  }
+
+  .receipt-page__denied {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .receipt-page__content {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .receipt-page__content :global(.receipt) {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .receipt-page__actions {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .receipt-page__button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: #444;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .receipt-page__button:hover {
+    opacity: 0.85;
+  }
+
+  .receipt-page__hint {
+    margin: 0.75rem 0 0;
+    font-size: 1rem;
+    color: red;
+  }
+
+  @media print {
+    @page {
+      margin: 12mm;
+    }
+
+    .receipt-page {
+      display: block;
+      min-height: auto;
+      padding: 0;
+      background: #fff;
+    }
+
+    .receipt-page__denied,
+    .receipt-page__actions {
+      display: none !important;
+    }
+
+    .receipt-page__content :global(.receipt) {
+      box-shadow: none;
+    }
+  }
+</style>

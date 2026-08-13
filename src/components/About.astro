@@ -13,10 +13,14 @@ const infoPath = `${getHomePath(lang)}#information`;
 <section class="about" id="about" aria-labelledby="about-heading">
   <div class="about__inner">
     <h2 id="about-heading" class="about__title">
-      <a href={infoPath} class="about__link">{t.about.locationLink}</a
-      >{t.about.locationSuffix}<br class="about__title__br1" />
-      <span class="about__marker">{t.about.marker}</span>{t.about.opening}<br />
-      {t.about.closing}
+      <a href={infoPath} class="about__link">{t.about.locationLink}</a>{
+        t.about.locationSuffix
+      }<br class="about__title__br1" />
+      <span class="about__marker">{t.about.markerFee}</span>{t.about.opening}<br
+      />
+      <span class="about__marker">{t.about.markerNoMembership}</span>{
+        t.about.closing
+      }
     </h2>
     <h3 class="visually-hidden" id="about-features-heading">
       {t.about.featuresHeading}
@@ -88,7 +92,7 @@ const infoPath = `${getHomePath(lang)}#information`;
   }
 
   .about__inner {
-    max-width: 1040px;
+    max-width: 1080px;
     margin: 0 auto;
   }
 

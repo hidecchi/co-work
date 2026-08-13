@@ -13,23 +13,14 @@ const homePath = getHomePath(lang);
 <footer class="footer">
   <div class="footer__inner">
     <a href={homePath} class="logo">
-      <svg
+      <img
+        src="/logo-white2.png"
+        alt=""
         class="logo__mark"
-        viewBox="0 0 32 32"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M8 6C8 6 14 6 18 10C22 14 24 20 24 26C24 26 18 26 14 22C10 18 8 12 8 6Z"
-          stroke="currentColor"
-          stroke-width="2"
-          fill="none"></path>
-        <path
-          d="M14 10C14 10 18 10 20 14C22 18 22 22 22 26"
-          stroke="currentColor"
-          stroke-width="2"
-          fill="none"></path>
-      </svg>
+        width="180"
+        height="168"
+        decoding="async"
+      />
       <span class="logo__text">{t.information.name}</span>
     </a>
 
@@ -41,7 +32,7 @@ const homePath = getHomePath(lang);
     </nav>
 
     <p class="footer__copy">
-      &copy; {new Date().getFullYear()}
+      &copy; {new Date().getFullYear()}&nbsp;
       {t.footer.copyright}
     </p>
   </div>
@@ -76,8 +67,10 @@ const homePath = getHomePath(lang);
   }
 
   .logo__mark {
-    width: 1.5rem;
-    height: 1.5rem;
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
   }
 
   .footer__nav-list {

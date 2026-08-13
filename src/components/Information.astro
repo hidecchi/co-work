@@ -9,11 +9,17 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section class="information" id="information" aria-labelledby="information-heading">
+<section
+  class="information"
+  id="information"
+  aria-labelledby="information-heading"
+>
   <div class="information__inner">
     <div class="information__texts">
       <div class="information__header">
-        <p class="information__title" aria-hidden="true">{t.information.label}</p>
+        <p class="information__title" aria-hidden="true">
+          {t.information.label}
+        </p>
         <h2 id="information-heading" class="information__subtitle">
           {t.information.heading}
         </h2>
@@ -36,11 +42,15 @@ const t = useTranslations(lang);
         <dd class="information__list-item-text">{t.information.name}</dd>
       </div>
       <div class="information__list-item">
-        <dt class="information__list-item-title">{t.information.addressLabel}</dt>
+        <dt class="information__list-item-title">
+          {t.information.addressLabel}
+        </dt>
         <dd class="information__list-item-text">
-          {t.information.addressLine1}<br class="information__list-item-text__br" />{
-            t.information.addressLine2
-          }<br class="information__list-item-text__br" />{t.information.addressNote}
+          {t.information.addressLine1}{" "}<br
+            class="information__list-item-text__br"
+          />{t.information.addressLine2}<br
+            class="information__list-item-text__br"
+          />{t.information.addressNote}
         </dd>
       </div>
       <div class="information__list-item">

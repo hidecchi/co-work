@@ -38,8 +38,9 @@ export type Translations = {
   about: {
     locationLink: string;
     locationSuffix: string;
-    marker: string;
+    markerFee: string;
     opening: string;
+    markerNoMembership: string;
     closing: string;
     featuresHeading: string;
     features: string[];
