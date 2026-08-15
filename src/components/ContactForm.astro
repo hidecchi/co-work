@@ -32,12 +32,7 @@ const t = useTranslations(lang);
 
   <div class="contact-form__field">
     <label for="contact-phone">{t.contact.phoneLabel}</label>
-    <input
-      id="contact-phone"
-      type="tel"
-      name="電話番号"
-      autocomplete="tel"
-    />
+    <input id="contact-phone" type="tel" name="電話番号" autocomplete="tel" />
   </div>
 
   <div class="contact-form__field">
@@ -55,11 +50,8 @@ const t = useTranslations(lang);
       {t.contact.messageLabel}
       <span class="contact-form__required">{t.contact.required}</span>
     </label>
-    <textarea
-      id="contact-message"
-      name="お問い合わせ内容"
-      rows="8"
-      required></textarea>
+    <textarea id="contact-message" name="お問い合わせ内容" rows="8" required
+    ></textarea>
   </div>
 
   <button type="submit" class="contact-form__submit">{t.contact.submit}</button>
@@ -80,7 +72,7 @@ const t = useTranslations(lang);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     color: #1a1a1a;
@@ -89,7 +81,7 @@ const t = useTranslations(lang);
   .contact-form__required {
     display: inline-block;
     padding: 0.12em 0.45em;
-    font-size: 0.6875rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     line-height: 1.4;
