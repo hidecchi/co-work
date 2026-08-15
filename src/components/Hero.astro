@@ -16,7 +16,9 @@ const t = useTranslations(lang);
   <div class="hero__content">
     <div class="hero__text">
       <div class="hero__vertical-reveal hero__vertical-reveal--right">
-        <p class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}>
+        <p
+          class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}
+        >
           {
             lang === "ja" ? (
               <>
@@ -34,7 +36,9 @@ const t = useTranslations(lang);
         </p>
       </div>
       <div class="hero__vertical-reveal hero__vertical-reveal--left">
-        <p class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}>
+        <p
+          class:list={["hero__vertical", lang === "en" && "hero__vertical--en"]}
+        >
           {t.hero.unlimited}
         </p>
       </div>
@@ -150,6 +154,9 @@ const t = useTranslations(lang);
     border-radius: 0.2rem;
     white-space: nowrap;
     height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero__vertical--en {

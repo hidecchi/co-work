@@ -17,6 +17,7 @@ export const ja: Translations = {
     menuClose: "メニューを閉じる",
     navHowToUse: "ご利用方法",
     navInformation: "店舗情報",
+    navContact: "お問い合わせ",
     langSwitch: "English",
     langSwitchAria: "英語版を表示",
   },
@@ -88,6 +89,20 @@ export const ja: Translations = {
     hours: "24時間",
     seatsLabel: "席数",
     seats: "20～30席（予定）",
+  },
+  contact: {
+    title: "お問い合わせ",
+    description:
+      "ONE COIN コワーキングへのお問い合わせはこちらから。ご質問・取材・ご利用に関するご相談を受け付けています。",
+    heading: "お問い合わせ",
+    lead: "ご質問やご相談は、下記フォームよりお送りください。必須項目をご記入のうえ送信してください。",
+    nameLabel: "お名前",
+    emailLabel: "メールアドレス",
+    phoneLabel: "電話番号",
+    companyLabel: "会社名",
+    messageLabel: "お問い合わせ内容",
+    required: "必須",
+    submit: "送信する",
   },
   footer: {
     navLabel: "フッターナビゲーション",

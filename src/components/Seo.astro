@@ -42,7 +42,10 @@ const pageTitle =
     : `${title} | ${siteName}`;
 
 const alternateLang = getAlternateLang(lang);
-const alternateURL = toAbsoluteUrl(getAlternatePath(lang), siteOrigin);
+const alternateURL = toAbsoluteUrl(
+  getAlternatePath(lang, Astro.url.pathname),
+  siteOrigin,
+);
 const defaultURL = toAbsoluteUrl(getHomePath("ja"), siteOrigin);
 
 const jsonLd = {

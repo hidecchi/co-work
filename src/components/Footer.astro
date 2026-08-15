@@ -1,5 +1,5 @@
 ---
-import { getHomePath, useTranslations, type Lang } from "../i18n";
+import { getContactPath, getHomePath, useTranslations, type Lang } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -26,8 +26,9 @@ const homePath = getHomePath(lang);
 
     <nav class="footer__nav" aria-label={t.footer.navLabel}>
       <ul class="footer__nav-list">
-        <li><a href="#howToUse">{t.header.navHowToUse}</a></li>
-        <li><a href="#information">{t.header.navInformation}</a></li>
+        <li><a href={`${homePath}#howToUse`}>{t.header.navHowToUse}</a></li>
+        <li><a href={`${homePath}#information`}>{t.header.navInformation}</a></li>
+        <li><a href={getContactPath(lang)}>{t.header.navContact}</a></li>
       </ul>
     </nav>
 

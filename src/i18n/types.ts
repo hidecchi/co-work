@@ -22,6 +22,7 @@ export type Translations = {
     menuClose: string;
     navHowToUse: string;
     navInformation: string;
+    navContact: string;
     langSwitch: string;
     langSwitchAria: string;
   };
@@ -64,6 +65,19 @@ export type Translations = {
     hours: string;
     seatsLabel: string;
     seats: string;
+  };
+  contact: {
+    title: string;
+    description: string;
+    heading: string;
+    lead: string;
+    nameLabel: string;
+    emailLabel: string;
+    phoneLabel: string;
+    companyLabel: string;
+    messageLabel: string;
+    required: string;
+    submit: string;
   };
   footer: {
     navLabel: string;

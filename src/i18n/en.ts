@@ -17,6 +17,7 @@ export const en: Translations = {
     menuClose: "Close menu",
     navHowToUse: "How to Use",
     navInformation: "Information",
+    navContact: "Contact",
     langSwitch: "日本語",
     langSwitchAria: "View site in Japanese",
   },
@@ -89,6 +90,20 @@ export const en: Translations = {
     hours: "24 hours",
     seatsLabel: "Seats",
     seats: "20–30 seats (planned)",
+  },
+  contact: {
+    title: "Contact",
+    description:
+      "Contact ONE COIN COWORKING. Questions about the space, visits, or press inquiries are welcome.",
+    heading: "Contact",
+    lead: "Please use the form below. Email and message are required.",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    phoneLabel: "Phone",
+    companyLabel: "Company",
+    messageLabel: "Message",
+    required: "Required",
+    submit: "Send",
   },
   footer: {
     navLabel: "Footer navigation",

@@ -7,7 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const alternatePath = getAlternatePath(lang);
+const alternatePath = getAlternatePath(lang, Astro.url.pathname);
 const alternateLang = lang === "ja" ? "en" : "ja";
 ---
 

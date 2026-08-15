@@ -1,5 +1,5 @@
 ---
-import { getHomePath, useTranslations, type Lang } from "../i18n";
+import { getContactPath, getHomePath, useTranslations, type Lang } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -10,8 +10,9 @@ const t = useTranslations(lang);
 const homePath = getHomePath(lang);
 
 const navItems = [
-  { label: t.header.navHowToUse, href: "#howToUse" },
-  { label: t.header.navInformation, href: "#information" },
+  { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
+  { label: t.header.navInformation, href: `${homePath}#information` },
+  { label: t.header.navContact, href: getContactPath(lang) },
 ];
 ---
 

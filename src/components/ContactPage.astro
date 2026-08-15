@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import ContactForm from "./ContactForm.astro";
+import { useTranslations, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout
+  lang={lang}
+  title={t.contact.title}
+  description={t.contact.description}
+>
+  <Header lang={lang} />
+  <main id="main-content" class="contact-page">
+    <div class="contact-page__inner">
+      <p class="section-label">CONTACT</p>
+      <h1 class="contact-page__heading">{t.contact.heading}</h1>
+      <p class="contact-page__lead">{t.contact.lead}</p>
+      <ContactForm lang={lang} />
+    </div>
+  </main>
+  <Footer lang={lang} />
+  <LanguageSwitch lang={lang} />
+</Layout>
+
+<style>
+  .contact-page {
+    padding: 8rem 1.5rem 5rem;
+    background: #fff;
+  }
+
+  .contact-page__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contact-page__heading {
+    margin: 0 0 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-page__lead {
+    margin: 0 0 2.25rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .contact-page {
+      padding: 6.5rem 1.25rem 3.5rem;
+    }
+
+    .contact-page__heading {
+      font-size: 1.4rem;
+    }
+  }
+</style>

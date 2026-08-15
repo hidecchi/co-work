@@ -21,10 +21,18 @@ export function getHomePath(lang: Lang): string {
   return lang === "en" ? "/en/" : "/";
 }
 
+export function getContactPath(lang: Lang): string {
+  return lang === "en" ? "/en/contact/" : "/contact/";
+}
+
 export function getAlternateLang(lang: Lang): Lang {
   return lang === "ja" ? "en" : "ja";
 }
 
-export function getAlternatePath(lang: Lang): string {
-  return getHomePath(getAlternateLang(lang));
+export function getAlternatePath(lang: Lang, pathname = ""): string {
+  const alt = getAlternateLang(lang);
+  if (pathname.includes("contact")) {
+    return getContactPath(alt);
+  }
+  return getHomePath(alt);
 }
