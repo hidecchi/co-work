@@ -21,8 +21,12 @@ function getViewport(canvasWidth: number, canvasHeight: number) {
   };
 }
 
+function isRippleEnabled() {
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
 function getMapPos(
-  event: PointerEvent,
+  event: MouseEvent,
   rect: DOMRect,
   vpWidth: number,
   vpHeight: number,
@@ -63,12 +67,13 @@ export function initHeroCanvas(
   const imageUrl = getHeroImageUrl(canvas);
   let currentImageUrl = imageUrl;
   const distance = 5;
+  const rippleEnabled = isRippleEnabled();
   let animationId = 0;
   let mouseTick = 0;
-  let pointerMoving = false;
+  let mouseMoving = false;
   let stopTimer: ReturnType<typeof setTimeout> | null = null;
-  let lastPointerX = 0;
-  let lastPointerY = 0;
+  let lastMouseX = 0;
+  let lastMouseY = 0;
 
   let vp = getViewport(1, 1);
 
@@ -106,7 +111,7 @@ export function initHeroCanvas(
     THREE.ShaderMaterial
   > | null = null;
   let imageTexture: THREE.Texture | null = null;
-  let lastPointerEvent: PointerEvent | null = null;
+  let lastMouseEvent: MouseEvent | null = null;
 
   const updateRippleCamera = () => {
     rippleCamera.left = -vp.width / 2;
@@ -131,18 +136,20 @@ export function initHeroCanvas(
 
     mouseTick += 1;
 
-    if (pointerMoving && mouseTick % SPAWN_INTERVAL === 0) {
+    if (rippleEnabled && mouseMoving && mouseTick % SPAWN_INTERVAL === 0) {
       const ripple = ripples.find((item) => !item.isUsed);
-      if (ripple && lastPointerEvent) {
+      if (ripple && lastMouseEvent) {
         const rect = canvas.getBoundingClientRect();
-        ripple.start(getMapPos(lastPointerEvent, rect, vp.width, vp.height));
+        ripple.start(getMapPos(lastMouseEvent, rect, vp.width, vp.height));
       }
     }
 
-    ripples.forEach((ripple) => ripple.tick());
-    renderRippleTarget();
+    if (rippleEnabled) {
+      ripples.forEach((ripple) => ripple.tick());
+      renderRippleTarget();
+      displayMesh.material.uniforms.texRipple.value = rippleTarget.texture;
+    }
 
-    displayMesh.material.uniforms.texRipple.value = rippleTarget.texture;
     renderer.render(scene, camera);
   };
 
@@ -177,31 +184,30 @@ export function initHeroCanvas(
     displayMesh.scale.set(planeWidth, planeHeight, 1);
   };
 
-  const onPointerMove = (event: PointerEvent) => {
+  const onMouseMove = (event: MouseEvent) => {
     const moved =
-      Math.hypot(event.clientX - lastPointerX, event.clientY - lastPointerY) >
-      1;
+      Math.hypot(event.clientX - lastMouseX, event.clientY - lastMouseY) > 1;
 
-    lastPointerX = event.clientX;
-    lastPointerY = event.clientY;
-    lastPointerEvent = event;
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
+    lastMouseEvent = event;
 
     if (!moved) return;
 
-    pointerMoving = true;
+    mouseMoving = true;
 
     if (stopTimer) clearTimeout(stopTimer);
     stopTimer = setTimeout(() => {
-      pointerMoving = false;
+      mouseMoving = false;
       stopTimer = null;
     }, POINTER_STOP_DELAY);
   };
 
-  const onPointerLeave = () => {
+  const onMouseLeave = () => {
     if (stopTimer) clearTimeout(stopTimer);
     stopTimer = null;
-    pointerMoving = false;
-    lastPointerEvent = null;
+    mouseMoving = false;
+    lastMouseEvent = null;
   };
 
   const loader = new THREE.TextureLoader();
@@ -227,8 +233,17 @@ export function initHeroCanvas(
       toneMapped: false,
     });
 
-    displayMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), displayMaterial);
+    displayMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(1, 1),
+      displayMaterial,
+    );
     scene.add(displayMesh);
+    resize();
+
+    if (!rippleEnabled) {
+      animate();
+      return;
+    }
 
     loader.load("/ripple.png", (rippleTexture) => {
       for (let i = 0; i < RIPPLE_COUNT; i++) {
@@ -243,11 +258,8 @@ export function initHeroCanvas(
   };
 
   const loadHeroImage = (url: string) => {
-    loader.load(
-      url,
-      applyImageTexture,
-      undefined,
-      () => canvas.classList.add("hero__canvas--error"),
+    loader.load(url, applyImageTexture, undefined, () =>
+      canvas.classList.add("hero__canvas--error"),
     );
   };
 
@@ -265,8 +277,10 @@ export function initHeroCanvas(
   );
   mobileMediaQuery.addEventListener("change", onViewportChange);
 
-  canvas.addEventListener("pointermove", onPointerMove);
-  canvas.addEventListener("pointerleave", onPointerLeave);
+  if (rippleEnabled) {
+    canvas.addEventListener("mousemove", onMouseMove);
+    canvas.addEventListener("mouseleave", onMouseLeave);
+  }
 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(wrap);
@@ -276,8 +290,8 @@ export function initHeroCanvas(
     if (stopTimer) clearTimeout(stopTimer);
     mobileMediaQuery.removeEventListener("change", onViewportChange);
     cancelAnimationFrame(animationId);
-    canvas.removeEventListener("pointermove", onPointerMove);
-    canvas.removeEventListener("pointerleave", onPointerLeave);
+    canvas.removeEventListener("mousemove", onMouseMove);
+    canvas.removeEventListener("mouseleave", onMouseLeave);
     resizeObserver.disconnect();
     imageTexture?.dispose();
     ripples.forEach((ripple) => ripple.dispose());
