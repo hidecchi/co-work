@@ -11,7 +11,21 @@ const t = useTranslations(lang);
 
 <section class="hero" id="top" aria-labelledby="hero-heading">
   <h1 id="hero-heading" class="hero__bg-text" aria-label={t.hero.h1}>
-    {t.hero.bgText}
+    {
+      t.hero.bgText.split("").map((char, index) => {
+        const glyph = char === " " ? "\u00A0" : char;
+        return (
+          <span
+            class="hero__bg-char"
+            style={`--char-index: ${index}`}
+            aria-hidden="true"
+          >
+            <span class="hero__bg-char-front">{glyph}</span>
+            <span class="hero__bg-char-flip">{glyph}</span>
+          </span>
+        );
+      })
+    }
   </h1>
 
   <div class="hero__content">
@@ -82,16 +96,73 @@ const t = useTranslations(lang);
     margin: 0;
     position: absolute;
     bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    width: max-content;
+    margin-inline: auto;
+    display: flex;
     font-size: clamp(3rem, 9vw, 9rem);
     font-weight: 700;
     letter-spacing: -0.02em;
+    line-height: 1;
     color: rgba(0, 0, 0, 0.2);
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
     z-index: 8;
+    perspective: 800px;
+  }
+
+  .hero__bg-char {
+    display: inline-block;
+    transform-style: preserve-3d;
+    transform: translateZ(-0.5lh) rotateX(90deg);
+    animation: hero-bg-cube-flip 6.7s infinite;
+    animation-delay: calc(var(--char-index) * 0.05s);
+  }
+
+  .hero__bg-char-front,
+  .hero__bg-char-flip {
+    display: block;
+    height: 1lh;
+    backface-visibility: hidden;
+  }
+
+  .hero__bg-char-front {
+    position: relative;
+    transform: translateZ(0.5lh);
+  }
+
+  .hero__bg-char-flip {
+    position: absolute;
+    inset: 0 auto auto 0;
+    transform: rotateX(-90deg) translateZ(0.5lh);
+  }
+
+  @keyframes hero-bg-cube-flip {
+    0% {
+      transform: translateZ(-0.5lh) rotateX(90deg);
+      animation-timing-function: cubic-bezier(0.22, 1.4, 0.32, 1);
+    }
+
+    12% {
+      transform: translateZ(-0.5lh) rotateX(0deg);
+      animation-timing-function: linear;
+    }
+
+    68% {
+      transform: translateZ(-0.5lh) rotateX(0deg);
+      animation-timing-function: cubic-bezier(0.22, 1.4, 0.32, 1);
+    }
+
+    80% {
+      transform: translateZ(-0.5lh) rotateX(90deg);
+      animation-timing-function: linear;
+    }
+
+    100% {
+      transform: translateZ(-0.5lh) rotateX(90deg);
+    }
   }
 
   .hero__content {
@@ -312,6 +383,11 @@ const t = useTranslations(lang);
     .hero__vertical-reveal {
       animation: none;
       grid-template-rows: 1fr;
+    }
+
+    .hero__bg-char {
+      animation: none;
+      transform: translateZ(-0.5lh) rotateX(0deg);
     }
   }
 </style>
