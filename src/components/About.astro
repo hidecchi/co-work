@@ -22,10 +22,7 @@ const infoPath = `${getHomePath(lang)}#information`;
         t.about.closing
       }
     </h2>
-    <h3 class="visually-hidden" id="about-features-heading">
-      {t.about.featuresHeading}
-    </h3>
-    <ul class="about__list" aria-labelledby="about-features-heading">
+    <ul class="about__list" aria-label={t.about.featuresHeading}>
       {
         t.about.features.map((label) => (
           <li class="about__item">

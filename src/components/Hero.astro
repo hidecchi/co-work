@@ -10,8 +10,9 @@ const t = useTranslations(lang);
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-heading">
-  <h1 id="hero-heading" class="visually-hidden">{t.hero.h1}</h1>
-  <div class="hero__bg-text" aria-hidden="true">{t.hero.bgText}</div>
+  <h1 id="hero-heading" class="hero__bg-text" aria-label={t.hero.h1}>
+    {t.hero.bgText}
+  </h1>
 
   <div class="hero__content">
     <div class="hero__text">
@@ -78,6 +79,7 @@ const t = useTranslations(lang);
   }
 
   .hero__bg-text {
+    margin: 0;
     position: absolute;
     bottom: 8%;
     left: 50%;
