@@ -4,7 +4,7 @@ export const en: Translations = {
   seo: {
     title: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
     description:
-      "Opening scheduled for late October. Coworking space a 6-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
+      "Opening scheduled for late October. Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
     ogImageAlt: "Interior of ONE COIN COWORKING",
     locale: "en",
     ogLocale: "en_US",
@@ -33,7 +33,7 @@ export const en: Translations = {
   },
   about: {
     locationLink:
-      "6 min north along Koikawa-suji from Motomachi Station, next to Co-op Yamate",
+      "7 min north along Koikawa-suji from Motomachi Station, next to Co-op Yamate",
     locationSuffix: ", ",
     markerFee: "¥500 entry for unlimited stay",
     opening: " — our coworking space is opening soon!",
@@ -85,7 +85,7 @@ export const en: Translations = {
     addressLabel: "Address",
     addressLine1: "4-10-31 Nakayamate-dori, Chuo-ku",
     addressLine2: "Kobe, Hyogo 650-0004, Japan",
-    addressNote: "(6 min walk from Motomachi Station)",
+    addressNote: "(7 min walk from Motomachi Station)",
     hoursLabel: "Hours",
     hours: "24 hours",
     seatsLabel: "Seats",
