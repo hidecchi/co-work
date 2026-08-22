@@ -1,6 +1,6 @@
-/** 本番URL。カスタムドメイン利用時は SITE_URL 環境変数で上書き */
+/** 本番URL */
 export const siteConfig = {
-  defaultSiteUrl: "https://cowork-net.web.app",
+  defaultSiteUrl: "https://cowork-net.com",
   name: "ONE COIN コワーキング",
   ogImage: "/sample.jpg",
   themeColor: "#444444",

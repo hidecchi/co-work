@@ -1,0 +1,7 @@
+{
+  "name": "co-work",
+  "compatibility_date": "2026-08-22", // デプロイする日に更新してください
+  "assets": {
+    "directory": "./dist",
+  },
+}
