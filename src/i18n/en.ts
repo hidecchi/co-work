@@ -10,7 +10,6 @@ export const en: Translations = {
     ogLocale: "en_US",
   },
   header: {
-    skipLink: "Skip to main content",
     mainNav: "Main navigation",
     mobileNav: "Mobile navigation",
     menuOpen: "Open menu",

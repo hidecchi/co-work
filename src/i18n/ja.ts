@@ -10,7 +10,6 @@ export const ja: Translations = {
     ogLocale: "ja_JP",
   },
   header: {
-    skipLink: "メインコンテンツへスキップ",
     mainNav: "メインナビゲーション",
     mobileNav: "モバイルナビゲーション",
     menuOpen: "メニューを開く",

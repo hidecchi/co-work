@@ -17,7 +17,6 @@ const navItems = [
 ---
 
 <header class="header">
-  <a href="#main-content" class="skip-link">{t.header.skipLink}</a>
   <div class="header__inner">
     <a href={homePath} class="logo">
       <img
@@ -103,25 +102,6 @@ const navItems = [
 </script>
 
 <style>
-  .skip-link {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 200;
-    padding: 0.625rem 1rem;
-    background: #1a1a1a;
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: 0.25rem;
-    transform: translateY(-200%);
-    transition: transform 0.2s;
-  }
-
-  .skip-link:focus {
-    transform: translateY(0);
-  }
-
   .header {
     position: fixed;
     top: 0;

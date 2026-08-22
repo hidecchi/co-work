@@ -15,7 +15,6 @@ export type Translations = {
     ogLocale: string;
   };
   header: {
-    skipLink: string;
     mainNav: string;
     mobileNav: string;
     menuOpen: string;
