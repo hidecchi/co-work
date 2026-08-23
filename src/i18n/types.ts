@@ -64,6 +64,7 @@ export type Translations = {
     hours: string;
     seatsLabel: string;
     seats: string;
+    mapCta: string;
   };
   contact: {
     title: string;
