@@ -36,7 +36,7 @@ npm install
 | `npm run build`              | 本番用サイトを `./dist/` にビルド                 |
 | `npm run preview`            | ビルド結果をローカルでプレビュー                  |
 | `npm run generate:favicons`  | `public/logo.png` などから favicon 一式を生成     |
-| `npm run deploy`             | ビルドして Firebase Hosting へデプロイ            |
+| `npm run deploy`             | ビルドして Cloudflare へデプロイ                  |
 | `npm run astro ...`          | `astro add` や `astro check` などの CLI を実行    |
 
 > 別ドメインでビルドする場合は `SITE_URL` を指定します。
@@ -60,7 +60,6 @@ npm install
 │   ├── styles/             # スタイルシート
 │   └── utils/              # ユーティリティ
 ├── astro.config.mjs        # Astro 設定
-├── firebase.json           # Firebase Hosting 設定
 └── wrangler.jsonc          # Cloudflare Workers/Assets 設定
 ```
 
@@ -68,13 +67,13 @@ Astro のプロジェクト構成の詳細は[公式ガイド](https://docs.astr
 
 ## デプロイ
 
-本番は Firebase Hosting（プロジェクト: `cowork-net`）へデプロイします。
+本番は [Cloudflare](https://developers.cloudflare.com/workers/static-assets/)（`wrangler.jsonc` の設定）へデプロイします。
 
 ```sh
 npm run deploy
 ```
 
-上記は `npm run build` 実行後に `firebase deploy --only hosting` を行います。事前に [Firebase CLI](https://firebase.google.com/docs/cli) のログインが必要です。
+上記は `npm run build` 実行後に `wrangler deploy` を行います。事前に [Wrangler](https://developers.cloudflare.com/workers/wrangler/) のログイン（`wrangler login`）が必要です。
 
 ## ドキュメント
 
