@@ -50,6 +50,8 @@ const navItems = [
       aria-label={t.header.menuOpen}
       aria-expanded="false"
       aria-controls="mobile-nav"
+      data-menu-open={t.header.menuOpen}
+      data-menu-close={t.header.menuClose}
     >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -75,31 +77,6 @@ const navItems = [
     </ul>
   </nav>
 </header>
-
-<script
-  define:vars={{
-    menuOpenLabel: t.header.menuOpen,
-    menuCloseLabel: t.header.menuClose,
-  }}
->
-  const toggle = document.querySelector(".menu-toggle");
-  const mobileNav = document.querySelector("#mobile-nav");
-
-  toggle?.addEventListener("click", () => {
-    const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!isOpen));
-    toggle.setAttribute("aria-label", isOpen ? menuOpenLabel : menuCloseLabel);
-    if (mobileNav) mobileNav.hidden = isOpen;
-  });
-
-  mobileNav?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (mobileNav) mobileNav.hidden = true;
-      toggle?.setAttribute("aria-expanded", "false");
-      toggle?.setAttribute("aria-label", menuOpenLabel);
-    });
-  });
-</script>
 
 <style>
   .header {
