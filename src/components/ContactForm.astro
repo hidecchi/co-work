@@ -54,6 +54,41 @@ const t = useTranslations(lang);
     ></textarea>
   </div>
 
+  <div class="contact-form__privacy">
+    <h2 class="contact-form__privacy-heading" id="contact-privacy-heading">
+      {t.contact.privacyHeading}
+    </h2>
+    <div
+      class="contact-form__policy"
+      role="region"
+      aria-labelledby="contact-privacy-heading"
+      tabindex="0"
+    >
+      <p class="contact-form__policy-intro">{t.contact.privacyIntro}</p>
+      {
+        t.contact.privacySections.map((section) => (
+          <section class="contact-form__policy-section">
+            <h3>{section.title}</h3>
+            <p>{section.body}</p>
+          </section>
+        ))
+      }
+    </div>
+    <div class="contact-form__agree">
+      <input
+        id="contact-privacy-agree"
+        type="checkbox"
+        name="プライバシーポリシーへの同意"
+        value="同意する"
+        required
+      />
+      <label for="contact-privacy-agree">
+        {t.contact.privacyAgreeLabel}
+        <span class="contact-form__required">{t.contact.required}</span>
+      </label>
+    </div>
+  </div>
+
   <button type="submit" class="contact-form__submit">{t.contact.submit}</button>
 </form>
 
@@ -111,6 +146,89 @@ const t = useTranslations(lang);
   .contact-form__field textarea {
     resize: vertical;
     min-height: 10rem;
+  }
+
+  .contact-form__privacy {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .contact-form__privacy-heading {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+  }
+
+  .contact-form__policy {
+    max-height: 14rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1rem 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: #333;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+
+  .contact-form__policy:focus {
+    outline: 2px solid #444;
+    outline-offset: 1px;
+    border-color: #444;
+  }
+
+  .contact-form__policy-intro {
+    margin: 0 0 1rem;
+  }
+
+  .contact-form__policy-section {
+    margin: 0 0 1rem;
+  }
+
+  .contact-form__policy-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-form__policy-section h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-form__policy-section p {
+    margin: 0;
+  }
+
+  .contact-form__agree {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .contact-form__agree input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0.2rem 0 0;
+    accent-color: #444;
+    cursor: pointer;
+  }
+
+  .contact-form__agree label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    cursor: pointer;
   }
 
   .contact-form__submit {

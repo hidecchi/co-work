@@ -77,6 +77,13 @@ export type Translations = {
     messageLabel: string;
     required: string;
     submit: string;
+    privacyHeading: string;
+    privacyIntro: string;
+    privacySections: {
+      title: string;
+      body: string;
+    }[];
+    privacyAgreeLabel: string;
   };
   footer: {
     navLabel: string;
