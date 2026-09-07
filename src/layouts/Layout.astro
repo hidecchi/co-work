@@ -10,6 +10,10 @@ interface Props {
   imageAlt?: string;
   noindex?: boolean;
   canonical?: string;
+  ogType?: "website" | "article";
+  keywords?: string[];
+  publishedTime?: Date;
+  modifiedTime?: Date;
 }
 
 const { lang = "ja", ...seoProps } = Astro.props;

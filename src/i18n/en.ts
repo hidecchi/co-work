@@ -16,6 +16,7 @@ export const en: Translations = {
     menuClose: "Close menu",
     navHowToUse: "How to Use",
     navInformation: "Information",
+    navMedia: "Media",
     navContact: "Contact",
     langSwitch: "日本語",
     langSwitchAria: "View site in Japanese",
@@ -89,6 +90,18 @@ export const en: Translations = {
     hours: "24 hours",
     seatsLabel: "Seats",
     seats: "20–30 seats (planned)",
+  },
+  media: {
+    title: "Media",
+    description:
+      "News and articles from ONE COIN COWORKING, an affordable coworking space in Motomachi, Kobe.",
+    heading: "Media",
+    label: "MEDIA",
+    lead: "News and articles about affordable coworking in Motomachi, Kobe.",
+    empty: "No articles have been published yet.",
+    backToList: "Back to media",
+    readMore: "Read more",
+    publishedOn: "Published",
   },
   contact: {
     title: "Contact",
