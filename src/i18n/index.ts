@@ -26,7 +26,7 @@ export function getContactPath(lang: Lang): string {
 }
 
 export function getMediaPath(lang: Lang): string {
-  return lang === "en" ? "/en/media/" : "/media/";
+  return lang === "en" ? "/en/column/" : "/column/";
 }
 
 export function getMediaArticlePath(lang: Lang, slug: string): string {
@@ -50,12 +50,12 @@ export function getAlternatePath(lang: Lang, pathname = ""): string {
     return getContactPath(alt);
   }
 
-  const mediaArticle = path.match(/^\/media\/([^/]+)\/?$/);
-  if (mediaArticle?.[1]) {
-    return getMediaArticlePath(alt, mediaArticle[1]);
+  const columnArticle = path.match(/^\/column\/([^/]+)\/?$/);
+  if (columnArticle?.[1]) {
+    return getMediaArticlePath(alt, columnArticle[1]);
   }
 
-  if (path.startsWith("/media")) {
+  if (path.startsWith("/column")) {
     return getMediaPath(alt);
   }
 
