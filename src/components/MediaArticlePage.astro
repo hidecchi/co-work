@@ -1,0 +1,216 @@
+---
+import { render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import { getMediaPath, useTranslations, type Lang } from "../i18n";
+import {
+  formatMediaDate,
+  type MediaPost,
+} from "../utils/media";
+
+interface Props {
+  lang: Lang;
+  post: MediaPost;
+}
+
+const { lang, post } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(post);
+const listPath = getMediaPath(lang);
+const published = post.data.pubDate;
+const modified = post.data.updatedDate ?? published;
+---
+
+<Layout
+  lang={lang}
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage}
+  imageAlt={post.data.heroImageAlt}
+  ogType="article"
+  keywords={post.data.keywords}
+  publishedTime={published}
+  modifiedTime={modified}
+>
+  <Header lang={lang} />
+  <main id="main-content" class="article-page">
+    <article class="article">
+      <p class="article__back">
+        <a href={listPath}>{t.media.backToList}</a>
+      </p>
+      <header class="article__header">
+        <p class="section-label">{t.media.label}</p>
+        <h1 class="article__title">{post.data.title}</h1>
+        <p class="article__meta">
+          <span class="visually-hidden">{t.media.publishedOn}</span>
+          <time datetime={published.toISOString()}>
+            {formatMediaDate(published, lang)}
+          </time>
+        </p>
+      </header>
+      {
+        post.data.heroImage && (
+          <img
+            src={post.data.heroImage}
+            alt={post.data.heroImageAlt ?? ""}
+            class="article__hero"
+            width="1200"
+            height="675"
+            decoding="async"
+          />
+        )
+      }
+      <div class="article__body">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+  <LanguageSwitch lang={lang} />
+</Layout>
+
+<style>
+  .article-page {
+    padding: 8rem 1.5rem 5rem;
+    background: #fff;
+    font-size: 1.125rem;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article .section-label {
+    font-size: 0.875rem;
+  }
+
+  .article__back {
+    margin: 0 0 1.75rem;
+  }
+
+  .article__back a {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #0077ff;
+    text-decoration: underline;
+  }
+
+  .article__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+  }
+
+  .article__meta {
+    margin: 0 0 1.75rem;
+    font-size: 1rem;
+    color: #888;
+    letter-spacing: 0.04em;
+  }
+
+  .article__hero {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 2.25rem;
+    background: #f5f5f5;
+  }
+
+  .article__body :global(> *:first-child) {
+    margin-top: 0;
+  }
+
+  .article__body :global(h2) {
+    margin: 2.25rem 0 1rem;
+    font-size: 1.475rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  .article__body :global(h3) {
+    margin: 1.75rem 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .article__body :global(p) {
+    margin: 0 0 1.15rem;
+    font-size: 1.125rem;
+    line-height: 1.9;
+  }
+
+  .article__body :global(a) {
+    color: #0077ff;
+    text-decoration: underline;
+  }
+
+  .article__body :global(strong) {
+    font-weight: 700;
+  }
+
+  .article__body :global(ul),
+  .article__body :global(ol) {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .article__body :global(ul) {
+    list-style: disc;
+  }
+
+  .article__body :global(ol) {
+    list-style: decimal;
+  }
+
+  .article__body :global(li) {
+    margin: 0 0 0.4rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  .article__body :global(li::marker) {
+    color: #666;
+  }
+
+  .article__body :global(table) {
+    width: 100%;
+    margin: 0 0 1.5rem;
+    border-collapse: collapse;
+    font-size: 1.075rem;
+  }
+
+  .article__body :global(th),
+  .article__body :global(td) {
+    padding: 0.7rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .article__body :global(th) {
+    background: #f5f5f5;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .article-page {
+      padding: 6.5rem 1.25rem 3.5rem;
+    }
+
+    .article__title {
+      font-size: 1.525rem;
+    }
+
+    .article__body :global(h2) {
+      font-size: 1.325rem;
+    }
+  }
+</style>

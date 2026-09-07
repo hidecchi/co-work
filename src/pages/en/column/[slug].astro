@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from "astro:content";
+import MediaArticlePage from "../../../components/MediaArticlePage.astro";
+import { getMediaPosts, mediaSlug } from "../../../utils/media";
+
+export async function getStaticPaths() {
+  const posts = await getMediaPosts("en");
+  return posts.map((post) => ({
+    params: { slug: mediaSlug(post.id) },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"media">;
+}
+
+const { post } = Astro.props;
+---
+
+<MediaArticlePage lang="en" post={post} />

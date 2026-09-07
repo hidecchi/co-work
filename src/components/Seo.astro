@@ -17,6 +17,10 @@ interface Props {
   imageAlt?: string;
   noindex?: boolean;
   canonical?: string;
+  ogType?: "website" | "article";
+  keywords?: string[];
+  publishedTime?: Date;
+  modifiedTime?: Date;
 }
 
 const lang = Astro.props.lang ?? "ja";
@@ -29,6 +33,10 @@ const {
   imageAlt = t.seo.ogImageAlt,
   noindex = false,
   canonical,
+  ogType = "website",
+  keywords = [],
+  publishedTime,
+  modifiedTime,
 } = Astro.props;
 
 const siteOrigin = getSiteOrigin(Astro.site?.href, import.meta.env.SITE);
@@ -48,7 +56,7 @@ const alternateURL = toAbsoluteUrl(
 );
 const defaultURL = toAbsoluteUrl(getHomePath("ja"), siteOrigin);
 
-const jsonLd = {
+const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "CoworkingSpace",
   name: t.information.name,
@@ -90,11 +98,44 @@ const jsonLd = {
     closes: "23:59",
   },
 };
+
+const articleJsonLd =
+  ogType === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        url: canonicalURL,
+        image: ogImageURL,
+        inLanguage: t.seo.locale,
+        datePublished: publishedTime?.toISOString(),
+        dateModified: (modifiedTime ?? publishedTime)?.toISOString(),
+        author: {
+          "@type": "Organization",
+          name: siteName,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: siteName,
+        },
+        keywords: keywords.join(", "),
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": canonicalURL,
+        },
+      }
+    : null;
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
+{
+  keywords.length > 0 && (
+    <meta name="keywords" content={keywords.join(", ")} />
+  )
+}
 <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 <meta name="theme-color" content={siteConfig.themeColor} />
 <meta name="format-detection" content="telephone=no" />
@@ -109,7 +150,23 @@ const jsonLd = {
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
+{
+  publishedTime && (
+    <meta
+      property="article:published_time"
+      content={publishedTime.toISOString()}
+    />
+  )
+}
+{
+  (modifiedTime ?? publishedTime) && ogType === "article" && (
+    <meta
+      property="article:modified_time"
+      content={(modifiedTime ?? publishedTime)?.toISOString()}
+    />
+  )
+}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content={t.seo.ogLocale} />
 <meta property="og:title" content={pageTitle} />
@@ -125,6 +182,14 @@ const jsonLd = {
 <meta name="twitter:image" content={ogImageURL} />
 <meta name="twitter:image:alt" content={imageAlt} />
 
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(businessJsonLd)} />
+{
+  articleJsonLd && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(articleJsonLd)}
+    />
+  )
+}
 
 <title>{pageTitle}</title>

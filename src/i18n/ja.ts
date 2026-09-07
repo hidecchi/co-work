@@ -16,6 +16,7 @@ export const ja: Translations = {
     menuClose: "メニューを閉じる",
     navHowToUse: "ご利用方法",
     navInformation: "店舗情報",
+    navMedia: "コラム",
     navContact: "お問い合わせ",
     langSwitch: "English",
     langSwitchAria: "英語版を表示",
@@ -88,6 +89,18 @@ export const ja: Translations = {
     hours: "24時間",
     seatsLabel: "席数",
     seats: "20～30席（予定）",
+  },
+  media: {
+    title: "コラム",
+    description:
+      "ONE COIN コワーキングのコラム。神戸・元町の格安コワーキングに関するお知らせや記事を掲載しています。",
+    heading: "コラム",
+    label: "COLUMN",
+    lead: "神戸・元町の格安コワーキングに関するお知らせや記事です。",
+    empty: "公開中の記事はまだありません。",
+    backToList: "コラム一覧へ戻る",
+    readMore: "続きを読む",
+    publishedOn: "公開日",
   },
   contact: {
     title: "お問い合わせ",
