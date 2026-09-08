@@ -4,10 +4,9 @@
  */
 import * as THREE from "three";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
+import { viewport } from "../../helper";
 import fragmentShader from "./fragment.glsl";
 import vertexShader from "./vertex.glsl";
-
-import { viewport } from "../../helper";
 
 class Ripple {
   constructor(tex, vp) {
@@ -38,7 +37,7 @@ class Ripple {
     material.opacity *= 0.97;
     mesh.rotation.z += 0.001;
 
-    if(material.opacity <= 0.01) {
+    if (material.opacity <= 0.01) {
       // ループ終了
       this.isUsed = false;
       mesh.visible = false;
@@ -56,7 +55,7 @@ async function initRipplePass(world, mouse) {
   const vp = {
     width: viewport.width / 5,
     height: viewport.height / 5,
-  }
+  };
 
   const camera = new THREE.OrthographicCamera(
     -vp.width / 2,
@@ -64,7 +63,7 @@ async function initRipplePass(world, mouse) {
     vp.height / 2,
     -vp.height / 2,
     0,
-    2
+    2,
   );
 
   camera.position.z = 1;
@@ -88,8 +87,8 @@ async function initRipplePass(world, mouse) {
     fragmentShader,
     uniforms: {
       tDiffuse: { value: null },
-      texRipple: { value: renderer.texture }
-    }
+      texRipple: { value: renderer.texture },
+    },
   });
 
   const pass = new ShaderPass(material);
@@ -106,7 +105,7 @@ async function initRipplePass(world, mouse) {
       _ripple.start(position);
     }
   }
-  
+
   world.addRenderAction(renderRipple);
   function renderRipple({ renderer: mainRenderer }) {
     mainRenderer.setRenderTarget(renderer);
@@ -120,8 +119,8 @@ async function initRipplePass(world, mouse) {
   }
 
   return {
-    getTexture
-  }
-};
+    getTexture,
+  };
+}
 
-export { initRipplePass }
+export { initRipplePass };

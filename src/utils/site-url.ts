@@ -7,10 +7,7 @@ export function getSiteOrigin(
   siteHref?: string | URL | null,
   buildSite?: string,
 ): string {
-  const raw =
-    siteHref?.toString() ??
-    buildSite ??
-    siteConfig.defaultSiteUrl;
+  const raw = siteHref?.toString() ?? buildSite ?? siteConfig.defaultSiteUrl;
 
   const url = new URL(raw.endsWith("/") ? raw : `${raw}/`);
 

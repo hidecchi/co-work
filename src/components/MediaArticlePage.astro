@@ -1,14 +1,11 @@
 ---
 import { render } from "astro:content";
+import { getMediaPath, type Lang, useTranslations } from "../i18n";
 import Layout from "../layouts/Layout.astro";
-import Header from "./Header.astro";
+import { formatMediaDate, type MediaPost } from "../utils/media";
 import Footer from "./Footer.astro";
+import Header from "./Header.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
-import { getMediaPath, useTranslations, type Lang } from "../i18n";
-import {
-  formatMediaDate,
-  type MediaPost,
-} from "../utils/media";
 
 interface Props {
   lang: Lang;

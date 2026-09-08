@@ -1,10 +1,10 @@
 ---
+import { type Lang, useTranslations } from "../i18n";
 import Layout from "../layouts/Layout.astro";
-import Header from "./Header.astro";
-import Footer from "./Footer.astro";
-import LanguageSwitch from "./LanguageSwitch.astro";
 import ContactForm from "./ContactForm.astro";
-import { useTranslations, type Lang } from "../i18n";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
 
 interface Props {
   lang: Lang;

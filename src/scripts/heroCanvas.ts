@@ -120,7 +120,9 @@ export function initHeroCanvas(
     rippleCamera.bottom = -vp.height / 2;
     rippleCamera.updateProjectionMatrix();
     rippleTarget.setSize(vp.width, vp.height);
-    ripples.forEach((ripple) => ripple.resize(vp));
+    for (const ripple of ripples) {
+      ripple.resize(vp);
+    }
   };
 
   const renderRippleTarget = () => {
@@ -145,7 +147,9 @@ export function initHeroCanvas(
     }
 
     if (rippleEnabled) {
-      ripples.forEach((ripple) => ripple.tick());
+      for (const ripple of ripples) {
+        ripple.tick();
+      }
       renderRippleTarget();
       displayMesh.material.uniforms.texRipple.value = rippleTarget.texture;
     }
@@ -294,7 +298,9 @@ export function initHeroCanvas(
     canvas.removeEventListener("mouseleave", onMouseLeave);
     resizeObserver.disconnect();
     imageTexture?.dispose();
-    ripples.forEach((ripple) => ripple.dispose());
+    for (const ripple of ripples) {
+      ripple.dispose();
+    }
     displayMesh?.geometry.dispose();
     displayMesh?.material.dispose();
     rippleTarget.dispose();

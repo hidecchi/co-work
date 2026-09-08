@@ -4,8 +4,8 @@ import {
   getAlternateLang,
   getAlternatePath,
   getHomePath,
-  useTranslations,
   type Lang,
+  useTranslations,
 } from "../i18n";
 import { getSiteOrigin, toAbsoluteUrl } from "../utils/site-url";
 
@@ -40,8 +40,7 @@ const {
 } = Astro.props;
 
 const siteOrigin = getSiteOrigin(Astro.site?.href, import.meta.env.SITE);
-const canonicalURL =
-  canonical ?? toAbsoluteUrl(Astro.url.pathname, siteOrigin);
+const canonicalURL = canonical ?? toAbsoluteUrl(Astro.url.pathname, siteOrigin);
 const ogImageURL = toAbsoluteUrl(image, siteOrigin);
 const siteName = t.information.name;
 const pageTitle =
