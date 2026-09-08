@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import type { Lang } from "../i18n";
 
 export type MediaPost = CollectionEntry<"media">;

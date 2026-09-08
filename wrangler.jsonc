@@ -4,6 +4,6 @@
   "workers_dev": false, // *.workers.dev で公開するか
   "preview_urls": true, // プレビュー URL を有効にするか
   "assets": {
-    "directory": "./dist",
-  },
+    "directory": "./dist"
+  }
 }
