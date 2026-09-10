@@ -8,7 +8,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const href = getMediaArticlePath(lang, "cleaning-staff-recruitment");
-const storageKey = "recruitment-banner-dismissed";
 ---
 
 <aside
@@ -28,12 +27,6 @@ const storageKey = "recruitment-banner-dismissed";
     <span aria-hidden="true">×</span>
   </button>
 </aside>
-
-<script is:inline define:vars={{ storageKey }}>
-  if (localStorage.getItem(storageKey)) {
-    document.getElementById("recruitment-banner")?.setAttribute("hidden", "");
-  }
-</script>
 
 <script>
   import "../scripts/recruitmentBanner.ts";
