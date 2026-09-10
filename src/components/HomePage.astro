@@ -8,6 +8,7 @@ import Hero from "./Hero.astro";
 import HowToUse from "./HowToUse.astro";
 import Information from "./Information.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
+import RecruitmentBanner from "./RecruitmentBanner.astro";
 
 interface Props {
   lang: Lang;
@@ -17,7 +18,12 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<Layout lang={lang} title={t.seo.title} description={t.seo.description} imageAlt={t.seo.ogImageAlt}>
+<Layout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  imageAlt={t.seo.ogImageAlt}
+>
   <Header lang={lang} />
   <main id="main-content">
     <Hero lang={lang} />
@@ -27,4 +33,5 @@ const t = useTranslations(lang);
   </main>
   <Footer lang={lang} />
   <LanguageSwitch lang={lang} />
+  <RecruitmentBanner lang={lang} />
 </Layout>
