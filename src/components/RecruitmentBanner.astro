@@ -42,14 +42,9 @@ const href = getMediaArticlePath(lang, "cleaning-staff-recruitment");
     align-items: center;
     max-width: calc(100vw - 2.5rem);
     background: #ffe85a;
-    border: 1.5px solid #1a1a1a;
+    border: 1.5px solid #666;
     border-radius: 999px;
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.12),
-      0 8px 28px rgba(255, 232, 90, 0.45);
-    transition:
-      transform 0.2s,
-      box-shadow 0.2s;
+    transition: transform 0.2s;
   }
 
   .recruitment-banner[hidden] {
@@ -71,9 +66,6 @@ const href = getMediaArticlePath(lang, "cleaning-staff-recruitment");
 
   .recruitment-banner:hover {
     transform: translateY(-2px);
-    box-shadow:
-      0 6px 16px rgba(0, 0, 0, 0.14),
-      0 10px 32px rgba(255, 232, 90, 0.55);
   }
 
   .recruitment-banner__close {
