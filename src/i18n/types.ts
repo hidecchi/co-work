@@ -101,4 +101,9 @@ export type Translations = {
     navLabel: string;
     copyright: string;
   };
+  recruitmentBanner: {
+    label: string;
+    text: string;
+    close: string;
+  };
 };

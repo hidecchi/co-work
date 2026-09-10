@@ -154,4 +154,9 @@ export const ja: Translations = {
     navLabel: "フッターナビゲーション",
     copyright: "ONE COIN コワーキング. All Rights Reserved.",
   },
+  recruitmentBanner: {
+    label: "募集のお知らせ",
+    text: "清掃管理スタッフ募集中",
+    close: "閉じる",
+  },
 };

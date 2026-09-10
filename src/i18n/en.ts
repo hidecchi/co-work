@@ -155,4 +155,9 @@ export const en: Translations = {
     navLabel: "Footer navigation",
     copyright: "ONE COIN COWORKING. All Rights Reserved.",
   },
+  recruitmentBanner: {
+    label: "Recruitment notice",
+    text: "Cleaning staff wanted",
+    close: "Close",
+  },
 };
