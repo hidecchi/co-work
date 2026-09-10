@@ -33,7 +33,9 @@ const homePath = getHomePath(lang);
     <nav class="footer__nav" aria-label={t.footer.navLabel}>
       <ul class="footer__nav-list">
         <li><a href={`${homePath}#howToUse`}>{t.header.navHowToUse}</a></li>
-        <li><a href={`${homePath}#information`}>{t.header.navInformation}</a></li>
+        <li>
+          <a href={`${homePath}#information`}>{t.header.navInformation}</a>
+        </li>
         <li><a href={getMediaPath(lang)}>{t.header.navMedia}</a></li>
         <li><a href={getContactPath(lang)}>{t.header.navContact}</a></li>
       </ul>
