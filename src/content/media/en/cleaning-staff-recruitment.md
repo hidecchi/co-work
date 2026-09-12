@@ -13,7 +13,6 @@ heroImageAlt: Interior of ONE COIN COWORKING
 
 **ONE COIN COWORKING** (7-minute walk from Motomachi Station, Kobe) is looking for cleaning and maintenance staff.
 
-We need someone to help with cleaning and maintenance at our unmanned coworking space.
 Work is twice a day in short shifts. Hours and days are flexible, and family members may share the duties.
 
 ## Duties
