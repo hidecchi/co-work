@@ -43,7 +43,7 @@ Our unmanned, no-membership model helps us keep prices low. After entering, simp
 - Wireless LAN (Wi-Fi)
 - Power outlets
 - Counter seats and table seats
-- Outside food and drinks permitted
+- Drinks permitted (bring your own)
 - Conversation permitted
 
 ## How to Use
