@@ -17,8 +17,6 @@ Work is twice a day in short shifts. Hours and days are flexible, and family mem
 
 ## Duties
 
-Twice daily, you will perform one or both of the following:
-
 | Time | Tasks | Pay |
 | --- | --- | --- |
 | About 20 min | Clean restrooms<br>Tidy desks and chairs | ¥900 |
@@ -32,10 +30,6 @@ Twice daily, you will perform one or both of the following:
 - Number of days and shared duties within a family can be arranged
 - Priority will be given to those who can work as many shifts as possible
 
-## Location
+<br>
 
-[4-10-31 Nakayamate-dori, Chuo-ku, Kobe, Hyogo](/en/#information) (7-minute walk from Motomachi Station)
-
-## Contact
-
-If you are interested, please feel free to get in touch. For details, please [contact us](/en/contact/).
+If you are interested, please feel free to get in touch.<br>For details, please [contact us](/en/contact/).
