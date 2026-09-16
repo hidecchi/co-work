@@ -25,6 +25,11 @@ export function formatMediaListDateParts(date: Date): {
   return { year, monthDay: `${month}.${day}` };
 }
 
+export function formatMediaListDate(date: Date): string {
+  const { year, monthDay } = formatMediaListDateParts(date);
+  return `${year}.${monthDay}`;
+}
+
 export async function getMediaPosts(lang: Lang): Promise<MediaPost[]> {
   const posts = await getCollection("media", ({ data }) => {
     if (data.lang !== lang) return false;

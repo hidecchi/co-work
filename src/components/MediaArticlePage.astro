@@ -1,8 +1,8 @@
 ---
 import { render } from "astro:content";
-import { getMediaPath, type Lang, useTranslations } from "../i18n";
+import { getHomePath, getMediaPath, type Lang, useTranslations } from "../i18n";
 import Layout from "../layouts/Layout.astro";
-import { formatMediaDate, type MediaPost } from "../utils/media";
+import { formatMediaListDate, type MediaPost } from "../utils/media";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
@@ -16,6 +16,7 @@ const { lang, post } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(post);
 const listPath = getMediaPath(lang);
+const homePath = getHomePath(lang);
 const published = post.data.pubDate;
 const modified = post.data.updatedDate ?? published;
 ---
@@ -32,20 +33,40 @@ const modified = post.data.updatedDate ?? published;
   modifiedTime={modified}
 >
   <Header lang={lang} />
-  <main id="main-content" class="article-page">
+  <div class="article-page-wrap">
+    <nav class="breadcrumb" aria-label={t.media.breadcrumbLabel}>
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item">
+          <a href={homePath} class="breadcrumb__link breadcrumb__link--home">
+            {t.media.breadcrumbHome}
+          </a>
+        </li>
+        <li class="breadcrumb__item">
+          <a href={listPath} class="breadcrumb__link">
+            {t.media.label}
+          </a>
+        </li>
+        <li class="breadcrumb__item">
+          <span class="breadcrumb__current" aria-current="page">
+            {post.data.title}
+          </span>
+        </li>
+      </ol>
+    </nav>
+
+    <main id="main-content" class="article-page">
     <article class="article">
       <p class="article__back">
         <a href={listPath}>{t.media.backToList}</a>
       </p>
       <header class="article__header">
-        <p class="section-label">{t.media.label}</p>
-        <h1 class="article__title">{post.data.title}</h1>
         <p class="article__meta">
           <span class="visually-hidden">{t.media.publishedOn}</span>
           <time datetime={published.toISOString()}>
-            {formatMediaDate(published, lang)}
+            {formatMediaListDate(published)}
           </time>
         </p>
+        <h1 class="article__title">{post.data.title}</h1>
       </header>
       {
         post.data.heroImage && (
@@ -63,25 +84,83 @@ const modified = post.data.updatedDate ?? published;
         <Content />
       </div>
     </article>
-  </main>
+    </main>
+  </div>
   <Footer lang={lang} />
   <LanguageSwitch lang={lang} />
 </Layout>
 
 <style>
+  .article-page-wrap {
+    padding-top: 5rem;
+  }
+
+  .breadcrumb {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    min-height: 49px;
+    list-style: none;
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #666;
+    min-width: 0;
+  }
+
+  .breadcrumb__link {
+    position: relative;
+    padding: 0 1.75rem 0 0.75rem;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  .breadcrumb__link--home {
+    padding-left: 0;
+  }
+
+  .breadcrumb__link::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0.375rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .breadcrumb__current {
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 20rem;
+  }
+
   .article-page {
-    padding: 8rem 1.5rem 5rem;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
     background: #fff;
     font-size: 1.125rem;
   }
 
   .article {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .article .section-label {
-    font-size: 0.875rem;
+    margin: 0;
   }
 
   .article__back {
@@ -96,19 +175,19 @@ const modified = post.data.updatedDate ?? published;
     text-decoration: underline;
   }
 
+  .article__meta {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #888;
+    letter-spacing: 0.04em;
+  }
+
   .article__title {
-    margin: 0 0 0.75rem;
+    margin: 0 0 1.75rem;
     font-size: 1.875rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.45;
-  }
-
-  .article__meta {
-    margin: 0 0 1.75rem;
-    font-size: 1rem;
-    color: #888;
-    letter-spacing: 0.04em;
   }
 
   .article__hero {
@@ -198,8 +277,21 @@ const modified = post.data.updatedDate ?? published;
   }
 
   @media (max-width: 768px) {
+    .article-page-wrap {
+      padding-top: 4.5rem;
+    }
+
+    .breadcrumb__list {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .breadcrumb__current {
+      max-width: 10rem;
+    }
+
     .article-page {
-      padding: 6.5rem 1.25rem 3.5rem;
+      padding: 2rem 1.5rem 3.5rem;
     }
 
     .article__title {
