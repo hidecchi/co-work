@@ -8,8 +8,8 @@ keywords:
   - cheap coworking Motomachi
   - Motomachi Station coworking
   - ¥500 coworking
-heroImage: /sample.jpg
-heroImageAlt: Interior image of ONE COIN COWORKING
+heroImage: /eyecatch/motomachi-kakuyasu-coworking.png
+heroImageAlt: ONE COIN COWORKING opening scheduled for late October
 ---
 
 **ONE COIN COWORKING** will open in late October, a 7-minute walk from Motomachi Station in Kobe.

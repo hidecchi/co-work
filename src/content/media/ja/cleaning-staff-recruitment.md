@@ -7,8 +7,8 @@ keywords:
   - 清掃 スタッフ 募集 神戸
   - コワーキング スタッフ 元町
   - 清掃 バイト 神戸
-heroImage: /sample.jpg
-heroImageAlt: ONE COIN コワーキングの店内
+heroImage: /eyecatch/cleaning-staff-recruitment.png
+heroImageAlt: コワーキングスペースの清掃スタッフ募集
 ---
 
 **ONE COIN コワーキング**（神戸・元町駅より徒歩7分）にて、清掃管理スタッフを募集しております。
@@ -32,4 +32,4 @@ heroImageAlt: ONE COIN コワーキングの店内
 
 <br>
 
-ご興味のある方は、まずお気軽にご連絡ください。<br>詳細は [お問い合わせ](/contact/) より承っております。
+ご興味のある方は、まずお気軽にご連絡ください。<br>[お問い合わせ](/contact/) よりご連絡お待ちしております。

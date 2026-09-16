@@ -7,8 +7,8 @@ keywords:
   - cleaning staff Kobe
   - coworking staff Motomachi
   - part-time cleaning Kobe
-heroImage: /sample.jpg
-heroImageAlt: Interior of ONE COIN COWORKING
+heroImage: /eyecatch/cleaning-staff-recruitment.png
+heroImageAlt: Recruiting cleaning staff for the coworking space
 ---
 
 **ONE COIN COWORKING** (7-minute walk from Motomachi Station, Kobe) is looking for cleaning and maintenance staff.

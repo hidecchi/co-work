@@ -8,8 +8,8 @@ keywords:
   - コワーキング 元町 格安
   - 元町駅 コワーキング
   - 500円 コワーキング
-heroImage: /sample.jpg
-heroImageAlt: ONE COIN コワーキングの店内イメージ
+heroImage: /eyecatch/motomachi-kakuyasu-coworking.png
+heroImageAlt: ONE COIN コワーキング 10月下旬OPEN予定
 ---
 
 神戸・元町駅より徒歩7分の場所に、**ONE COIN コワーキング** を10月下旬にオープンいたします。
