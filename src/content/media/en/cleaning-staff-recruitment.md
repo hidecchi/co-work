@@ -9,6 +9,7 @@ keywords:
   - part-time cleaning Kobe
 heroImage: /eyecatch/cleaning-staff-recruitment.png
 heroImageAlt: Recruiting cleaning staff for the coworking space
+badge: Urgent
 ---
 
 **ONE COIN COWORKING** ([7-minute walk from Motomachi Station, Kobe](/en/#information)) is looking for cleaning and maintenance staff.
@@ -32,4 +33,5 @@ Work is twice a day in short shifts. Hours and days are flexible, and family mem
 
 <br>
 
-If you are interested, please feel free to get in touch.<br>For details, please [contact us](/en/contact/).
+Recommended for local residents looking for side income of around ¥50,000–70,000 per month.<br>
+If you are interested, please feel free to get in touch.<br>[Contact us](/en/contact/) — we look forward to hearing from you.

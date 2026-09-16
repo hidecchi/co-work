@@ -65,6 +65,9 @@ const modified = post.data.updatedDate ?? published;
           <time datetime={published.toISOString()}>
             {formatMediaListDate(published)}
           </time>
+          {post.data.badge && (
+            <span class="article__badge">{post.data.badge}</span>
+          )}
         </p>
         <h1 class="article__title">{post.data.title}</h1>
       </header>
@@ -176,6 +179,9 @@ const modified = post.data.updatedDate ?? published;
   }
 
   .article__meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
     margin: 0 0 0.5rem;
     font-size: 1rem;
     color: #888;
@@ -188,6 +194,18 @@ const modified = post.data.updatedDate ?? published;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.45;
+  }
+
+  .article__badge {
+    flex-shrink: 0;
+    padding: 0.2rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    color: #fff;
+    background: #e53935;
   }
 
   .article__hero {

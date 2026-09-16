@@ -13,6 +13,7 @@ const media = defineCollection({
     keywords: z.array(z.string()).default([]),
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
+    badge: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

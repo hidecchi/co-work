@@ -87,9 +87,16 @@ const homePath = getHomePath(lang);
                             </span>
                           </time>
                         </div>
-                        <h2 class="media-card__title">
-                          <a href={href}>{post.data.title}</a>
-                        </h2>
+                        <div class="media-card__title-row">
+                          <h2 class="media-card__title">
+                            <a href={href}>{post.data.title}</a>
+                          </h2>
+                          {post.data.badge && (
+                            <span class="media-card__badge">
+                              {post.data.badge}
+                            </span>
+                          )}
+                        </div>
                         <p class="media-card__excerpt">
                           {post.data.description}
                         </p>
@@ -267,9 +274,20 @@ const homePath = getHomePath(lang);
     line-height: 1.1;
   }
 
-  .media-card__title {
+  .media-card__title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
     margin: 0 0 0.9375rem;
     padding: 1.75rem 3.4375rem 0 14.25rem;
+  }
+
+  .media-card__title {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-width: 0;
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.6;
@@ -277,6 +295,19 @@ const homePath = getHomePath(lang);
 
   .media-card__title a {
     color: #000;
+  }
+
+  .media-card__badge {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    padding: 0.2rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    color: #fff;
+    background: #e53935;
   }
 
   .media-card__excerpt {
@@ -396,7 +427,7 @@ const homePath = getHomePath(lang);
       content: ".";
     }
 
-    .media-card__title,
+    .media-card__title-row,
     .media-card__excerpt {
       padding: 0;
     }
