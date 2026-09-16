@@ -138,9 +138,9 @@ const t = useTranslations(lang);
 
   .contact-form__field input:focus,
   .contact-form__field textarea:focus {
-    outline: 2px solid #444;
+    outline: 2px solid #1d1d1d;
     outline-offset: 1px;
-    border-color: #444;
+    border-color: #1d1d1d;
   }
 
   .contact-form__field textarea {
@@ -176,9 +176,9 @@ const t = useTranslations(lang);
   }
 
   .contact-form__policy:focus {
-    outline: 2px solid #444;
+    outline: 2px solid #1d1d1d;
     outline-offset: 1px;
-    border-color: #444;
+    border-color: #1d1d1d;
   }
 
   .contact-form__policy-intro {
@@ -215,7 +215,7 @@ const t = useTranslations(lang);
     width: 1.15rem;
     height: 1.15rem;
     margin: 0.2rem 0 0;
-    accent-color: #444;
+    accent-color: #1d1d1d;
     cursor: pointer;
   }
 
@@ -234,16 +234,18 @@ const t = useTranslations(lang);
   .contact-form__submit {
     justify-self: start;
     margin-top: 0.5rem;
-    padding: 0.875rem 1.75rem;
-    font-size: 0.95rem;
+    padding: 0.875rem 2.5rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
     color: #fff;
-    background: #444;
-    border-radius: 0.25rem;
+    background: #1d1d1d;
+    border: none;
+    border-radius: 0;
   }
 
   .contact-form__submit:hover {
-    opacity: 0.85;
+    background: #000;
+    opacity: 1;
   }
 </style>

@@ -76,11 +76,15 @@ export type Translations = {
     backToList: string;
     readMore: string;
     publishedOn: string;
+    breadcrumbHome: string;
+    breadcrumbLabel: string;
   };
   contact: {
     title: string;
     description: string;
     heading: string;
+    label: string;
+    breadcrumbLabel: string;
     lead: string;
     nameLabel: string;
     emailLabel: string;

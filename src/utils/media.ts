@@ -15,6 +15,16 @@ export function formatMediaDate(date: Date, lang: Lang): string {
   }).format(date);
 }
 
+export function formatMediaListDateParts(date: Date): {
+  year: string;
+  monthDay: string;
+} {
+  const year = String(date.getFullYear());
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return { year, monthDay: `${month}.${day}` };
+}
+
 export async function getMediaPosts(lang: Lang): Promise<MediaPost[]> {
   const posts = await getCollection("media", ({ data }) => {
     if (data.lang !== lang) return false;
