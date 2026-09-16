@@ -11,7 +11,7 @@ heroImage: /eyecatch/cleaning-staff-recruitment.png
 heroImageAlt: Recruiting cleaning staff for the coworking space
 ---
 
-**ONE COIN COWORKING** (7-minute walk from Motomachi Station, Kobe) is looking for cleaning and maintenance staff.
+**ONE COIN COWORKING** ([7-minute walk from Motomachi Station, Kobe](/en/#information)) is looking for cleaning and maintenance staff.
 
 Work is twice a day in short shifts. Hours and days are flexible, and family members may share the duties.
 
