@@ -22,7 +22,7 @@ We offer **¥500 entry for unlimited time**, at the same rate whether you stay o
 
 ## Location
 
-[4-10-31 Nakayamate-dori, Chuo-ku, Kobe, Hyogo](/en/#information) (7-minute walk from Motomachi Station)
+[4-10-31 Nakayamate-dori, Chuo-ku, TOACLASS 1F, Kobe, Hyogo](/en/#information) (7-minute walk from Motomachi Station)
 
 From Motomachi Station, walk north along Koikawa-suji. We are located next to Co-op Yamate.
 

@@ -83,7 +83,7 @@ export const ja: Translations = {
     name: "ONE COIN コワーキング",
     addressLabel: "住所",
     addressLine1: "〒650-0004",
-    addressLine2: "兵庫県神戸市中央区中山手通4丁目10-31",
+    addressLine2: "兵庫県神戸市中央区中山手通4丁目10-31 TOACLASS 1F",
     addressNote: "（元町駅徒歩7分）",
     hoursLabel: "営業時間",
     hours: "24時間",

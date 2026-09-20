@@ -83,7 +83,7 @@ export const en: Translations = {
     nameLabel: "Name",
     name: "ONE COIN COWORKING",
     addressLabel: "Address",
-    addressLine1: "4-10-31 Nakayamate-dori, Chuo-ku",
+    addressLine1: "4-10-31 Nakayamate-dori, Chuo-ku, TOACLASS 1F",
     addressLine2: "Kobe, Hyogo 650-0004, Japan",
     addressNote: "(7 min walk from Motomachi Station)",
     hoursLabel: "Hours",

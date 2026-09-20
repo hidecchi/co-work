@@ -6,8 +6,8 @@ export const siteConfig = {
   themeColor: "#444444",
   twitterCard: "summary_large_image" as const,
   business: {
-    streetAddress: "中山手通4丁目10-31",
-    streetAddressEn: "4-10-31 Nakayamate-dori, Chuo-ku",
+    streetAddress: "中山手通4丁目10-31 TOACLASS 1F",
+    streetAddressEn: "4-10-31 Nakayamate-dori, Chuo-ku, TOACLASS 1F",
     addressLocality: "神戸市中央区",
     addressLocalityEn: "Kobe, Hyogo",
     addressRegion: "兵庫県",
