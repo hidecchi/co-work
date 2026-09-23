@@ -37,8 +37,7 @@ export type Translations = {
     openBadgeText: string;
   };
   about: {
-    locationLink: string;
-    locationSuffix: string;
+    lead: string;
     markerFee: string;
     opening: string;
     markerNoMembership: string;

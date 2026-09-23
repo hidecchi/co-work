@@ -32,9 +32,7 @@ export const en: Translations = {
     openBadgeText: "Opening Soon",
   },
   about: {
-    locationLink:
-      "7 min north along Koikawa-suji from Motomachi Station, next to Co-op Yamate",
-    locationSuffix: ", ",
+    lead: "In the Kobe Motomachi area, ",
     markerFee: "¥500 entry for unlimited stay",
     opening: " — our coworking space is opening soon!",
     markerNoMembership: "No membership hassle",

@@ -1,5 +1,5 @@
 ---
-import { getHomePath, type Lang, useTranslations } from "../i18n";
+import { type Lang, useTranslations } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -7,17 +7,14 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const infoPath = `${getHomePath(lang)}#information`;
 ---
 
 <section class="about" id="about" aria-labelledby="about-heading">
   <div class="about__inner">
     <h2 id="about-heading" class="about__title">
-      <a href={infoPath} class="about__link">{t.about.locationLink}</a>{
-        t.about.locationSuffix
+      {t.about.lead}<span class="about__marker">{t.about.markerFee}</span>{
+        t.about.opening
       }<br class="about__title__br1" />
-      <span class="about__marker">{t.about.markerFee}</span>{t.about.opening}<br
-      />
       <span class="about__marker">{t.about.markerNoMembership}</span>{
         t.about.closing
       }
@@ -77,13 +74,6 @@ const infoPath = `${getHomePath(lang)}#information`;
     line-height: 1.8;
     letter-spacing: 0.04em;
     color: #1a1a1a;
-  }
-
-  .about__link {
-    color: #0077ff;
-  }
-  .about__link:hover {
-    opacity: 0.8;
   }
 
   .about__marker {

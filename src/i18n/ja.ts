@@ -32,8 +32,7 @@ export const ja: Translations = {
     openBadgeText: "OPEN予定",
   },
   about: {
-    locationLink: "元町駅から鯉川筋沿いを北に徒歩7分。コープ山手様隣",
-    locationSuffix: "に",
+    lead: "神戸元町エリアに",
     markerFee: "入場料500円で時間無制限利用可能",
     opening: "なコワーキングスペースがOPENします！",
     markerNoMembership: "面倒な会員登録も不要",
