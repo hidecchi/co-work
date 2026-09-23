@@ -156,6 +156,9 @@ export const ja: Translations = {
   },
   footer: {
     navLabel: "フッターナビゲーション",
+    menu: "メニュー",
+    contactHeading: "お問い合わせ",
+    privacy: "プライバシーポリシー",
     copyright: "ONE COIN コワーキング. All Rights Reserved.",
   },
   recruitmentBanner: {

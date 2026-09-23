@@ -157,6 +157,9 @@ export const en: Translations = {
   },
   footer: {
     navLabel: "Footer navigation",
+    menu: "Menu",
+    contactHeading: "Contact",
+    privacy: "Privacy Policy",
     copyright: "ONE COIN COWORKING. All Rights Reserved.",
   },
   recruitmentBanner: {

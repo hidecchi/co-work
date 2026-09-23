@@ -103,6 +103,9 @@ export type Translations = {
   };
   footer: {
     navLabel: string;
+    menu: string;
+    contactHeading: string;
+    privacy: string;
     copyright: string;
   };
   recruitmentBanner: {
