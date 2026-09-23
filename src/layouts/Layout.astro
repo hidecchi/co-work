@@ -14,9 +14,10 @@ interface Props {
   keywords?: string[];
   publishedTime?: Date;
   modifiedTime?: Date;
+  preloadImage?: string;
 }
 
-const { lang = "ja", ...seoProps } = Astro.props;
+const { lang = "ja", preloadImage, ...seoProps } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,6 +36,16 @@ const { lang = "ja", ...seoProps } = Astro.props;
       gtag("config", "G-XET5V39L0Z");
     </script>
     <Seo lang={lang} {...seoProps} />
+    {
+      preloadImage && (
+        <link
+          rel="preload"
+          as="image"
+          href={preloadImage}
+          fetchpriority="high"
+        />
+      )
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
