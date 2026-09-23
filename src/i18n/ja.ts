@@ -81,7 +81,7 @@ export const ja: Translations = {
     label: "INFORMATION",
     heading: "店舗情報",
     locationLead:
-      "元町駅から鯉川筋沿いに北へ徒歩約7分の場所にあります。",
+      "元町駅から鯉川筋沿いに北へ徒歩約7分。コープこうべ様の隣の建物です。",
     mapTitle: "ONE COIN コワーキングの地図（Google Maps）",
     nameLabel: "店名",
     name: "ONE COIN コワーキング",

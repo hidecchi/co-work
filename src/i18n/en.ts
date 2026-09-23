@@ -81,7 +81,7 @@ export const en: Translations = {
     label: "INFORMATION",
     heading: "Store Information",
     locationLead:
-      "About a 7-minute walk north along Koikawa-suji from Motomachi Station.",
+      "About a 7-minute walk north along Koikawa-suji from Motomachi Station. In the building next to Co-op Kobe.",
     mapTitle: "Map of ONE COIN COWORKING (Google Maps)",
     nameLabel: "Name",
     name: "ONE COIN COWORKING",
