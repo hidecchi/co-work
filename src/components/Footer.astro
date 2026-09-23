@@ -24,51 +24,47 @@ const menuItems = [
 ---
 
 <footer class="footer">
-  <div class="footer__top">
-    <nav class="footer__group" aria-label={t.footer.navLabel}>
-      <ul class="footer__links">
-        {
-          menuItems.map((item) => (
-            <li>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+  <div class="footer__container">
+    <div class="footer__top">
+      <nav class="footer__group" aria-label={t.footer.navLabel}>
+        <ul class="footer__links">
+          {
+            menuItems.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-    <div class="footer__group">
-      <ul class="footer__links">
-        <li>
-          <a href={contactPath}>{t.header.navContact}</a>
-        </li>
-      </ul>
-      <address class="footer__address">
-        <span>{t.information.addressLine1}</span>
-        <span>{t.information.addressLine2}</span>
-        <span>{t.information.addressNote}</span>
-      </address>
+      <div class="footer__group">
+        <ul class="footer__links">
+          <li>
+            <a href={contactPath}>{t.header.navContact}</a>
+          </li>
+        </ul>
+        <address class="footer__address">
+          <span>{t.information.addressLine1}</span>
+          <span>{t.information.addressLine2}</span>
+          <span>{t.information.addressNote}</span>
+        </address>
+      </div>
     </div>
-  </div>
 
-  <p class="footer__brand" aria-hidden="true">ONE COIN COWORKING</p>
+    <p class="footer__brand" aria-hidden="true">ONE COIN COWORKING</p>
 
-  <div class="footer__bar">
-    <a href={`${contactPath}#contact-privacy-heading`}>{t.footer.privacy}</a>
-    <p class="footer__copy">
-      &copy; {new Date().getFullYear()}&nbsp;{t.footer.copyright}
-    </p>
+    <div class="footer__bar">
+      <a href={`${contactPath}#contact-privacy-heading`}>{t.footer.privacy}</a>
+      <p class="footer__copy">
+        &copy; {new Date().getFullYear()}&nbsp;{t.footer.copyright}
+      </p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    max-width: 120rem;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    padding: 5.5rem 1%;
-    color: #1a1a1a;
     background-image:
       linear-gradient(
         to bottom,
@@ -77,6 +73,15 @@ const menuItems = [
         rgba(246, 244, 241, 0) 88%
       ),
       linear-gradient(90deg, #fff1b0 0%, #fbffc0 48%, #f3f6c6 100%);
+  }
+
+  .footer__container {
+    max-width: 120rem;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 5.5rem 1%;
+    color: #1a1a1a;
   }
 
   .footer__top {
@@ -153,7 +158,6 @@ const menuItems = [
 
   @media (max-width: 900px) {
     .footer {
-      padding: 3rem 1% 5.5rem;
       background-image:
         linear-gradient(
           to bottom,
@@ -162,6 +166,9 @@ const menuItems = [
           rgba(246, 244, 241, 0) 88%
         ),
         linear-gradient(90deg, #fff1b0 0%, #fbffc0 48%, #f3f6c6 100%);
+    }
+    .footer__container {
+      padding: 3rem 1% 5.5rem;
     }
 
     .footer__top {
@@ -181,7 +188,7 @@ const menuItems = [
     }
   }
   @media (max-width: 768px) {
-    .footer {
+    .footer__container {
       padding: 3rem 1.5rem 5.5rem;
     }
     .footer__brand {
