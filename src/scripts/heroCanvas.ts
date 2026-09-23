@@ -1,12 +1,13 @@
 import * as THREE from "three";
 import fragmentShader from "../sample/fragment.glsl?raw";
 import vertexShader from "../sample/vertex.glsl?raw";
+import { HERO_MOBILE_IMAGE_BREAKPOINT } from "../config/heroCanvas";
 import { Ripple } from "./heroRipple";
 
 const RIPPLE_COUNT = 50;
 const SPAWN_INTERVAL = 2;
 const POINTER_STOP_DELAY = 80;
-const MOBILE_IMAGE_BREAKPOINT = 500;
+const MOBILE_IMAGE_BREAKPOINT = HERO_MOBILE_IMAGE_BREAKPOINT;
 
 function getHeroImageUrl(canvas: HTMLCanvasElement) {
   const desktop = canvas.dataset.src ?? "/sample.jpg";

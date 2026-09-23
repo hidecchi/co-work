@@ -1,5 +1,10 @@
 ---
 import Seo from "../components/Seo.astro";
+import {
+  HERO_IMAGES,
+  heroDesktopPreloadMedia,
+  heroMobilePreloadMedia,
+} from "../config/heroCanvas";
 import type { Lang } from "../i18n";
 
 interface Props {
@@ -14,10 +19,10 @@ interface Props {
   keywords?: string[];
   publishedTime?: Date;
   modifiedTime?: Date;
-  preloadImage?: string;
+  heroImagePreload?: typeof HERO_IMAGES;
 }
 
-const { lang = "ja", preloadImage, ...seoProps } = Astro.props;
+const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
 ---
 
 <!doctype html>
@@ -36,14 +41,23 @@ const { lang = "ja", preloadImage, ...seoProps } = Astro.props;
     </script>
     <Seo lang={lang} {...seoProps} />
     {
-      preloadImage && (
-        <link
-          rel="preload"
-          as="image"
-          href={preloadImage}
-          crossorigin="anonymous"
-          fetchpriority="high"
-        />
+      heroImagePreload && (
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href={heroImagePreload.mobile}
+            media={heroMobilePreloadMedia}
+            fetchpriority="high"
+          />
+          <link
+            rel="preload"
+            as="image"
+            href={heroImagePreload.desktop}
+            media={heroDesktopPreloadMedia}
+            fetchpriority="high"
+          />
+        </>
       )
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />

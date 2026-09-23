@@ -1,4 +1,5 @@
 ---
+import { HERO_IMAGES } from "../config/heroCanvas";
 import { type Lang, useTranslations } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 import About from "./About.astro";
@@ -23,7 +24,7 @@ const t = useTranslations(lang);
   title={t.seo.title}
   description={t.seo.description}
   imageAlt={t.seo.ogImageAlt}
-  preloadImage="/sample.jpg"
+  heroImagePreload={HERO_IMAGES}
 >
   <Header lang={lang} />
   <main id="main-content">
