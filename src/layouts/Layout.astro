@@ -42,6 +42,7 @@ const { lang = "ja", preloadImage, ...seoProps } = Astro.props;
           rel="preload"
           as="image"
           href={preloadImage}
+          crossorigin="anonymous"
           fetchpriority="high"
         />
       )
