@@ -50,6 +50,9 @@ export const ja: Translations = {
       "ドリンク持込OK",
       "会話OK",
     ],
+    paymentsHeading: "キャッシュレス決済",
+    paymentsAlt:
+      "Squareの対応決済手段。クレジットカード、交通系電子マネー、iD、QUICPay、PayPayなどのキャッシュレス決済",
   },
   howToUse: {
     label: "HOW TO USE",
@@ -89,6 +92,8 @@ export const ja: Translations = {
     hours: "24時間",
     seatsLabel: "席数",
     seats: "20～30席（予定）",
+    paymentLabel: "決済方法",
+    payment: "キャッシュレス決済",
   },
   media: {
     title: "コラム",

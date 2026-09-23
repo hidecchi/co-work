@@ -45,6 +45,8 @@ export type Translations = {
     closing: string;
     featuresHeading: string;
     features: string[];
+    paymentsHeading: string;
+    paymentsAlt: string;
   };
   howToUse: {
     label: string;
@@ -65,6 +67,8 @@ export type Translations = {
     hours: string;
     seatsLabel: string;
     seats: string;
+    paymentLabel: string;
+    payment: string;
   };
   media: {
     title: string;

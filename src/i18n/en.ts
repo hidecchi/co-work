@@ -51,6 +51,9 @@ export const en: Translations = {
       "Drinks welcome",
       "Conversation OK",
     ],
+    paymentsHeading: "Accepted payments",
+    paymentsAlt:
+      "Payment methods accepted via Square, including major credit cards, transit IC cards, iD, QUICPay, PayPay, and other cashless options.",
   },
   howToUse: {
     label: "HOW TO USE",
@@ -90,6 +93,8 @@ export const en: Translations = {
     hours: "24 hours",
     seatsLabel: "Seats",
     seats: "20–30 seats (planned)",
+    paymentLabel: "Payment",
+    payment: "Cashless only",
   },
   media: {
     title: "Column",

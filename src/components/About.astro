@@ -49,6 +49,18 @@ const infoPath = `${getHomePath(lang)}#information`;
         ))
       }
     </ul>
+    <figure class="about__payments">
+      <figcaption class="about__payments-title">
+        {t.about.paymentsHeading}
+      </figcaption>
+      <img
+        src="/cashless.png"
+        alt={t.about.paymentsAlt}
+        width="1325"
+        height="690"
+        decoding="async"
+      />
+    </figure>
   </div>
 </section>
 
@@ -135,6 +147,33 @@ const infoPath = `${getHomePath(lang)}#information`;
     color: #1a1a1a;
   }
 
+  .about__payments {
+    margin: 4.5rem 0 2rem;
+  }
+
+  .about__payments-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    width: fit-content;
+    margin: 0 auto 1.25rem;
+    padding: 0.2em 0.3em;
+    background: linear-gradient(
+      to bottom,
+      transparent 15%,
+      rgba(255, 232, 90, 0.85) 15%,
+      rgba(255, 232, 90, 0.85) 88%,
+      transparent 88%
+    );
+  }
+
+  .about__payments img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   @media (max-width: 768px) {
     .about {
       padding: 1.5rem 1.25rem 3.5rem;
@@ -166,6 +205,14 @@ const infoPath = `${getHomePath(lang)}#information`;
 
     .about__label {
       font-size: 0.9rem;
+    }
+
+    .about__payments {
+      margin-top: 2.5rem;
+    }
+
+    .about__payments-title {
+      font-size: 1.125rem;
     }
   }
 
