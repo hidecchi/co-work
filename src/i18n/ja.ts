@@ -89,6 +89,7 @@ export const ja: Translations = {
     hours: "24時間",
     seatsLabel: "席数",
     seats: "20～30席（予定）",
+    mapCta: "Google マップで開く",
   },
   media: {
     title: "コラム",

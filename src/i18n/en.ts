@@ -90,6 +90,7 @@ export const en: Translations = {
     hours: "24 hours",
     seatsLabel: "Seats",
     seats: "20–30 seats (planned)",
+    mapCta: "Open in Google Maps",
   },
   media: {
     title: "Column",
