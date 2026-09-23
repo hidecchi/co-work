@@ -80,6 +80,8 @@ export const ja: Translations = {
   information: {
     label: "INFORMATION",
     heading: "店舗情報",
+    locationLead:
+      "元町駅から鯉川筋沿いに北へ徒歩約7分の場所にあります。",
     mapTitle: "ONE COIN コワーキングの地図（Google Maps）",
     nameLabel: "店名",
     name: "ONE COIN コワーキング",

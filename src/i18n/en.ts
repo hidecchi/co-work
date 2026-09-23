@@ -80,6 +80,8 @@ export const en: Translations = {
   information: {
     label: "INFORMATION",
     heading: "Store Information",
+    locationLead:
+      "About a 7-minute walk north along Koikawa-suji from Motomachi Station.",
     mapTitle: "Map of ONE COIN COWORKING (Google Maps)",
     nameLabel: "Name",
     name: "ONE COIN COWORKING",

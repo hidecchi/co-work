@@ -23,6 +23,7 @@ const t = useTranslations(lang);
         <h2 id="information-heading" class="information__subtitle">
           {t.information.heading}
         </h2>
+        <p class="information__location">{t.information.locationLead}</p>
       </div>
     </div>
 
@@ -101,6 +102,14 @@ const t = useTranslations(lang);
     margin: 0;
   }
 
+  .information__location {
+    margin: 1.25rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
   .information__map {
     width: 100%;
     border: 0;
@@ -147,6 +156,10 @@ const t = useTranslations(lang);
 
     .information__subtitle {
       font-size: 1.5rem;
+    }
+
+    .information__location {
+      font-size: 1.1rem;
     }
 
     .information__header {

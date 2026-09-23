@@ -55,6 +55,7 @@ export type Translations = {
   information: {
     label: string;
     heading: string;
+    locationLead: string;
     mapTitle: string;
     nameLabel: string;
     name: string;
