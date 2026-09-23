@@ -183,36 +183,8 @@ const t = useTranslations(lang);
   }
 
   .hero__vertical-reveal {
-    display: grid;
-    height: 0;
-    overflow: hidden;
-    animation: hero-reveal 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     position: relative;
     font-weight: 500;
-  }
-
-  .hero__vertical-reveal--right {
-    animation-delay: 0.15s;
-  }
-
-  .hero__vertical-reveal--left {
-    animation-delay: 0.5s;
-  }
-
-  .hero__vertical-reveal > .hero__vertical {
-    min-height: 0;
-  }
-
-  @keyframes hero-reveal {
-    0% {
-      height: 0;
-    }
-    99% {
-      height: 350px;
-    }
-    100% {
-      height: fit-content;
-    }
   }
 
   .hero__vertical {
@@ -380,11 +352,6 @@ const t = useTranslations(lang);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__vertical-reveal {
-      animation: none;
-      grid-template-rows: 1fr;
-    }
-
     .hero__bg-char {
       animation: none;
       transform: translateZ(-0.5lh) rotateX(0deg);

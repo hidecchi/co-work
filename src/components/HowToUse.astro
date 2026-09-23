@@ -162,27 +162,6 @@ const t = useTranslations(lang);
     border-radius: 4px;
   }
 
-  /* 画像を覆うカバー。reveal時に横へ滑り抜ける */
-  .howToUse__item__image-reveal::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: #444444;
-    transform: scaleX(1);
-    transform-origin: right;
-    transition: transform 1.05s cubic-bezier(0.77, 0, 0.175, 1);
-  }
-
-  .howToUse__item__image-reveal.is-revealed::after {
-    transform: scaleX(0);
-  }
-
-  /* 偶数ステップは逆方向から */
-  .howToUse__item:nth-child(even) .howToUse__item__image-reveal::after {
-    transform-origin: left;
-  }
-
   .howToUse__item__image-reveal img {
     display: block;
     width: 100%;
@@ -229,10 +208,6 @@ const t = useTranslations(lang);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .howToUse__item__image-reveal::after {
-      display: none;
-    }
-
     .howToUse__item__image-reveal img {
       transform: none;
       transition: none;
