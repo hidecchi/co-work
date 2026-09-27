@@ -21,6 +21,15 @@ const menuItems = [
   { label: t.header.navInformation, href: `${homePath}#information` },
   { label: t.header.navMedia, href: getMediaPath(lang) },
 ];
+
+const socialLinks = [
+  { label: "X / Twitter", href: "https://x.com/one_coin_cowork" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/one_coin_coworking/",
+  },
+  { label: "Threads", href: "https://www.threads.com/@one_coin_coworking" },
+];
 ---
 
 <footer class="footer">
@@ -50,6 +59,20 @@ const menuItems = [
           <span>{t.information.addressNote}</span>
         </address>
       </div>
+
+      <nav class="footer__group" aria-label="SNS">
+        <ul class="footer__links">
+          {
+            socialLinks.map((item) => (
+              <li>
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
 
     <p class="footer__brand" aria-hidden="true">ONE COIN COWORKING</p>
