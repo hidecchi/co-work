@@ -17,10 +17,11 @@ A1_PX = (
 )
 A1_PT = (A1_MM[0] / 25.4 * 72, A1_MM[1] / 25.4 * 72)
 
-# Prefer the last user-provided design, then the current print PNG.
+# Latest user-provided design first.
 CANDIDATES = [
+    ROOT / "user-poster.png",
+    Path("/home/ubuntu/.cursor/projects/workspace/assets/8ce06750-3743-4a7d-b88f-76c73571eea5.png"),
     Path("/home/ubuntu/.cursor/projects/workspace/assets/62cecc53-3ed1-4d3f-a9ee-985a3f54b6b5.png"),
-    Path("/home/ubuntu/.cursor/projects/workspace/assets/9fd9623d-044d-4f4e-98f1-71c34c36804a.png"),
     ROOT / "one-coin-poster-a1.png",
 ]
 QR_SRC = ROOT / "source-qr.png"
