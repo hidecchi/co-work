@@ -26,12 +26,10 @@ A1_PX = (
 # Original poster has a gray rounded-rect stroke around the edge.
 FRAME_CROP = (10, 10, 974, 1586)
 
-# Keep a little cream around the ink when trimming extra top/bottom padding.
-INK_PAD_PX = 10
+# Keep a little cream around the ink when trimming extra padding.
+INK_PAD_PX = 8
 PAPER_MARGIN_MM = 6
-# A1 is wider than the artwork. Stretch width only so left/right
-# margins match the top/bottom, without clipping logo or URL.
-SIDE_MARGIN_MM = 10
+SIDE_MARGIN_MM = 6
 
 # QR module box on the UNCROPPED original image.
 OLD_QR = (798, 1354, 910, 1467)
@@ -99,11 +97,13 @@ def build() -> None:
     )
     framed_arr = np.array(framed)
 
-    _ix0, iy0, _ix1, iy1 = ink_bbox(framed_arr, bg)
+    ix0, iy0, ix1, iy1 = ink_bbox(framed_arr, bg)
+    left = max(0, ix0 - INK_PAD_PX)
+    right = min(framed.width, ix1 + INK_PAD_PX)
     top = max(0, iy0 - INK_PAD_PX)
     bottom = min(framed.height, iy1 + INK_PAD_PX)
-    cropped = framed.crop((0, top, framed.width, bottom))
-    src_x, src_y = ox, oy + top
+    cropped = framed.crop((left, top, right, bottom))
+    src_x, src_y = ox + left, oy + top
 
     a1 = Image.new("RGB", A1_PX, bg)
     inset_y = round(PAPER_MARGIN_MM / 25.4 * DPI)
@@ -144,7 +144,7 @@ def build() -> None:
     a1.resize((preview_w, preview_h), Image.Resampling.LANCZOS).save(preview, "PNG")
 
     print(f"A1 px: {A1_PX}")
-    print(f"trimmed source: {cropped.size} (top {top}px, bottom cut {framed.height - bottom}px)")
+    print(f"trimmed source: {cropped.size} (L{left} T{top} R{framed.width-right} B{framed.height-bottom})")
     print(f"content: {content.size} at ({x}, {y})")
     print(f"side {x / DPI * 25.4:.1f}mm  top {y / DPI * 25.4:.1f}mm")
     print(f"QR: {qr_final.size} at ({paste_x}, {paste_y})")
