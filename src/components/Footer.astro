@@ -196,8 +196,13 @@ const socialLinks = [
 
     .footer__top {
       grid-template-columns: 1fr;
-      row-gap: 2.25rem;
+      row-gap: 0.45rem;
       margin-left: 0;
+    }
+
+    .footer__top > .footer__group:last-child {
+      flex-basis: 100%;
+      margin-top: calc(2.25rem - 0.45rem);
     }
 
     .footer__brand {
