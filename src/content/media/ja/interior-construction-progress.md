@@ -27,9 +27,7 @@ heroImageAlt: クロスと木目調天井の仕上げが完了したコワーキ
 
 ![内装工事開始時。天井ボード下地と床下地の施工段階](/column/interior-construction-started/overview.jpg)
 
-*上：工事開始当初（[内装工事をスタートしました](/column/interior-construction-started/)より）／下：現在*
-
-![クロスと木目調天井、床材の施工が進んだコワーキングスペース](/column/interior-construction-progress/overview.jpg)
+*工事開始当初（[内装工事をスタートしました](/column/interior-construction-started/)より）。現在の様子は冒頭の写真と比べてご覧ください。*
 
 仕切りや配線の骨組みから、クロス・天井・床まで一気通貫で整備が進んだことがわかると思います。
 

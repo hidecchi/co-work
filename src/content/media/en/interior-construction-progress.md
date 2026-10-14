@@ -27,9 +27,7 @@ When work first began, the ceiling was still board substrate and the floor was e
 
 ![Early interior work with ceiling boards and subfloor](/column/interior-construction-started/overview.jpg)
 
-*Top: when construction started ([Interior construction has started](/en/column/interior-construction-started/)) / Bottom: today*
-
-![Coworking space with wallpaper, wood-grain ceiling, and flooring work underway](/column/interior-construction-progress/overview.jpg)
+*When construction started ([Interior construction has started](/en/column/interior-construction-started/)). Compare with the photo at the top of this article for today’s progress.*
 
 From framing and wiring through to walls, ceiling, and floor, fit-out has progressed steadily across the space.
 
