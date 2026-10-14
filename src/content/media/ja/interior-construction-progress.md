@@ -1,0 +1,40 @@
+---
+title: クロスと天井の仕上げが進みました
+description: ONE COIN コワーキング（神戸・元町）の内装工事が着実に進んでいます。壁紙（クロス）や天井の仕上げが整い、オープンに向けた空間のイメージが見えてきました。
+pubDate: 2026-10-14
+lang: ja
+keywords:
+  - コワーキング 内装工事 神戸
+  - 元町 コワーキング 工事進捗
+  - ONE COIN コワーキング 内装
+heroImage: /eyecatch/interior-construction-progress.jpg
+heroImageAlt: クロスと木目調天井の仕上げが完了したコワーキングスペース
+---
+
+**ONE COIN コワーキング**（[神戸・元町駅より徒歩7分](/#information)）の内装工事が着実に進んでいます。
+
+[内装工事をスタート](/column/interior-construction-started/)してから約1か月。床下地の施工や天井ボードの段階から、壁紙（クロス）や天井まわりの仕上げが整い、利用イメージに近い空間になってきました。
+
+## 現在の工事の様子
+
+![クロス張りと木目調天井、床材の施工が進んだコワーキングスペース](/column/interior-construction-progress/overview.jpg)
+
+壁面には落ち着いたグレーのクロス、奥の区画にはアクセントカラーのクロスを張り、天井は木目調の仕上げに。床材も施工が進んでおります。エアコンなど天井設備の取り付けも並行して進めております。
+
+## 工事開始当初との比較
+
+内装工事を始めた頃は、天井はボード下地の状態で、床も合板の下地が見える段階でした。
+
+![内装工事開始時。天井ボード下地と床下地の施工段階](/column/interior-construction-started/overview.jpg)
+
+*上：工事開始当初（[内装工事をスタートしました](/column/interior-construction-started/)より）／下：現在*
+
+![クロスと木目調天井、床材の施工が進んだコワーキングスペース](/column/interior-construction-progress/overview.jpg)
+
+仕切りや配線の骨組みから、クロス・天井・床まで一気通貫で整備が進んだことがわかると思います。
+
+## 今後の予定
+
+照明器具の設置や什器の搬入、最終清掃・点検など、オープン直前の仕上げに入ってまいります。
+
+引き続き、[オープン予定](/column/motomachi-kakuyasu-coworking/)の情報もご確認ください。取材その他のお問い合わせは [お問い合わせ](/contact/) より承っております。
