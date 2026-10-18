@@ -13,7 +13,7 @@ heroImageAlt: Partition wall framing and electrical wiring
 
 Interior construction has started at **ONE COIN COWORKING**, a 7-minute walk from [Motomachi Station](/en/#information) in Kobe.
 
-We are preparing the space for its scheduled opening in late October, including partition walls, electrical wiring, and other fit-out work.
+We are preparing the space for its scheduled opening at the end of October, including partition walls, electrical wiring, and other fit-out work.
 
 ## Construction progress
 
