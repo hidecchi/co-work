@@ -44,14 +44,6 @@ const socialLinks = [
 <header class="header">
   <div class="header__inner">
     <a href={homePath} class="logo">
-      <img
-        src="/logo.png"
-        alt=""
-        class="logo__mark"
-        width="40"
-        height="40"
-        decoding="async"
-      />
       <span class="logo__text">{t.information.name}</span>
     </a>
 
@@ -179,17 +171,9 @@ const socialLinks = [
   .logo {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
     font-weight: 600;
     font-size: 1.1rem;
     letter-spacing: 0.04em;
-  }
-
-  .logo__mark {
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
-    object-fit: contain;
   }
 
   .header__actions {
