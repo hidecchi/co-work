@@ -1,4 +1,5 @@
 ---
+import { HERO_IMAGES } from "../config/heroCanvas";
 import { type Lang, useTranslations } from "../i18n";
 
 interface Props {
@@ -63,8 +64,8 @@ const t = useTranslations(lang);
       <img src="/clip.svg" alt="" class="hero_clip" aria-hidden="true" />
       <canvas
         class="hero__image hero__canvas"
-        data-src="/sample.jpg"
-        data-src-sp="/sample-sp.jpg"
+        data-src={HERO_IMAGES.desktop}
+        data-src-sp={HERO_IMAGES.mobile}
         role="img"
         aria-label={t.hero.imageAlt}></canvas>
       <p class="hero__open-badge">

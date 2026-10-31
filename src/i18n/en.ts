@@ -4,7 +4,7 @@ export const en: Translations = {
   seo: {
     title: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
     description:
-      "Opening scheduled for the end of October. Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
+      "Opening 10/31. Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
     ogImageAlt: "Interior of ONE COIN COWORKING",
     locale: "en",
     ogLocale: "en_US",
@@ -28,13 +28,13 @@ export const en: Translations = {
     entryFeeSuffix: "",
     unlimited: "Stay as long as you like",
     imageAlt: "Interior image of ONE COIN COWORKING space",
-    openBadgeDate: "End of Oct",
-    openBadgeText: "Opening Soon",
+    openBadgeDate: "Oct 31",
+    openBadgeText: "OPEN",
   },
   about: {
     lead: "In the Kobe Motomachi area, ",
     markerFee: "¥500 entry for unlimited stay",
-    opening: " — our coworking space is opening soon!",
+    opening: " — our coworking space is now open!",
     markerNoMembership: "No membership hassle",
     closing:
       ". Get comfortable working or taking a break within 30 seconds of entry.",

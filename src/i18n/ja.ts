@@ -4,7 +4,7 @@ export const ja: Translations = {
   seo: {
     title: "ONE COIN コワーキング | 神戸・元町の500円コワーキング",
     description:
-      "10月末OPEN予定。神戸・元町駅徒歩7分のコワーキングスペース。入場料500円で時間無制限、会員登録不要。24時間営業、高速Wi-Fi・コンセント有。作業・勉強・休憩にご利用ください。",
+      "10.31 OPEN。神戸・元町駅徒歩7分のコワーキングスペース。入場料500円で時間無制限、会員登録不要。24時間営業、高速Wi-Fi・コンセント有。作業・勉強・休憩にご利用ください。",
     ogImageAlt: "ONE COIN コワーキングの店内イメージ",
     locale: "ja",
     ogLocale: "ja_JP",
@@ -28,13 +28,13 @@ export const ja: Translations = {
     entryFeeSuffix: "円",
     unlimited: "何時間でも利用可能",
     imageAlt: "ONE COIN コワーキングスペースの店内イメージ",
-    openBadgeDate: "10月末",
-    openBadgeText: "OPEN予定",
+    openBadgeDate: "10月31日",
+    openBadgeText: "OPEN",
   },
   about: {
     lead: "神戸元町エリアに",
     markerFee: "入場料500円で時間無制限利用可能",
-    opening: "なコワーキングスペースがOPENします！",
+    opening: "なコワーキングスペースがOPENしました！",
     markerNoMembership: "面倒な会員登録も不要",
     closing:
       "で、入場後30秒で作業目的でも休憩目的でも快適にご利用いただけます。",
