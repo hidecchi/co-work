@@ -51,7 +51,7 @@ export const ja: Translations = {
     ],
     paymentsHeading: "キャッシュレス決済",
     paymentsAlt:
-      "Squareの対応決済手段。クレジットカード、交通系電子マネー、iD、QUICPay、PayPayなどのキャッシュレス決済",
+      "Squareの対応決済手段。クレジットカード、PayPayなどのキャッシュレス決済",
   },
   howToUse: {
     label: "HOW TO USE",
