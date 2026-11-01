@@ -30,7 +30,7 @@ export const en: Translations = {
     bgText: "ONE COIN COWORKING",
     titleLine1: "GOOD WORK.",
     titleLine2: "GOOD DAY.",
-    tagline: "Coworking that keeps you moving—for the price of one coin.",
+    tagline: "Coworking for one coin—use it as much as you like.",
     ctaPrimary: "How to use",
     ctaSecondary: "Access",
     slideAlts: [

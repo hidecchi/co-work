@@ -30,7 +30,7 @@ export const ja: Translations = {
     bgText: "ONE COIN COWORKING",
     titleLine1: "GOOD WORK.",
     titleLine2: "GOOD DAY.",
-    tagline: "ワンコインで、仕事がはかどるコワーキング。",
+    tagline: "ワンコインで好きなだけ使えるコワーキング",
     ctaPrimary: "ご利用方法を見る",
     ctaSecondary: "アクセス",
     slideAlts: [

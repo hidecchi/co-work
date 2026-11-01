@@ -1,0 +1,25 @@
+<meta id="viewport-meta" name="viewport" content="width=device-width, initial-scale=1" />
+<script is:inline>
+  (() => {
+    const MIN = 360;
+    const DEFAULT = "width=device-width, initial-scale=1";
+    const meta =
+      document.getElementById("viewport-meta") ||
+      document.querySelector('meta[name="viewport"]');
+    if (!meta) return;
+
+    const applyMinViewport = () => {
+      if (window.innerWidth < MIN || window.screen.width < MIN) {
+        meta.setAttribute("content", `width=${MIN}, user-scalable=no`);
+      } else {
+        meta.setAttribute("content", DEFAULT);
+      }
+    };
+
+    applyMinViewport();
+    window.addEventListener("resize", applyMinViewport, { passive: true });
+    window.addEventListener("orientationchange", () => {
+      setTimeout(applyMinViewport, 100);
+    });
+  })();
+</script>
