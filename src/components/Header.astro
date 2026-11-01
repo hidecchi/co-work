@@ -9,13 +9,13 @@ import {
 
 interface Props {
   lang: Lang;
-  variant?: "default" | "landing";
+  /** トップのみクリーム背景（ハンバーガー・モバイルメニュー） */
+  cream?: boolean;
 }
 
-const { lang, variant = "default" } = Astro.props;
+const { lang, cream = false } = Astro.props;
 const t = useTranslations(lang);
 const homePath = getHomePath(lang);
-const isLanding = variant === "landing";
 
 const defaultNavItems = [
   { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
@@ -25,10 +25,9 @@ const defaultNavItems = [
 ];
 
 const howToUseHref = `${homePath}#howToUse`;
-const landingDesktopNavItems = defaultNavItems.filter(
+const desktopNavItems = defaultNavItems.filter(
   (item) => item.href !== howToUseHref,
 );
-const desktopNavItems = isLanding ? landingDesktopNavItems : defaultNavItems;
 const navItems = defaultNavItems;
 const headerCtaHref = howToUseHref;
 
@@ -53,7 +52,7 @@ const socialLinks = [
 ];
 ---
 
-<header class:list={["header", isLanding && "header--landing"]}>
+<header class="header">
   <div class="header__inner">
     <a href={homePath} class="logo" aria-label={siteName}>
       <span class="logo__text">{siteName}</span>
@@ -99,21 +98,17 @@ const socialLinks = [
         }
       </ul>
 
-      {
-        isLanding && (
-          <a class="header__cta" href={headerCtaHref}>
-            <span>{t.header.headerCta}</span>
-            <span aria-hidden="true">→</span>
-          </a>
-        )
-      }
+      <a class="header__cta" href={headerCtaHref}>
+        <span>{t.header.headerCta}</span>
+        <span aria-hidden="true">→</span>
+      </a>
 
     </div>
   </div>
 </header>
 
 <button
-  class:list={["menu-toggle", isLanding && "menu-toggle--landing"]}
+  class:list={["menu-toggle", cream && "menu-toggle--cream"]}
   type="button"
   aria-label={t.header.menuOpen}
   aria-expanded="false"
@@ -127,7 +122,7 @@ const socialLinks = [
 
 <nav
   id="mobile-nav"
-  class:list={["mobile-nav", isLanding && "mobile-nav--landing"]}
+  class:list={["mobile-nav", cream && "mobile-nav--cream"]}
   aria-label={t.header.mobileNav}
   hidden
 >
@@ -171,15 +166,6 @@ const socialLinks = [
 <style>
   .header {
     position: relative;
-    background: #fff;
-    border-radius: 45px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    margin: 1.25rem 1.25rem 0;
-  }
-
-  .header--landing {
-    position: relative;
     background: transparent;
     box-shadow: none;
     border-radius: 0;
@@ -187,13 +173,19 @@ const socialLinks = [
     margin: 0;
   }
 
-  .header--landing .header__inner {
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     max-width: none;
+    margin: 0 auto;
     padding: 2rem clamp(1.5rem, 5.5vw, 5rem) 1.75rem;
   }
 
-  .header--landing .logo {
+  .logo {
+    display: flex;
     flex: 0 1 auto;
+    align-items: center;
     min-width: 0;
     font-family: "Poppins", "Zen Kaku Gothic New", sans-serif;
     font-size: clamp(0.75rem, 0.2rem + 1.65vw, 1.75rem);
@@ -203,27 +195,40 @@ const socialLinks = [
     color: #222;
   }
 
-  .header--landing .logo__text {
+  .logo__text {
     white-space: nowrap;
   }
 
-  .header--landing .nav__list {
+  .header__actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header__actions > .social {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
     gap: clamp(0.875rem, 2.5vw, 2rem);
   }
 
-  .header--landing .nav__link {
+  .nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     font-size: 0.9375rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     color: #222;
+    transition: opacity 0.2s;
   }
 
-  .header--landing .header__actions > .social {
-    display: none;
-  }
-
-  .header--landing .header__actions {
-    flex-shrink: 0;
+  .nav__link:hover {
+    opacity: 0.6;
   }
 
   .header__cta {
@@ -240,29 +245,6 @@ const socialLinks = [
     letter-spacing: 0.04em;
     white-space: nowrap;
     transition: opacity 0.2s;
-  }
-
-  .header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 1rem 1.75rem;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
-  }
-
-  .header__actions {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
   }
 
   .social {
@@ -288,34 +270,14 @@ const socialLinks = [
     filter: brightness(0);
   }
 
-  .nav__list {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .nav__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    transition: opacity 0.2s;
-  }
-
-  .nav__link:hover {
-    opacity: 0.6;
-  }
-
   .menu-toggle {
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.375rem;
-    width: 2rem;
-    height: 2rem;
+    gap: 0.3rem;
+    width: 3.25rem;
+    height: 3.25rem;
     padding: 0;
     opacity: 1;
   }
@@ -329,9 +291,9 @@ const socialLinks = [
 
   .menu-toggle span {
     display: block;
-    width: 1.25rem;
-    height: 2px;
-    background: #1a1a1a;
+    width: 0.9rem;
+    height: 1.5px;
+    background: #222;
   }
 
   .mobile-nav {
@@ -362,45 +324,37 @@ const socialLinks = [
   }
 
   @media (max-width: 900px) {
-    .header {
-      margin: 0.75rem 0.75rem 0;
-      border-radius: 28px;
-    }
-
     .header__inner {
-      padding: 0.75rem 1.25rem;
+      padding: 1.25rem 1.5rem;
     }
+
     .logo {
-      font-size: 0.9375rem;
-    }
-
-    .header__actions {
-      gap: 0.85rem;
-    }
-
-    .header__actions > .social {
-      display: none;
+      font-size: 1.35rem;
     }
 
     .nav {
       display: none;
     }
 
+    .header__cta {
+      display: none;
+    }
+
     .menu-toggle {
       display: flex;
       position: fixed;
-      top: 0.75rem;
-      right: 0.75rem;
+      top: 1.25rem;
+      right: 1.5rem;
       z-index: 160;
-      background-color: #f9f6f1;
+      background-color: #fff;
       border: 1px solid #222;
       border-radius: 50%;
       isolation: isolate;
       transform: translateZ(0);
     }
 
-    .menu-toggle span {
-      background: #222;
+    .menu-toggle--cream {
+      background-color: #f9f6f1;
     }
 
     .mobile-nav:not([hidden]) {
@@ -411,44 +365,13 @@ const socialLinks = [
       margin: 0;
       border-radius: 0;
       border-top: none;
-      padding: calc(0.75rem + 2rem + 1.25rem) 1.5rem 1.5rem;
+      padding: calc(1.25rem + 3.25rem + 1.25rem) 1.5rem 1.5rem;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       background-color: #fff;
     }
 
-    .header--landing {
-      margin: 0;
-      border-radius: 0;
-    }
-
-    .header--landing .header__inner {
-      padding: 1.25rem 1.5rem;
-    }
-
-    .header--landing .logo {
-      font-size: 1.35rem;
-    }
-
-    .header--landing .header__cta {
-      display: none;
-    }
-
-    .menu-toggle--landing {
-      top: 1.25rem;
-      right: 1.5rem;
-      width: 3.25rem;
-      height: 3.25rem;
-      gap: 0.3rem;
-    }
-
-    .menu-toggle--landing span {
-      width: 0.9rem;
-      height: 1.5px;
-    }
-
-    .mobile-nav--landing:not([hidden]) {
-      padding-top: calc(1.25rem + 3.25rem + 1.25rem);
+    .mobile-nav--cream:not([hidden]) {
       background-color: #f9f6f1;
     }
 
