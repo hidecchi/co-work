@@ -6,31 +6,35 @@ export function initHeaderMenu() {
   const menuOpenLabel = toggle.dataset.menuOpen ?? "";
   const menuCloseLabel = toggle.dataset.menuClose ?? "";
 
+  const setMenuOpen = (open: boolean) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? menuCloseLabel : menuOpenLabel);
+    mobileNav.hidden = !open;
+    document.body.classList.toggle("mobile-nav-open", open);
+  };
+
   const onToggle = () => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    const nextOpen = !isOpen;
-    toggle.setAttribute("aria-expanded", String(nextOpen));
-    toggle.setAttribute("aria-label", nextOpen ? menuCloseLabel : menuOpenLabel);
-    mobileNav.hidden = !nextOpen;
+    setMenuOpen(!isOpen);
   };
 
   const closeMenu = () => {
-    mobileNav.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", menuOpenLabel);
+    setMenuOpen(false);
   };
 
   toggle.addEventListener("click", onToggle);
 
-  mobileNav.querySelectorAll("a").forEach((link) => {
+  const links = mobileNav.querySelectorAll("a");
+  links.forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 
   return () => {
     toggle.removeEventListener("click", onToggle);
-    mobileNav.querySelectorAll("a").forEach((link) => {
+    links.forEach((link) => {
       link.removeEventListener("click", closeMenu);
     });
+    document.body.classList.remove("mobile-nav-open");
   };
 }
 

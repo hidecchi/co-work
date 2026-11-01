@@ -103,69 +103,69 @@ const socialLinks = [
         )
       }
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label={t.header.menuOpen}
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      data-menu-open={t.header.menuOpen}
-      data-menu-close={t.header.menuClose}
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
     </div>
   </div>
-
-  <nav
-    id="mobile-nav"
-    class="mobile-nav"
-    aria-label={t.header.mobileNav}
-    hidden
-  >
-    <ul>
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} class="mobile-nav__link">
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <ul class="social social--menu">
-      {
-        socialLinks.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="social__link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.label}
-            >
-              <img
-                src={item.icon}
-                alt=""
-                class="social__icon"
-                width="18"
-                height="18"
-                decoding="async"
-              />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
 </header>
+
+<button
+  class:list={["menu-toggle", isLanding && "menu-toggle--landing"]}
+  type="button"
+  aria-label={t.header.menuOpen}
+  aria-expanded="false"
+  aria-controls="mobile-nav"
+  data-menu-open={t.header.menuOpen}
+  data-menu-close={t.header.menuClose}
+>
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</button>
+
+<nav
+  id="mobile-nav"
+  class:list={["mobile-nav", isLanding && "mobile-nav--landing"]}
+  aria-label={t.header.mobileNav}
+  hidden
+>
+  <ul>
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="mobile-nav__link">
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="social social--menu">
+    {
+      socialLinks.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="social__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.label}
+          >
+            <img
+              src={item.icon}
+              alt=""
+              class="social__icon"
+              width="18"
+              height="18"
+              decoding="async"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
 
 <style>
   .header {
     position: relative;
-    z-index: 1;
     background: #fff;
     border-radius: 45px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -312,6 +312,14 @@ const socialLinks = [
     width: 2rem;
     height: 2rem;
     padding: 0;
+    opacity: 1;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus,
+  .menu-toggle:focus-visible,
+  .menu-toggle:active {
+    opacity: 1;
   }
 
   .menu-toggle span {
@@ -324,8 +332,16 @@ const socialLinks = [
   .mobile-nav {
     display: none;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
-    background: #fff;
+    background-color: #fff;
     padding: 1rem 2rem 1.5rem;
+  }
+
+  .mobile-nav[hidden] {
+    display: none !important;
+  }
+
+  :global(body.mobile-nav-open) {
+    overflow: hidden;
   }
 
   .mobile-nav ul {
@@ -370,10 +386,12 @@ const socialLinks = [
       position: fixed;
       top: 0.75rem;
       right: 0.75rem;
-      z-index: 110;
-      background: #f9f6f1;
+      z-index: 160;
+      background-color: #f9f6f1;
       border: 1px solid #222;
       border-radius: 50%;
+      isolation: isolate;
+      transform: translateZ(0);
     }
 
     .menu-toggle span {
@@ -384,13 +402,14 @@ const socialLinks = [
       display: block;
       position: fixed;
       inset: 0;
-      z-index: 100;
+      z-index: 150;
       margin: 0;
       border-radius: 0;
       border-top: none;
       padding: calc(0.75rem + 2rem + 1.25rem) 1.5rem 1.5rem;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      background-color: #fff;
     }
 
     .header--landing {
@@ -410,26 +429,22 @@ const socialLinks = [
       display: none;
     }
 
-    .header--landing .menu-toggle {
+    .menu-toggle--landing {
       top: 1.25rem;
       right: 1.5rem;
       width: 3.25rem;
       height: 3.25rem;
       gap: 0.3rem;
-      border: 1px solid #222;
-      border-radius: 50%;
-      background: #f9f6f1;
     }
 
-    .header--landing .menu-toggle span {
+    .menu-toggle--landing span {
       width: 0.9rem;
       height: 1.5px;
-      background: #222;
     }
 
-    .header--landing .mobile-nav:not([hidden]) {
+    .mobile-nav--landing:not([hidden]) {
       padding-top: calc(1.25rem + 3.25rem + 1.25rem);
-      background: #f9f6f1;
+      background-color: #f9f6f1;
     }
 
     .mobile-nav:not([hidden]) .social--menu {
