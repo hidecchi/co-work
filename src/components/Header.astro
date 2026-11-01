@@ -9,18 +9,30 @@ import {
 
 interface Props {
   lang: Lang;
+  variant?: "default" | "landing";
 }
 
-const { lang } = Astro.props;
+const { lang, variant = "default" } = Astro.props;
 const t = useTranslations(lang);
 const homePath = getHomePath(lang);
+const isLanding = variant === "landing";
 
-const navItems = [
+const defaultNavItems = [
   { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
   { label: t.header.navInformation, href: `${homePath}#information` },
   { label: t.header.navMedia, href: getMediaPath(lang) },
   { label: t.header.navContact, href: getContactPath(lang) },
 ];
+
+const howToUseHref = `${homePath}#howToUse`;
+const landingDesktopNavItems = defaultNavItems.filter(
+  (item) => item.href !== howToUseHref,
+);
+const desktopNavItems = isLanding ? landingDesktopNavItems : defaultNavItems;
+const navItems = defaultNavItems;
+const headerCtaHref = howToUseHref;
+
+const siteName = t.information.name;
 
 const socialLinks = [
   {
@@ -41,17 +53,17 @@ const socialLinks = [
 ];
 ---
 
-<header class="header">
+<header class:list={["header", isLanding && "header--landing"]}>
   <div class="header__inner">
-    <a href={homePath} class="logo">
-      <span class="logo__text">{t.information.name}</span>
+    <a href={homePath} class="logo" aria-label={siteName}>
+      <span class="logo__text">{siteName}</span>
     </a>
 
     <div class="header__actions">
       <nav class="nav" aria-label={t.header.mainNav}>
         <ul class="nav__list">
           {
-            navItems.map((item) => (
+            desktopNavItems.map((item) => (
               <li>
                 <a href={item.href} class="nav__link">
                   {item.label}
@@ -87,76 +99,147 @@ const socialLinks = [
         }
       </ul>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label={t.header.menuOpen}
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      data-menu-open={t.header.menuOpen}
-      data-menu-close={t.header.menuClose}
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
+      {
+        isLanding && (
+          <a class="header__cta" href={headerCtaHref}>
+            <span>{t.header.headerCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        )
+      }
+
     </div>
   </div>
-
-  <nav
-    id="mobile-nav"
-    class="mobile-nav"
-    aria-label={t.header.mobileNav}
-    hidden
-  >
-    <ul>
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} class="mobile-nav__link">
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <ul class="social social--menu">
-      {
-        socialLinks.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="social__link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.label}
-            >
-              <img
-                src={item.icon}
-                alt=""
-                class="social__icon"
-                width="18"
-                height="18"
-                decoding="async"
-              />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
 </header>
+
+<button
+  class:list={["menu-toggle", isLanding && "menu-toggle--landing"]}
+  type="button"
+  aria-label={t.header.menuOpen}
+  aria-expanded="false"
+  aria-controls="mobile-nav"
+  data-menu-open={t.header.menuOpen}
+  data-menu-close={t.header.menuClose}
+>
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</button>
+
+<nav
+  id="mobile-nav"
+  class:list={["mobile-nav", isLanding && "mobile-nav--landing"]}
+  aria-label={t.header.mobileNav}
+  hidden
+>
+  <ul>
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="mobile-nav__link">
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="social social--menu">
+    {
+      socialLinks.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="social__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.label}
+          >
+            <img
+              src={item.icon}
+              alt=""
+              class="social__icon"
+              width="18"
+              height="18"
+              decoding="async"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
 
 <style>
   .header {
-    position: fixed;
-    top: 1.25rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    z-index: 100;
+    position: relative;
     background: #fff;
     border-radius: 45px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    margin: 1.25rem 1.25rem 0;
+  }
+
+  .header--landing {
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    margin: 0;
+  }
+
+  .header--landing .header__inner {
+    max-width: none;
+    padding: 2rem clamp(1.5rem, 5.5vw, 5rem) 1.75rem;
+  }
+
+  .header--landing .logo {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-family: "Poppins", "Zen Kaku Gothic New", sans-serif;
+    font-size: clamp(0.75rem, 0.2rem + 1.65vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    color: #222;
+  }
+
+  .header--landing .logo__text {
+    white-space: nowrap;
+  }
+
+  .header--landing .nav__list {
+    gap: clamp(0.875rem, 2.5vw, 2rem);
+  }
+
+  .header--landing .nav__link {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #222;
+  }
+
+  .header--landing .header__actions > .social {
+    display: none;
+  }
+
+  .header--landing .header__actions {
+    flex-shrink: 0;
+  }
+
+  .header__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 2.75rem;
+    padding: 0 1.5rem;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #18a15e, #039987);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: opacity 0.2s;
   }
 
   .header__inner {
@@ -234,6 +317,14 @@ const socialLinks = [
     width: 2rem;
     height: 2rem;
     padding: 0;
+    opacity: 1;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus,
+  .menu-toggle:focus-visible,
+  .menu-toggle:active {
+    opacity: 1;
   }
 
   .menu-toggle span {
@@ -246,8 +337,16 @@ const socialLinks = [
   .mobile-nav {
     display: none;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
-    background: #fff;
+    background-color: #fff;
     padding: 1rem 2rem 1.5rem;
+  }
+
+  .mobile-nav[hidden] {
+    display: none !important;
+  }
+
+  :global(body.mobile-nav-open) {
+    overflow: hidden;
   }
 
   .mobile-nav ul {
@@ -264,9 +363,7 @@ const socialLinks = [
 
   @media (max-width: 900px) {
     .header {
-      top: 0.75rem;
-      left: 0.75rem;
-      right: 0.75rem;
+      margin: 0.75rem 0.75rem 0;
       border-radius: 28px;
     }
 
@@ -291,10 +388,68 @@ const socialLinks = [
 
     .menu-toggle {
       display: flex;
+      position: fixed;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 160;
+      background-color: #f9f6f1;
+      border: 1px solid #222;
+      border-radius: 50%;
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+
+    .menu-toggle span {
+      background: #222;
     }
 
     .mobile-nav:not([hidden]) {
       display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      margin: 0;
+      border-radius: 0;
+      border-top: none;
+      padding: calc(0.75rem + 2rem + 1.25rem) 1.5rem 1.5rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background-color: #fff;
+    }
+
+    .header--landing {
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .header--landing .header__inner {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .header--landing .logo {
+      font-size: 1.35rem;
+    }
+
+    .header--landing .header__cta {
+      display: none;
+    }
+
+    .menu-toggle--landing {
+      top: 1.25rem;
+      right: 1.5rem;
+      width: 3.25rem;
+      height: 3.25rem;
+      gap: 0.3rem;
+    }
+
+    .menu-toggle--landing span {
+      width: 0.9rem;
+      height: 1.5px;
+    }
+
+    .mobile-nav--landing:not([hidden]) {
+      padding-top: calc(1.25rem + 3.25rem + 1.25rem);
+      background-color: #f9f6f1;
     }
 
     .mobile-nav:not([hidden]) .social--menu {

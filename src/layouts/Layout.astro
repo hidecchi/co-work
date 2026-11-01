@@ -1,10 +1,5 @@
 ---
 import Seo from "../components/Seo.astro";
-import {
-  HERO_IMAGES,
-  heroDesktopPreloadMedia,
-  heroMobilePreloadMedia,
-} from "../config/heroCanvas";
 import type { Lang } from "../i18n";
 
 interface Props {
@@ -19,7 +14,7 @@ interface Props {
   keywords?: string[];
   publishedTime?: Date;
   modifiedTime?: Date;
-  heroImagePreload?: typeof HERO_IMAGES;
+  heroImagePreload?: string;
 }
 
 const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
@@ -42,28 +37,18 @@ const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
     <Seo lang={lang} {...seoProps} />
     {
       heroImagePreload && (
-        <>
-          <link
-            rel="preload"
-            as="image"
-            href={heroImagePreload.mobile}
-            media={heroMobilePreloadMedia}
-            fetchpriority="high"
-          />
-          <link
-            rel="preload"
-            as="image"
-            href={heroImagePreload.desktop}
-            media={heroDesktopPreloadMedia}
-            fetchpriority="high"
-          />
-        </>
+        <link
+          rel="preload"
+          as="image"
+          href={heroImagePreload}
+          fetchpriority="high"
+        />
       )
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -140,7 +125,7 @@ const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
     a:hover {
       opacity: 0.8;
     }
-    button:hover {
+    button:hover:not(.menu-toggle) {
       opacity: 0.8;
     }
   }

@@ -53,8 +53,8 @@ const t = useTranslations(lang);
       <img
         src="/cashless.png"
         alt={t.about.paymentsAlt}
-        width="1322"
-        height="391"
+        width="1325"
+        height="690"
         decoding="async"
       />
     </figure>
@@ -77,20 +77,21 @@ const t = useTranslations(lang);
   }
 
   .about__marker {
-    background: linear-gradient(
-      to bottom,
-      transparent 15%,
-      rgba(255, 232, 90, 0.85) 15%,
-      rgba(255, 232, 90, 0.85) 88%,
-      transparent 88%
+    background-image: linear-gradient(
+      90deg,
+      rgba(24, 161, 94, 0.55),
+      rgba(3, 153, 135, 0.55)
     );
+    background-repeat: no-repeat;
+    background-size: 100% 0.32em;
+    background-position: 0 100%;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    padding: 0 0.12em;
+    padding: 0 0.05em 0.08em;
   }
 
   .about__inner {
-    max-width: 1080px;
+    max-width: 1120px;
     margin: 0 auto;
   }
 
@@ -148,14 +149,15 @@ const t = useTranslations(lang);
     color: #1a1a1a;
     width: fit-content;
     margin: 0 auto 1.25rem;
-    padding: 0.2em 0.3em;
-    background: linear-gradient(
-      to bottom,
-      transparent 15%,
-      rgba(255, 232, 90, 0.85) 15%,
-      rgba(255, 232, 90, 0.85) 88%,
-      transparent 88%
+    padding: 0 0.05em 0.12em;
+    background-image: linear-gradient(
+      90deg,
+      rgba(24, 161, 94, 0.55),
+      rgba(3, 153, 135, 0.55)
     );
+    background-repeat: no-repeat;
+    background-size: 100% 0.28em;
+    background-position: 0 100%;
   }
 
   .about__payments img {

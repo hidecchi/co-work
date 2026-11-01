@@ -10,7 +10,13 @@ const t = useTranslations(lang);
 ---
 
 <div class="howToUse__container">
-  <div class="howToUse__bg__top"></div>
+  <div class="howToUse__wave howToUse__wave--top" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path
+        d="M0 80V64C360 8 1080 8 1440 64V80H0Z"
+        fill="#f9f6f1"></path>
+    </svg>
+  </div>
   <section class="howToUse" id="howToUse" aria-labelledby="how-to-use-heading">
     <div class="howToUse__inner">
       <p class="howToUse__label" aria-hidden="true">{t.howToUse.label}</p>
@@ -54,31 +60,37 @@ const t = useTranslations(lang);
       </div>
     </div>
   </section>
-  <div class="howToUse__bg__bottom"></div>
+  <div class="howToUse__wave howToUse__wave--bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path
+        d="M0 80L0 16C360 72 1080 72 1440 16L1440 80Z"
+        fill="#ffffff"></path>
+    </svg>
+  </div>
 </div>
 
 <style>
-  .howToUse__bg__top,
-  .howToUse__bg__bottom {
-    background: #f7f7f7;
-    height: min(20rem, 30vw);
+  .howToUse__wave {
+    line-height: 0;
+  }
+
+  .howToUse__wave svg {
+    display: block;
     width: 100%;
-    border-radius: 50%;
-    position: relative;
-    z-index: -1;
+    height: clamp(2.5rem, 6vw, 5.5rem);
   }
 
-  .howToUse__bg__top {
-    margin-bottom: max(-10rem, -15vw);
+  .howToUse__wave--top {
+    background: #fff;
   }
 
-  .howToUse__bg__bottom {
-    margin-top: max(-10rem, -15vw);
+  .howToUse__wave--bottom {
+    background: #f9f6f1;
   }
 
   .howToUse {
     padding: 6rem 2rem;
-    background: #f7f7f7;
+    background: #f9f6f1;
   }
 
   .howToUse__inner {

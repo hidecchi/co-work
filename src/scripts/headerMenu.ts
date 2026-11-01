@@ -6,20 +6,41 @@ export function initHeaderMenu() {
   const menuOpenLabel = toggle.dataset.menuOpen ?? "";
   const menuCloseLabel = toggle.dataset.menuClose ?? "";
 
-  toggle.addEventListener("click", () => {
+  const setMenuOpen = (open: boolean) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? menuCloseLabel : menuOpenLabel);
+    mobileNav.hidden = !open;
+    document.body.classList.toggle("mobile-nav-open", open);
+  };
+
+  const onToggle = () => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!isOpen));
-    toggle.setAttribute("aria-label", isOpen ? menuOpenLabel : menuCloseLabel);
-    mobileNav.hidden = isOpen;
+    setMenuOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  toggle.addEventListener("click", onToggle);
+
+  const links = mobileNav.querySelectorAll("a");
+  links.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
-  mobileNav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileNav.hidden = true;
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", menuOpenLabel);
+  return () => {
+    toggle.removeEventListener("click", onToggle);
+    links.forEach((link) => {
+      link.removeEventListener("click", closeMenu);
     });
-  });
+    document.body.classList.remove("mobile-nav-open");
+  };
 }
 
-initHeaderMenu();
+let disposeHeaderMenu = initHeaderMenu();
+
+document.addEventListener("astro:page-load", () => {
+  disposeHeaderMenu?.();
+  disposeHeaderMenu = initHeaderMenu();
+});

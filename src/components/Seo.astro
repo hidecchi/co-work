@@ -8,6 +8,7 @@ import {
   useTranslations,
 } from "../i18n";
 import { getSiteOrigin, toAbsoluteUrl } from "../utils/site-url";
+import ViewportMeta from "./ViewportMeta.astro";
 
 interface Props {
   lang?: Lang;
@@ -128,7 +129,7 @@ const articleJsonLd =
 ---
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<ViewportMeta />
 <meta name="description" content={description} />
 {
   keywords.length > 0 && (
