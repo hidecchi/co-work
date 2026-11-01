@@ -1,5 +1,5 @@
 ---
-import { HERO_IMAGES } from "../config/heroCanvas";
+import { HERO_SLIDE_PRELOAD } from "../config/heroSlides";
 import { type Lang, useTranslations } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 import About from "./About.astro";
@@ -24,11 +24,13 @@ const t = useTranslations(lang);
   title={t.seo.title}
   description={t.seo.description}
   imageAlt={t.seo.ogImageAlt}
-  heroImagePreload={HERO_IMAGES}
+  heroImagePreload={HERO_SLIDE_PRELOAD}
 >
-  <Header lang={lang} />
-  <main id="main-content">
+  <div class="home-hero-shell">
+    <Header lang={lang} variant="landing" />
     <Hero lang={lang} />
+  </div>
+  <main id="main-content">
     <About lang={lang} />
     <HowToUse lang={lang} />
     <Information lang={lang} />
@@ -37,3 +39,9 @@ const t = useTranslations(lang);
   <LanguageSwitch lang={lang} />
   <RecruitmentBanner lang={lang} />
 </Layout>
+
+<style>
+  .home-hero-shell {
+    background: #f9f6f1;
+  }
+</style>

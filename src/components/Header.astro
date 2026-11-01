@@ -9,18 +9,35 @@ import {
 
 interface Props {
   lang: Lang;
+  variant?: "default" | "landing";
 }
 
-const { lang } = Astro.props;
+const { lang, variant = "default" } = Astro.props;
 const t = useTranslations(lang);
 const homePath = getHomePath(lang);
+const isLanding = variant === "landing";
 
-const navItems = [
+const defaultNavItems = [
   { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
   { label: t.header.navInformation, href: `${homePath}#information` },
   { label: t.header.navMedia, href: getMediaPath(lang) },
   { label: t.header.navContact, href: getContactPath(lang) },
 ];
+
+const landingNavItems = [
+  { label: t.header.navAbout, href: `${homePath}#about` },
+  { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
+  { label: t.header.navAmenities, href: `${homePath}#about` },
+  { label: t.header.navAccess, href: `${homePath}#information` },
+];
+
+const navItems = isLanding ? landingNavItems : defaultNavItems;
+const headerCtaHref = `${homePath}#howToUse`;
+
+const siteName = t.information.name;
+const logoSplit = siteName.lastIndexOf(" ");
+const logoMain = logoSplit > 0 ? siteName.slice(0, logoSplit) : siteName;
+const logoAccent = logoSplit > 0 ? siteName.slice(logoSplit + 1) : "";
 
 const socialLinks = [
   {
@@ -41,10 +58,19 @@ const socialLinks = [
 ];
 ---
 
-<header class="header">
+<header class:list={["header", isLanding && "header--landing"]}>
   <div class="header__inner">
-    <a href={homePath} class="logo">
-      <span class="logo__text">{t.information.name}</span>
+    <a href={homePath} class="logo" aria-label={siteName}>
+      {
+        isLanding ? (
+          <span class="logo__text" aria-hidden="true">
+            <span class="logo__main">{logoMain}</span>
+            <span class="logo__accent">{logoAccent}</span>
+          </span>
+        ) : (
+          <span class="logo__text">{siteName}</span>
+        )
+      }
     </a>
 
     <div class="header__actions">
@@ -86,6 +112,15 @@ const socialLinks = [
           ))
         }
       </ul>
+
+      {
+        isLanding && (
+          <a class="header__cta" href={headerCtaHref}>
+            <span>{t.header.headerCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        )
+      }
 
     <button
       class="menu-toggle"
@@ -157,6 +192,68 @@ const socialLinks = [
     border-radius: 45px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+  }
+
+  .header--landing {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .header--landing .header__inner {
+    max-width: none;
+    padding: 2rem clamp(1.5rem, 5.5vw, 5rem) 1.75rem;
+  }
+
+  .header--landing .logo {
+    font-family: "Poppins", "Zen Kaku Gothic New", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .logo__accent {
+    margin-left: 0.3em;
+    background: linear-gradient(90deg, #18a15e, #039987);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .header--landing .nav__list {
+    gap: 2rem;
+  }
+
+  .header--landing .nav__link {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #222;
+  }
+
+  .header--landing .header__actions > .social {
+    display: none;
+  }
+
+  .header__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 2.75rem;
+    padding: 0 1.5rem;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #18a15e, #039987);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
   .header__inner {
@@ -295,6 +392,45 @@ const socialLinks = [
 
     .mobile-nav:not([hidden]) {
       display: block;
+    }
+
+    .header--landing {
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+    }
+
+    .header--landing .header__inner {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .header--landing .logo {
+      font-size: 1.35rem;
+    }
+
+    .header--landing .header__cta {
+      display: none;
+    }
+
+    .header--landing .menu-toggle {
+      width: 3.25rem;
+      height: 3.25rem;
+      gap: 0.3rem;
+      border: 1px solid #039987;
+      border-radius: 50%;
+    }
+
+    .header--landing .menu-toggle span {
+      width: 0.9rem;
+      height: 1.5px;
+      background: #039987;
+    }
+
+    .header--landing .mobile-nav {
+      margin: 0 1.5rem;
+      border-radius: 20px;
+      border-top: none;
     }
 
     .mobile-nav:not([hidden]) .social--menu {

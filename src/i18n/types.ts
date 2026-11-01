@@ -20,15 +20,28 @@ export type Translations = {
     menuOpen: string;
     menuClose: string;
     navHowToUse: string;
+    navAbout: string;
+    navAmenities: string;
+    navAccess: string;
     navInformation: string;
     navMedia: string;
     navContact: string;
+    headerCta: string;
     langSwitch: string;
     langSwitchAria: string;
   };
   hero: {
     h1: string;
     bgText: string;
+    titleLine1: string;
+    titleLine2: string;
+    tagline: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    slideAlts: [string, string, string];
+    headlineLine1: string;
+    headlineLine2: string;
+    cta: string;
     entryFeePrefix: string;
     entryFeeSuffix: string;
     unlimited: string;

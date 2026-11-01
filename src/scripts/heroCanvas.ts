@@ -10,8 +10,8 @@ const POINTER_STOP_DELAY = 80;
 const MOBILE_IMAGE_BREAKPOINT = HERO_MOBILE_IMAGE_BREAKPOINT;
 
 function getHeroImageUrl(canvas: HTMLCanvasElement) {
-  const desktop = canvas.dataset.src ?? "/sample.jpg";
-  const mobile = canvas.dataset.srcSp ?? "/sample-sp.jpg";
+  const desktop = canvas.dataset.src ?? "/164.jpg";
+  const mobile = canvas.dataset.srcSp ?? "/164.jpg";
   return window.innerWidth < MOBILE_IMAGE_BREAKPOINT ? mobile : desktop;
 }
 
@@ -59,7 +59,7 @@ function getCoverSize(
 
 export function initHeroCanvas(
   selector = ".hero__canvas",
-  wrapSelector = ".hero__image-wrap",
+  wrapSelector = ".hero__media",
 ) {
   const canvas = document.querySelector<HTMLCanvasElement>(selector);
   const wrap = document.querySelector<HTMLElement>(wrapSelector);
@@ -165,14 +165,13 @@ export function initHeroCanvas(
 
   const resize = () => {
     const { width, height } = wrap.getBoundingClientRect();
-    const renderHeight = height * 0.99;
-    if (width === 0 || renderHeight === 0) return;
+    if (width === 0 || height === 0) return;
 
-    renderer.setSize(width, renderHeight, false);
-    camera.aspect = width / renderHeight;
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
 
-    vp = getViewport(width, renderHeight);
+    vp = getViewport(width, height);
     updateRippleCamera();
 
     if (!displayMesh || !imageTexture?.image) return;
