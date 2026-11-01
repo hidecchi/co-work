@@ -21,7 +21,7 @@ export const en: Translations = {
     navInformation: "Information",
     navMedia: "Column",
     navContact: "Contact",
-    headerCta: "Get started",
+    headerCta: "How to use",
     langSwitch: "日本語",
     langSwitchAria: "View site in Japanese",
   },

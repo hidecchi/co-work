@@ -21,7 +21,7 @@ export const ja: Translations = {
     navInformation: "店舗情報",
     navMedia: "コラム",
     navContact: "お問い合わせ",
-    headerCta: "ご利用はこちら",
+    headerCta: "ご利用方法はこちら",
     langSwitch: "English",
     langSwitchAria: "英語版を表示",
   },

@@ -24,8 +24,13 @@ const defaultNavItems = [
   { label: t.header.navContact, href: getContactPath(lang) },
 ];
 
+const howToUseHref = `${homePath}#howToUse`;
+const landingDesktopNavItems = defaultNavItems.filter(
+  (item) => item.href !== howToUseHref,
+);
+const desktopNavItems = isLanding ? landingDesktopNavItems : defaultNavItems;
 const navItems = defaultNavItems;
-const headerCtaHref = `${homePath}#howToUse`;
+const headerCtaHref = howToUseHref;
 
 const siteName = t.information.name;
 
@@ -58,7 +63,7 @@ const socialLinks = [
       <nav class="nav" aria-label={t.header.mainNav}>
         <ul class="nav__list">
           {
-            navItems.map((item) => (
+            desktopNavItems.map((item) => (
               <li>
                 <a href={item.href} class="nav__link">
                   {item.label}
