@@ -20,7 +20,7 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
     <div class="hero__copy">
       <h1 id="hero-heading" class="hero__title">
         <span class="hero__title-line">{t.hero.titleLine1}</span>
-        <span class="hero__title-line hero__title-line--accent">{t.hero.titleLine2}</span>
+        <span class="hero__title-line">{t.hero.titleLine2}</span>
       </h1>
       <p class="hero__tagline">{t.hero.tagline}</p>
       <div class="hero__actions">
@@ -104,13 +104,6 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
     white-space: nowrap;
   }
 
-  .hero__title-line--accent {
-    background: linear-gradient(90deg, #18a15e, #039987);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
   .hero__tagline {
     margin: 0 0 2.5rem;
     font-size: 1rem;
@@ -137,15 +130,12 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.04em;
-    transition:
-      background 0.25s,
-      color 0.25s;
+    transition: opacity 0.2s;
   }
 
   .hero__btn-arrow {
     font-size: 1.25rem;
     line-height: 1;
-    transition: transform 0.25s;
   }
 
   .hero__btn--primary {
@@ -158,26 +148,6 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
     background: transparent;
     color: #222;
     border: 1px solid #222;
-  }
-
-  @media (any-hover: hover) {
-    .hero__btn:hover {
-      opacity: 1;
-    }
-
-    .hero__btn:hover .hero__btn-arrow {
-      transform: translateX(4px);
-    }
-
-    .hero__btn--primary:hover {
-      background: #039987;
-      border-color: #039987;
-    }
-
-    .hero__btn--secondary:hover {
-      background: #222;
-      color: #fff;
-    }
   }
 
   .hero__gallery {

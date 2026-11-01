@@ -6,20 +6,37 @@ export function initHeaderMenu() {
   const menuOpenLabel = toggle.dataset.menuOpen ?? "";
   const menuCloseLabel = toggle.dataset.menuClose ?? "";
 
-  toggle.addEventListener("click", () => {
+  const onToggle = () => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!isOpen));
-    toggle.setAttribute("aria-label", isOpen ? menuOpenLabel : menuCloseLabel);
-    mobileNav.hidden = isOpen;
-  });
+    const nextOpen = !isOpen;
+    toggle.setAttribute("aria-expanded", String(nextOpen));
+    toggle.setAttribute("aria-label", nextOpen ? menuCloseLabel : menuOpenLabel);
+    mobileNav.hidden = !nextOpen;
+  };
+
+  const closeMenu = () => {
+    mobileNav.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", menuOpenLabel);
+  };
+
+  toggle.addEventListener("click", onToggle);
 
   mobileNav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileNav.hidden = true;
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", menuOpenLabel);
-    });
+    link.addEventListener("click", closeMenu);
   });
+
+  return () => {
+    toggle.removeEventListener("click", onToggle);
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.removeEventListener("click", closeMenu);
+    });
+  };
 }
 
-initHeaderMenu();
+let disposeHeaderMenu = initHeaderMenu();
+
+document.addEventListener("astro:page-load", () => {
+  disposeHeaderMenu?.();
+  disposeHeaderMenu = initHeaderMenu();
+});

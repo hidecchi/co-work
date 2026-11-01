@@ -24,20 +24,10 @@ const defaultNavItems = [
   { label: t.header.navContact, href: getContactPath(lang) },
 ];
 
-const landingNavItems = [
-  { label: t.header.navAbout, href: `${homePath}#about` },
-  { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
-  { label: t.header.navAmenities, href: `${homePath}#about` },
-  { label: t.header.navAccess, href: `${homePath}#information` },
-];
-
-const navItems = isLanding ? landingNavItems : defaultNavItems;
+const navItems = defaultNavItems;
 const headerCtaHref = `${homePath}#howToUse`;
 
 const siteName = t.information.name;
-const logoSplit = siteName.lastIndexOf(" ");
-const logoMain = logoSplit > 0 ? siteName.slice(0, logoSplit) : siteName;
-const logoAccent = logoSplit > 0 ? siteName.slice(logoSplit + 1) : "";
 
 const socialLinks = [
   {
@@ -61,16 +51,7 @@ const socialLinks = [
 <header class:list={["header", isLanding && "header--landing"]}>
   <div class="header__inner">
     <a href={homePath} class="logo" aria-label={siteName}>
-      {
-        isLanding ? (
-          <span class="logo__text" aria-hidden="true">
-            <span class="logo__main">{logoMain}</span>
-            <span class="logo__accent">{logoAccent}</span>
-          </span>
-        ) : (
-          <span class="logo__text">{siteName}</span>
-        )
-      }
+      <span class="logo__text">{siteName}</span>
     </a>
 
     <div class="header__actions">
@@ -183,26 +164,22 @@ const socialLinks = [
 
 <style>
   .header {
-    position: fixed;
-    top: 1.25rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    z-index: 100;
+    position: relative;
+    z-index: 1;
     background: #fff;
     border-radius: 45px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    margin: 1.25rem 1.25rem 0;
   }
 
   .header--landing {
     position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
     background: transparent;
     box-shadow: none;
     border-radius: 0;
     overflow: visible;
+    margin: 0;
   }
 
   .header--landing .header__inner {
@@ -211,23 +188,22 @@ const socialLinks = [
   }
 
   .header--landing .logo {
+    flex: 0 1 auto;
+    min-width: 0;
     font-family: "Poppins", "Zen Kaku Gothic New", sans-serif;
-    font-size: 1.75rem;
+    font-size: clamp(0.75rem, 0.2rem + 1.65vw, 1.75rem);
     font-weight: 600;
     letter-spacing: 0;
     line-height: 1;
+    color: #222;
   }
 
-  .logo__accent {
-    margin-left: 0.3em;
-    background: linear-gradient(90deg, #18a15e, #039987);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .header--landing .logo__text {
+    white-space: nowrap;
   }
 
   .header--landing .nav__list {
-    gap: 2rem;
+    gap: clamp(0.875rem, 2.5vw, 2rem);
   }
 
   .header--landing .nav__link {
@@ -239,6 +215,10 @@ const socialLinks = [
 
   .header--landing .header__actions > .social {
     display: none;
+  }
+
+  .header--landing .header__actions {
+    flex-shrink: 0;
   }
 
   .header__cta {
@@ -254,6 +234,7 @@ const socialLinks = [
     font-weight: 700;
     letter-spacing: 0.04em;
     white-space: nowrap;
+    transition: opacity 0.2s;
   }
 
   .header__inner {
@@ -361,9 +342,7 @@ const socialLinks = [
 
   @media (max-width: 900px) {
     .header {
-      top: 0.75rem;
-      left: 0.75rem;
-      right: 0.75rem;
+      margin: 0.75rem 0.75rem 0;
       border-radius: 28px;
     }
 
@@ -388,16 +367,34 @@ const socialLinks = [
 
     .menu-toggle {
       display: flex;
+      position: fixed;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 110;
+      background: #f9f6f1;
+      border: 1px solid #222;
+      border-radius: 50%;
+    }
+
+    .menu-toggle span {
+      background: #222;
     }
 
     .mobile-nav:not([hidden]) {
       display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      margin: 0;
+      border-radius: 0;
+      border-top: none;
+      padding: calc(0.75rem + 2rem + 1.25rem) 1.5rem 1.5rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .header--landing {
-      top: 0;
-      left: 0;
-      right: 0;
+      margin: 0;
       border-radius: 0;
     }
 
@@ -414,23 +411,25 @@ const socialLinks = [
     }
 
     .header--landing .menu-toggle {
+      top: 1.25rem;
+      right: 1.5rem;
       width: 3.25rem;
       height: 3.25rem;
       gap: 0.3rem;
-      border: 1px solid #039987;
+      border: 1px solid #222;
       border-radius: 50%;
+      background: #f9f6f1;
     }
 
     .header--landing .menu-toggle span {
       width: 0.9rem;
       height: 1.5px;
-      background: #039987;
+      background: #222;
     }
 
-    .header--landing .mobile-nav {
-      margin: 0 1.5rem;
-      border-radius: 20px;
-      border-top: none;
+    .header--landing .mobile-nav:not([hidden]) {
+      padding-top: calc(1.25rem + 3.25rem + 1.25rem);
+      background: #f9f6f1;
     }
 
     .mobile-nav:not([hidden]) .social--menu {

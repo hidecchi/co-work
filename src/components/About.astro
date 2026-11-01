@@ -53,8 +53,8 @@ const t = useTranslations(lang);
       <img
         src="/cashless.png"
         alt={t.about.paymentsAlt}
-        width="1322"
-        height="391"
+        width="1325"
+        height="690"
         decoding="async"
       />
     </figure>
@@ -73,24 +73,25 @@ const t = useTranslations(lang);
     font-weight: 500;
     line-height: 1.8;
     letter-spacing: 0.04em;
-    color: #222;
+    color: #1a1a1a;
   }
 
   .about__marker {
-    background: linear-gradient(
-      to bottom,
-      transparent 55%,
-      rgba(24, 161, 94, 0.22) 55%,
-      rgba(3, 153, 135, 0.22) 92%,
-      transparent 92%
+    background-image: linear-gradient(
+      90deg,
+      rgba(24, 161, 94, 0.55),
+      rgba(3, 153, 135, 0.55)
     );
+    background-repeat: no-repeat;
+    background-size: 100% 0.32em;
+    background-position: 0 100%;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    padding: 0 0.12em;
+    padding: 0 0.05em 0.08em;
   }
 
   .about__inner {
-    max-width: 1080px;
+    max-width: 1120px;
     margin: 0 auto;
   }
 
@@ -109,9 +110,9 @@ const t = useTranslations(lang);
     gap: 0.75rem;
     min-width: 0;
     padding: 1.25rem 1.375rem;
-    background: #f9f6f1;
+    background: #fff;
     border-radius: 6px;
-    box-shadow: none;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
   }
 
   .about__check {
@@ -121,7 +122,7 @@ const t = useTranslations(lang);
     justify-content: center;
     width: 1.625rem;
     height: 1.625rem;
-    color: #039987;
+    color: #1a1a1a;
   }
 
   .about__check svg {
@@ -134,7 +135,7 @@ const t = useTranslations(lang);
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0.04em;
-    color: #222;
+    color: #1a1a1a;
   }
 
   .about__payments {
@@ -145,17 +146,18 @@ const t = useTranslations(lang);
     font-size: 1.6rem;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: #222;
+    color: #1a1a1a;
     width: fit-content;
     margin: 0 auto 1.25rem;
-    padding: 0.2em 0.3em;
-    background: linear-gradient(
-      to bottom,
-      transparent 55%,
-      rgba(24, 161, 94, 0.22) 55%,
-      rgba(3, 153, 135, 0.22) 92%,
-      transparent 92%
+    padding: 0 0.05em 0.12em;
+    background-image: linear-gradient(
+      90deg,
+      rgba(24, 161, 94, 0.55),
+      rgba(3, 153, 135, 0.55)
     );
+    background-repeat: no-repeat;
+    background-size: 100% 0.28em;
+    background-position: 0 100%;
   }
 
   .about__payments img {
