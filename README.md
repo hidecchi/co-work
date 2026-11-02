@@ -35,7 +35,7 @@ npm install
 | `npm run dev`                | 開発サーバーを `localhost:4321` で起動            |
 | `npm run build`              | 本番用サイトを `./dist/` にビルド                 |
 | `npm run preview`            | ビルド結果をローカルでプレビュー                  |
-| `npm run generate:favicons`  | `public/logo.png` などから favicon 一式を生成     |
+| `npm run generate:favicons`  | `黒地に白い「OC」ロゴアイコン.png` から `oc-icon-*.png` / `oc-favicon.ico` を生成 |
 | `npm run deploy`             | ビルドして Cloudflare へデプロイ                  |
 | `npm run astro ...`          | `astro add` や `astro check` などの CLI を実行    |
 
