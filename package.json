@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate:favicons": "node scripts/generate-favicons.mjs",
+    "generate:og-image": "node scripts/generate-og-image.mjs",
     "deploy": "npm run build && wrangler deploy",
     "lint": "biome check .",
     "format": "biome format --write .",

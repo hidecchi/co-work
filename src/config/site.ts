@@ -2,7 +2,7 @@
 export const siteConfig = {
   defaultSiteUrl: "https://cowork-net.com",
   name: "ONE COIN コワーキング",
-  ogImage: "/sample.jpg",
+  ogImage: "/og-image.jpg",
   themeColor: "#444444",
   twitterCard: "summary_large_image" as const,
   business: {
