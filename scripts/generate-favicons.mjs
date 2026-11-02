@@ -21,11 +21,11 @@ const png16 = await resize(16);
 const png32 = await resize(32);
 const png180 = await resize(180);
 
-writeFileSync(join(publicDir, "favicon-16.png"), png16);
-writeFileSync(join(publicDir, "favicon-32.png"), png32);
-writeFileSync(join(publicDir, "favicon.ico"), await toIco([png16, png32]));
-writeFileSync(join(publicDir, "apple-touch-icon.png"), png180);
+writeFileSync(join(publicDir, "oc-icon-16.png"), png16);
+writeFileSync(join(publicDir, "oc-icon-32.png"), png32);
+writeFileSync(join(publicDir, "oc-favicon.ico"), await toIco([png16, png32]));
+writeFileSync(join(publicDir, "oc-apple-touch-180.png"), png180);
 
 console.log(
-  "Favicons generated from 黒地に白い「OC」ロゴアイコン.png (16 / 32 / ico / apple-touch 180)",
+  "Favicons generated: oc-icon-16.png, oc-icon-32.png, oc-favicon.ico, oc-apple-touch-180.png",
 );
