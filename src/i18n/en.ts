@@ -20,6 +20,7 @@ export const en: Translations = {
     navAccess: "Access",
     navInformation: "Information",
     navMedia: "Column",
+    navFaq: "FAQ",
     navContact: "Contact",
     headerCta: "How to use",
     langSwitch: "日本語",
@@ -176,6 +177,70 @@ export const en: Translations = {
       },
     ],
     privacyAgreeLabel: "I agree to the Privacy Policy",
+  },
+  faq: {
+    title: "FAQ",
+    description:
+      "Frequently asked questions about ONE COIN COWORKING, including pricing, hours, and how to use the space.",
+    heading: "FAQ",
+    label: "FAQ",
+    breadcrumbLabel: "Breadcrumb",
+    lead: "Answers to common questions before your visit.",
+    items: [
+      {
+        question: "How much is the entry fee?",
+        answer: "Entry is ¥500 (tax included) for unlimited time.",
+      },
+      {
+        question: "Do I need a reservation?",
+        answer:
+          "No reservation is required. You can use any available seat when you visit.",
+      },
+      {
+        question: "What are your hours and holidays?",
+        answer:
+          "We are open 24 hours, year-round. We may close occasionally for equipment maintenance; we will announce this in advance on our website and social media.",
+      },
+      {
+        question: "What payment methods do you accept?",
+        answer:
+          'Cashless payment only. Please pay at the tablet by the entrance. See the <a href="/en/#payments">cashless payment details</a> for accepted brands.',
+      },
+      {
+        question: "Can I eat and drink?",
+        answer:
+          "You may bring drinks. Food is not allowed.",
+      },
+      {
+        question: "Is conversation allowed?",
+        answer:
+          "Yes. Please keep volume down late at night.",
+      },
+      {
+        question: "Can I use the space for meetings or Zoom calls?",
+        answer:
+          "Conversation is allowed, so meetings and Zoom calls are also fine.",
+      },
+      {
+        question: "Can I knit or embroider?",
+        answer: "Yes. Please feel free to use the space as you like.",
+      },
+      {
+        question: "What security measures are in place?",
+        answer:
+          "Security cameras are installed. ALSOK provides security, and an emergency call button for guards is available.",
+      },
+      {
+        question: "Can elementary school children use the space?",
+        answer:
+          "Children of elementary school age and younger must be accompanied by a parent or guardian. The entry fee applies to each person.",
+      },
+      {
+        question: "Is wired LAN available?",
+        answer:
+          "Wired LAN is not available. Please use wireless Wi-Fi.",
+      },
+    ],
   },
   footer: {
     navLabel: "Footer navigation",

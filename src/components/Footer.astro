@@ -1,6 +1,7 @@
 ---
 import {
   getContactPath,
+  getFaqPath,
   getHomePath,
   getMediaPath,
   type Lang,
@@ -20,6 +21,7 @@ const menuItems = [
   { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
   { label: t.header.navInformation, href: `${homePath}#information` },
   { label: t.header.navMedia, href: getMediaPath(lang) },
+  { label: t.header.navFaq, href: getFaqPath(lang) },
 ];
 
 const socialLinks = [

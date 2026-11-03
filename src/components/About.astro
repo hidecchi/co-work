@@ -46,7 +46,7 @@ const t = useTranslations(lang);
         ))
       }
     </ul>
-    <figure class="about__payments">
+    <figure class="about__payments" id="payments">
       <figcaption class="about__payments-title">
         {t.about.paymentsHeading}
       </figcaption>
@@ -140,6 +140,7 @@ const t = useTranslations(lang);
 
   .about__payments {
     margin: 4.5rem 0 2rem;
+    scroll-margin-top: 5rem;
   }
 
   .about__payments-title {

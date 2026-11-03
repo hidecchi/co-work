@@ -1,0 +1,240 @@
+---
+import { getHomePath, type Lang, useTranslations } from "../i18n";
+import Layout from "../layouts/Layout.astro";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homePath = getHomePath(lang);
+---
+
+<Layout lang={lang} title={t.faq.title} description={t.faq.description}>
+  <Header lang={lang} />
+  <div class="faq-page-wrap">
+    <nav class="breadcrumb" aria-label={t.faq.breadcrumbLabel}>
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item">
+          <a href={homePath} class="breadcrumb__link breadcrumb__link--home">
+            {t.media.breadcrumbHome}
+          </a>
+        </li>
+        <li class="breadcrumb__item">
+          <span class="breadcrumb__current" aria-current="page">
+            {t.faq.label}
+          </span>
+        </li>
+      </ol>
+    </nav>
+
+    <main id="main-content" class="faq-page">
+      <header class="faq-page__header">
+        <h1 class="faq-page__title">{t.faq.label}</h1>
+      </header>
+
+      <div class="faq-page__container">
+        <p class="faq-page__lead">{t.faq.lead}</p>
+        <ul class="faq-list">
+          {
+            t.faq.items.map((item) => (
+              <li class="faq-item">
+                <details>
+                  <summary class="faq-item__question">{item.question}</summary>
+                  <p class="faq-item__answer" set:html={item.answer} />
+                </details>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </main>
+  </div>
+  <Footer lang={lang} />
+  <LanguageSwitch lang={lang} />
+</Layout>
+
+<style>
+  .faq-page-wrap {
+    padding-top: 3.5rem;
+  }
+
+  .breadcrumb {
+    background: #fff;
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 49px;
+    list-style: none;
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .breadcrumb__link {
+    position: relative;
+    padding: 0 1.75rem 0 0.75rem;
+    color: #666;
+  }
+
+  .breadcrumb__link--home {
+    padding-left: 0;
+  }
+
+  .breadcrumb__link::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0.375rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .breadcrumb__current {
+    color: #000;
+  }
+
+  .faq-page {
+    padding-bottom: 6.5rem;
+    background: #fff;
+  }
+
+  .faq-page__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: #fff;
+  }
+
+  .faq-page__title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+  }
+
+  .faq-page__container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3.5rem;
+  }
+
+  .faq-page__lead {
+    margin: 0 0 2.25rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+  }
+
+  .faq-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .faq-item__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #222;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item__question::after {
+    content: "";
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.25rem;
+    border-right: 1.5px solid #222;
+    border-bottom: 1.5px solid #222;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+  }
+
+  .faq-item details[open] .faq-item__question::after {
+    transform: rotate(225deg);
+    margin-top: 0.25rem;
+  }
+
+  .faq-item__answer {
+    margin: 0;
+    padding: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #444;
+  }
+
+  .faq-item__answer :global(a) {
+    color: #039987;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (max-width: 768px) {
+    .faq-page-wrap {
+      padding-top: 2.875rem;
+    }
+
+    .breadcrumb__list {
+      height: auto;
+      min-height: 44px;
+      padding-top: 0.375rem;
+      padding-bottom: 0.375rem;
+    }
+
+    .faq-page__header {
+      height: auto;
+      padding: 1.5rem 0 1rem;
+    }
+
+    .faq-page__title {
+      font-size: 1.375rem;
+    }
+
+    .faq-page__container {
+      padding-bottom: 2.5rem;
+    }
+
+    .faq-item__question {
+      font-size: 0.9375rem;
+      padding: 1rem 0;
+    }
+
+    .faq-item__answer {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

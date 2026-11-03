@@ -25,6 +25,7 @@ export type Translations = {
     navAccess: string;
     navInformation: string;
     navMedia: string;
+    navFaq: string;
     navContact: string;
     headerCta: string;
     langSwitch: string;
@@ -117,6 +118,18 @@ export type Translations = {
       body: string;
     }[];
     privacyAgreeLabel: string;
+  };
+  faq: {
+    title: string;
+    description: string;
+    heading: string;
+    label: string;
+    breadcrumbLabel: string;
+    lead: string;
+    items: {
+      question: string;
+      answer: string;
+    }[];
   };
   footer: {
     navLabel: string;
