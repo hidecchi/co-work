@@ -208,8 +208,12 @@ export const en: Translations = {
       },
       {
         question: "Can I eat and drink?",
+        answer: "You may bring drinks. Food is not allowed.",
+      },
+      {
+        question: "Can I step out for a meal or leave temporarily?",
         answer:
-          "You may bring drinks. Food is not allowed.",
+          "Temporary leave is allowed for up to 45 minutes. If you are gone longer than 45 minutes, please pay the entry fee again when you return.",
       },
       {
         question: "Is conversation allowed?",
