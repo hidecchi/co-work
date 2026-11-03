@@ -1,5 +1,5 @@
 ---
-title: 清掃管理スタッフ募集中
+title: 清掃管理スタッフ募集中（終了）
 description: ONE COIN コワーキング（神戸・元町）で清掃管理スタッフを募集しています。1日2回、約20分〜45分。時間帯・出勤日数は応相談です。
 pubDate: 2026-09-10
 lang: ja
@@ -9,8 +9,9 @@ keywords:
   - 清掃 バイト 神戸
 heroImage: /eyecatch/cleaning-staff-recruitment.png
 heroImageAlt: コワーキングスペースの清掃スタッフ募集
-badge: 急募
 ---
+
+<p class="article-closed-notice"><strong>こちらの募集は終了しました。</strong></p>
 
 **ONE COIN コワーキング**（[神戸・元町駅より徒歩7分](/#information)）にて、清掃管理スタッフを募集しております。
 

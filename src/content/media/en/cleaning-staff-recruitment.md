@@ -1,5 +1,5 @@
 ---
-title: Cleaning and maintenance staff wanted
+title: Cleaning and maintenance staff wanted (Closed)
 description: ONE COIN COWORKING in Motomachi, Kobe is hiring cleaning and maintenance staff. Twice daily, about 20–45 minutes per visit. Schedule and days are flexible.
 pubDate: 2026-09-10
 lang: en
@@ -9,8 +9,9 @@ keywords:
   - part-time cleaning Kobe
 heroImage: /eyecatch/cleaning-staff-recruitment.png
 heroImageAlt: Recruiting cleaning staff for the coworking space
-badge: Urgent
 ---
+
+<p class="article-closed-notice"><strong>This recruitment has closed.</strong></p>
 
 **ONE COIN COWORKING** ([7-minute walk from Motomachi Station, Kobe](/en/#information)) is looking for cleaning and maintenance staff.
 
