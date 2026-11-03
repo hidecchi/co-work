@@ -223,7 +223,8 @@ export const en: Translations = {
       },
       {
         question: "Can I knit or embroider?",
-        answer: "Yes. Please feel free to use the space as you like.",
+        answer:
+          "Knitting, embroidery, and similar activities are also welcome. Please feel free to use the space.",
       },
       {
         question: "What security measures are in place?",

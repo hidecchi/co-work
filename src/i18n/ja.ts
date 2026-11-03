@@ -221,7 +221,7 @@ export const ja: Translations = {
       },
       {
         question: "編み物や刺繡等行っても良いですか？",
-        answer: "はい。ご自由にご利用ください。",
+        answer: "編み物や刺繡等も可能です。ぜひご利用くださいませ。",
       },
       {
         question: "防犯対策はされていますか？",
