@@ -7,6 +7,8 @@ import {
   type Lang,
   useTranslations,
 } from "../i18n";
+import { en as enCopy } from "../i18n/en";
+import { ja as jaCopy } from "../i18n/ja";
 
 interface Props {
   lang: Lang;
@@ -19,11 +21,31 @@ const t = useTranslations(lang);
 const homePath = getHomePath(lang);
 
 const defaultNavItems = [
-  { label: t.header.navHowToUse, href: `${homePath}#howToUse` },
-  { label: t.header.navInformation, href: `${homePath}#information` },
-  { label: t.header.navMedia, href: getMediaPath(lang) },
-  { label: t.header.navFaq, href: getFaqPath(lang) },
-  { label: t.header.navContact, href: getContactPath(lang) },
+  {
+    href: `${homePath}#howToUse`,
+    ja: jaCopy.header.navHowToUse,
+    en: enCopy.header.navHowToUse,
+  },
+  {
+    href: `${homePath}#information`,
+    ja: jaCopy.header.navInformation,
+    en: enCopy.header.navInformation,
+  },
+  {
+    href: getMediaPath(lang),
+    ja: jaCopy.header.navMedia,
+    en: enCopy.header.navMedia,
+  },
+  {
+    href: getFaqPath(lang),
+    ja: jaCopy.header.navFaq,
+    en: enCopy.header.navFaq,
+  },
+  {
+    href: getContactPath(lang),
+    ja: jaCopy.header.navContact,
+    en: enCopy.header.navContact,
+  },
 ];
 
 const howToUseHref = `${homePath}#howToUse`;
@@ -67,7 +89,7 @@ const socialLinks = [
             desktopNavItems.map((item) => (
               <li>
                 <a href={item.href} class="nav__link">
-                  {item.label}
+                  {lang === "en" ? item.en : item.ja}
                 </a>
               </li>
             ))
@@ -131,37 +153,47 @@ const socialLinks = [
     {
       navItems.map((item) => (
         <li>
-          <a href={item.href} class="mobile-nav__link">
-            {item.label}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-  <ul class="social social--menu">
-    {
-      socialLinks.map((item) => (
-        <li>
           <a
             href={item.href}
-            class="social__link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={item.label}
+            class="mobile-nav__link"
+            aria-label={lang === "en" ? item.en : item.ja}
           >
-            <img
-              src={item.icon}
-              alt=""
-              class="social__icon"
-              width="18"
-              height="18"
-              decoding="async"
-            />
+            <span class="mobile-nav__en">{item.en}</span>
+            <span class="mobile-nav__sep" aria-hidden="true">
+              |
+            </span>
+            <span class="mobile-nav__ja">{item.ja}</span>
           </a>
         </li>
       ))
     }
   </ul>
+  <div class="mobile-nav__bar">
+    <ul class="social social--menu">
+      {
+        socialLinks.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="social__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={item.label}
+            >
+              <img
+                src={item.icon}
+                alt=""
+                class="social__icon"
+                width="22"
+                height="22"
+                decoding="async"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </nav>
 
 <style>
@@ -313,16 +345,41 @@ const socialLinks = [
     overflow: hidden;
   }
 
-  .mobile-nav ul {
+  .mobile-nav > ul {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .mobile-nav__link {
-    font-size: 0.8125rem;
-    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    color: #222;
+  }
+
+  .mobile-nav__en {
+    font-size: 0.9375rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav__sep {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .mobile-nav__ja {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #555;
+  }
+
+  .mobile-nav__bar {
+    display: none;
   }
 
   @media (min-width: 901px) and (max-width: 1100px) {
@@ -407,13 +464,22 @@ const socialLinks = [
       background-color: #f9f6f1;
     }
 
+    .mobile-nav__bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 3.5rem;
+    }
+
     .mobile-nav:not([hidden]) .social--menu {
       display: flex;
       flex-direction: row;
       gap: 1.25rem;
-      margin-top: 0.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .mobile-nav .social__link {
+      width: 22px;
+      height: 22px;
     }
   }
 </style>
