@@ -216,6 +216,10 @@ export const en: Translations = {
           "Temporary leave is allowed for up to 45 minutes. If you are gone longer than 45 minutes, please pay the entry fee again when you return.",
       },
       {
+        question: "Are the restrooms separate for men and women?",
+        answer: "Yes. We have separate restrooms for men and women.",
+      },
+      {
         question: "Is conversation allowed?",
         answer:
           "Yes. Please keep volume down late at night.",
