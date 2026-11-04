@@ -110,7 +110,7 @@ export const en: Translations = {
     hoursLabel: "Hours",
     hours: "24 hours",
     seatsLabel: "Seats",
-    seats: "20–30 seats (planned)",
+    seats: "26 seats",
     paymentLabel: "Payment",
     payment: "Cashless only",
   },

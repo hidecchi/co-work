@@ -36,7 +36,7 @@ Our unmanned, no-membership model helps us keep prices low. After entering, simp
 | Membership | Not required |
 | Payment | Cashless only |
 | Hours | 24 hours |
-| Seats | 20–30 (planned) |
+| Seats | 26 |
 
 ## Amenities
 

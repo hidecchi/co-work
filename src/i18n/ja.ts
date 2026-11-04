@@ -110,7 +110,7 @@ export const ja: Translations = {
     hoursLabel: "営業時間",
     hours: "24時間",
     seatsLabel: "席数",
-    seats: "20～30席（予定）",
+    seats: "26席",
     paymentLabel: "決済方法",
     payment: "キャッシュレス決済",
   },
