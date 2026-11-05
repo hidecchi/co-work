@@ -48,7 +48,7 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
                   alt={isClone ? "" : t.hero.slideAlts[original]}
                   width="840"
                   height="1120"
-                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchpriority="high"
                   decoding="async"
                 />
               </figure>
