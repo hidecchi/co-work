@@ -53,8 +53,8 @@ const t = useTranslations(lang);
       <img
         src="/cashless.png"
         alt={t.about.paymentsAlt}
-        width="1325"
-        height="690"
+        width="839"
+        height="465"
         decoding="async"
       />
     </figure>
@@ -164,7 +164,10 @@ const t = useTranslations(lang);
   .about__payments img {
     display: block;
     width: 100%;
+    max-width: 839px;
     height: auto;
+    margin-inline: auto;
+    aspect-ratio: 839 / 465;
   }
 
   @media (max-width: 768px) {

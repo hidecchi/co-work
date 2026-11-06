@@ -69,7 +69,7 @@ export const en: Translations = {
     ],
     paymentsHeading: "Accepted payments",
     paymentsAlt:
-      "Payment methods accepted via Square, including major credit cards, PayPay, and other cashless options.",
+      "Payment methods accepted via Square, including major credit cards, transit IC cards, PayPay, and other cashless options.",
   },
   howToUse: {
     label: "HOW TO USE",
