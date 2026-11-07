@@ -208,7 +208,8 @@ export const en: Translations = {
       },
       {
         question: "Can I eat and drink?",
-        answer: "You may bring drinks. Food is not allowed.",
+        answer:
+          "You may bring drinks. Food is not allowed. Alcoholic drinks are also not allowed.",
       },
       {
         question: "Can I step out for a meal or leave temporarily?",
