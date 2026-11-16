@@ -118,6 +118,7 @@ export const ja: Translations = {
     description:
       "ONE COIN コワーキングのコラム。神戸・元町の格安コワーキングに関するお知らせや記事を掲載しています。",
     heading: "コラム",
+    h1: "コラム",
     label: "COLUMN",
     lead: "神戸・元町の格安コワーキングに関するお知らせや記事です。",
     empty: "公開中の記事はまだありません。",
@@ -132,6 +133,7 @@ export const ja: Translations = {
     description:
       "ONE COIN コワーキングへのお問い合わせはこちらから。ご質問・取材・ご利用に関するご相談を受け付けています。",
     heading: "お問い合わせ",
+    h1: "お問い合わせ",
     label: "CONTACT",
     breadcrumbLabel: "パンくずリスト",
     lead: "ご質問やご相談は、下記フォームよりお送りください。必須項目をご記入のうえ送信してください。",
@@ -182,6 +184,7 @@ export const ja: Translations = {
     description:
       "ONE COIN コワーキングのよくある質問。料金、営業時間、ご利用方法などをまとめています。",
     heading: "よくある質問（料金・営業時間・利用方法）",
+    h1: "よくある質問",
     label: "FAQ",
     breadcrumbLabel: "パンくずリスト",
     lead: "ご利用前によくいただくご質問をまとめています。",
