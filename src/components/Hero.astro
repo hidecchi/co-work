@@ -18,11 +18,10 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
 <section class="hero" id="top" aria-labelledby="hero-heading">
   <div class="hero__inner">
     <div class="hero__copy">
-      <h1 id="hero-heading" class="hero__h1-seo">{t.hero.h1}</h1>
-      <div class="hero__title" aria-hidden="true">
+      <h1 id="hero-heading" class="hero__title" aria-label={t.hero.h1}>
         <span class="hero__title-line">{t.hero.titleLine1}</span>
         <span class="hero__title-line">{t.hero.titleLine2}</span>
-      </div>
+      </h1>
       <p class="hero__tagline">{t.hero.tagline}</p>
       <div class="hero__actions">
         <a class="hero__btn hero__btn--primary" href={howToUseHref}>
@@ -88,18 +87,6 @@ const loopSlides = [...HERO_SLIDES, ...HERO_SLIDES, ...HERO_SLIDES];
     column-gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
     padding-left: clamp(1.5rem, 5.5vw, 5rem);
-  }
-
-  .hero__h1-seo {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
   }
 
   .hero__title {

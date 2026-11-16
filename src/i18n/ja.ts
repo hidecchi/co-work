@@ -28,7 +28,6 @@ export const ja: Translations = {
   },
   hero: {
     h1: "神戸・元町の500円コワーキング｜時間無制限・24時間・登録不要",
-    bgText: "ONE COIN COWORKING",
     titleLine1: "GOOD WORK.",
     titleLine2: "GOOD DAY.",
     tagline: "ワンコインで好きなだけ使えるコワーキング",
@@ -118,7 +117,7 @@ export const ja: Translations = {
     title: "コラム",
     description:
       "ONE COIN コワーキングのコラム。神戸・元町の格安コワーキングに関するお知らせや記事を掲載しています。",
-    heading: "コラム（お知らせ・記事）",
+    heading: "コラム",
     label: "COLUMN",
     lead: "神戸・元町の格安コワーキングに関するお知らせや記事です。",
     empty: "公開中の記事はまだありません。",
@@ -132,7 +131,7 @@ export const ja: Translations = {
     title: "お問い合わせ",
     description:
       "ONE COIN コワーキングへのお問い合わせはこちらから。ご質問・取材・ご利用に関するご相談を受け付けています。",
-    heading: "お問い合わせ（質問・取材）",
+    heading: "お問い合わせ",
     label: "CONTACT",
     breadcrumbLabel: "パンくずリスト",
     lead: "ご質問やご相談は、下記フォームよりお送りください。必須項目をご記入のうえ送信してください。",
@@ -181,7 +180,7 @@ export const ja: Translations = {
   faq: {
     title: "よくある質問",
     description:
-      "ONE COIN コワーキングのよくある質問。入場料500円・時間無制限・24時間営業・キャッシュレス決済・予約不要。料金、営業時間、ご利用方法などをまとめています。",
+      "ONE COIN コワーキングのよくある質問。料金、営業時間、ご利用方法などをまとめています。",
     heading: "よくある質問（料金・営業時間・利用方法）",
     label: "FAQ",
     breadcrumbLabel: "パンくずリスト",
