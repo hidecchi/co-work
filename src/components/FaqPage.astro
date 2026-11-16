@@ -1,5 +1,6 @@
 ---
 import { getHomePath, type Lang, useTranslations } from "../i18n";
+import { toAbsoluteUrl, getSiteOrigin } from "../utils/site-url";
 import Layout from "../layouts/Layout.astro";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
@@ -12,9 +13,27 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const homePath = getHomePath(lang);
+
+// Generate FAQPage structured data
+const siteOrigin = getSiteOrigin(Astro.site?.href, import.meta.env.SITE);
+const faqPageUrl = toAbsoluteUrl(Astro.url.pathname, siteOrigin);
+
+const faqPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: t.faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer.replace(/<[^>]*>/g, ''), // Strip HTML tags
+    },
+  })),
+};
 ---
 
 <Layout lang={lang} title={t.faq.title} description={t.faq.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
   <Header lang={lang} />
   <div class="faq-page-wrap">
     <nav class="breadcrumb" aria-label={t.faq.breadcrumbLabel}>
@@ -34,7 +53,7 @@ const homePath = getHomePath(lang);
 
     <main id="main-content" class="faq-page">
       <header class="faq-page__header">
-        <h1 class="faq-page__title">{t.faq.label}</h1>
+        <h1 class="faq-page__title">{t.faq.h1}</h1>
       </header>
 
       <div class="faq-page__container">

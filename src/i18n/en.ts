@@ -4,7 +4,7 @@ export const en: Translations = {
   seo: {
     title: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
     description:
-      "Opening 10/31. Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
+      "Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
     ogImageAlt: "Interior of ONE COIN COWORKING",
     locale: "en",
     ogLocale: "en_US",
@@ -27,8 +27,7 @@ export const en: Translations = {
     langSwitchAria: "View site in Japanese",
   },
   hero: {
-    h1: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
-    bgText: "ONE COIN COWORKING",
+    h1: "¥500 Coworking in Kobe Motomachi | Unlimited Time, 24 Hours, No Registration",
     titleLine1: "GOOD WORK.",
     titleLine2: "GOOD DAY.",
     tagline: "Coworking for one coin—use it as much as you like.",
@@ -119,6 +118,7 @@ export const en: Translations = {
     description:
       "Column articles from ONE COIN COWORKING, an affordable coworking space in Motomachi, Kobe.",
     heading: "Column",
+    h1: "COLUMN",
     label: "COLUMN",
     lead: "News and articles about affordable coworking in Motomachi, Kobe.",
     empty: "No articles have been published yet.",
@@ -133,6 +133,7 @@ export const en: Translations = {
     description:
       "Contact ONE COIN COWORKING. Questions about the space, visits, or press inquiries are welcome.",
     heading: "Contact",
+    h1: "CONTACT",
     label: "CONTACT",
     breadcrumbLabel: "Breadcrumb",
     lead: "Please use the form below. Email and message are required.",
@@ -182,7 +183,8 @@ export const en: Translations = {
     title: "FAQ",
     description:
       "Frequently asked questions about ONE COIN COWORKING, including pricing, hours, and how to use the space.",
-    heading: "FAQ",
+    heading: "FAQ (Pricing, Hours, How to Use)",
+    h1: "FAQ",
     label: "FAQ",
     breadcrumbLabel: "Breadcrumb",
     lead: "Answers to common questions before your visit.",
