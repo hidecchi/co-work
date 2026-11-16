@@ -19,6 +19,7 @@
     "check:fix": "biome check --write ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
     "astro": "^7.0.6",
     "three": "^0.185.1"
   },

@@ -1,7 +1,8 @@
 ---
 title: A budget coworking space is opening near Motomachi Station
-description: ONE COIN COWORKING is scheduled to open at the end of October, a 7-minute walk from Motomachi Station in Kobe. ¥500 entry for unlimited stay.
+description: ONE COIN COWORKING is scheduled to open at the end of October, a 7-minute walk from Motomachi Station in Kobe. ¥500 entry for unlimited stay. (Opened on October 31, 2026)
 pubDate: 2026-09-07
+updatedDate: 2026-11-02
 lang: en
 keywords:
   - cheap coworking Kobe
@@ -68,3 +69,7 @@ You are welcome to use the space for work, study, or a short break.
 
 We plan to open at the end of October. No reservation is required.
 For press inquiries and other questions, please [contact us](/en/contact/).
+
+---
+
+**Update (November 2, 2026)**: [We opened for business on October 31, 2026](/en/column/opened-october-31/). We look forward to welcoming you.

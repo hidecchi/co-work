@@ -4,7 +4,7 @@ export const en: Translations = {
   seo: {
     title: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
     description:
-      "Opening 10/31. Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
+      "Coworking space a 7-minute walk from Motomachi Station, Kobe. ¥500 entry for unlimited stay, no membership required. Open 24 hours with high-speed Wi-Fi and power outlets.",
     ogImageAlt: "Interior of ONE COIN COWORKING",
     locale: "en",
     ogLocale: "en_US",
@@ -27,7 +27,7 @@ export const en: Translations = {
     langSwitchAria: "View site in Japanese",
   },
   hero: {
-    h1: "ONE COIN COWORKING | ¥500 Coworking in Kobe Motomachi",
+    h1: "¥500 Coworking in Kobe Motomachi | Unlimited Time, 24 Hours, No Registration",
     bgText: "ONE COIN COWORKING",
     titleLine1: "GOOD WORK.",
     titleLine2: "GOOD DAY.",
@@ -118,7 +118,7 @@ export const en: Translations = {
     title: "Column",
     description:
       "Column articles from ONE COIN COWORKING, an affordable coworking space in Motomachi, Kobe.",
-    heading: "Column",
+    heading: "Column (News & Articles)",
     label: "COLUMN",
     lead: "News and articles about affordable coworking in Motomachi, Kobe.",
     empty: "No articles have been published yet.",
@@ -132,7 +132,7 @@ export const en: Translations = {
     title: "Contact",
     description:
       "Contact ONE COIN COWORKING. Questions about the space, visits, or press inquiries are welcome.",
-    heading: "Contact",
+    heading: "Contact (Questions & Press)",
     label: "CONTACT",
     breadcrumbLabel: "Breadcrumb",
     lead: "Please use the form below. Email and message are required.",
@@ -181,8 +181,8 @@ export const en: Translations = {
   faq: {
     title: "FAQ",
     description:
-      "Frequently asked questions about ONE COIN COWORKING, including pricing, hours, and how to use the space.",
-    heading: "FAQ",
+      "Frequently asked questions about ONE COIN COWORKING. ¥500 entry, unlimited time, 24 hours, cashless payment, no reservation required. Pricing, hours, and how to use the space.",
+    heading: "FAQ (Pricing, Hours, How to Use)",
     label: "FAQ",
     breadcrumbLabel: "Breadcrumb",
     lead: "Answers to common questions before your visit.",
