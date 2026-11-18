@@ -23,7 +23,7 @@ const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
 <!doctype html>
 <html lang={lang}>
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — GA4 + Google 広告 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XET5V39L0Z"
     ></script>
     <script is:inline>
@@ -33,6 +33,7 @@ const { lang = "ja", heroImagePreload, ...seoProps } = Astro.props;
       }
       gtag("js", new Date());
       gtag("config", "G-XET5V39L0Z");
+      gtag("config", "AW-18552227826");
     </script>
     <Seo lang={lang} {...seoProps} />
     {
